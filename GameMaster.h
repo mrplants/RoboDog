@@ -43,7 +43,6 @@ class GameMaster : public SDL_Program {
     ~GameMaster();
     
     void play(); //this starts the master game
-    bool SDL_init(int = SCREEN_WIDTH, int = SCREEN_HEIGHT, int = SCREEN_BPP); //sets up the screen and the background
     
   private:
     //show welcome screen
@@ -51,6 +50,11 @@ class GameMaster : public SDL_Program {
 
     SDL_Surface * screen; //screen or canvas all images are blit onto
     SDL_Surface * background; //whatever fills the whole screen's background
+    
+    //sets up the screen and the background, the last parametere is for the title of the window
+    bool SDL_Init(int = SCREEN_WIDTH, int = SCREEN_HEIGHT, int = SCREEN_BPP, string = "Robodog");
+    void updateScreen();
+    void cleanUp();
     
     //##### Snap Region Data Members/Methods #######//
     SDL_Rect snapRegion; //rectangle that defines the area an image will snap to
