@@ -1,3 +1,15 @@
+/*
+ GameWorld.h
+ 
+ Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
+ 
+ **Description of functionality**
+ 
+ */
+
+#ifndef GAME_WORLD
+#define GAME_WORLD
+
 #include <iostream>
 
 #include "GameStats.h"
@@ -25,3 +37,5 @@ class GameWorld
     int scoreTotal;
     
 };
+
+#endif // defined GAME_WORLD
