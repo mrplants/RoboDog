@@ -51,7 +51,7 @@ class GameMaster : public SDL_Program {
     SDL_Surface * background; //whatever fills the whole screen's background
     
     //sets up the screen and the background, the last parametere is for the title of the window
-    bool SDL_Init(int = SCREEN_WIDTH, int = SCREEN_HEIGHT, int = SCREEN_BPP, string = "Robodog");
+    bool SDL_Init(int = SCREEN_WIDTH, int = SCREEN_HEIGHT, int = SCREEN_BPP, std::string = "Robodog");
     void updateScreen();
     virtual void cleanUp(); //implemented in this class
     

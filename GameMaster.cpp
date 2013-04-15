@@ -32,7 +32,7 @@ void GameMaster::play() {
 //-----------------------------------------------------------------------------
 
 //sets up the screen and the background
-bool GameMaster::SDL_Init(int SCREEN_WIDTH, int SCREEN_HEIGHT, int SCREEN_BPP, string caption) {
+bool GameMaster::SDL_Init(int width, int height, int bpp, std::string caption) {
     
     //Initialize all SDL subsystems
     if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
@@ -41,7 +41,7 @@ bool GameMaster::SDL_Init(int SCREEN_WIDTH, int SCREEN_HEIGHT, int SCREEN_BPP, s
     }
     
     //Set up the screen
-    screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
+    screen = SDL_SetVideoMode( width, height, bpp, SDL_SWSURFACE );
     
     //If there was an error in setting up the screen
     if( screen == NULL ) {
