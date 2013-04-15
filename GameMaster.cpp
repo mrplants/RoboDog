@@ -4,12 +4,12 @@
  Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
  
  Master Game Controller - links together all the game classes via composition
-
+ 
  */
 
 #include "GameMaster.h"
 
-GameMaster::GameMaster() {
+GameMaster::GameMaster() : SDL_Program() {
     //init SDL stuff here? Or in play?
 }
 
@@ -50,7 +50,7 @@ bool GameMaster::SDL_Init(int width, int height, int bpp, std::string caption) {
     }
     
     //Set the window caption
-    SDL_WM_SetCaption( caption, NULL );
+    SDL_WM_SetCaption( caption.c_str(), NULL );
     
     //If everything initialized fine
     return true;
@@ -98,13 +98,13 @@ void GameMaster::setUpSnapRegion(int x, int y, int width, int height) {
     snapRegion.h = snapImage->h;
     
     SDL_FillRect( snapImage, NULL, SDL_MapRGB( snapImage->format, 0xCC, 0xCC, 0xCC ) );
-    apply_surface(x, y, snapImage, snapRegion, screen, NULL);
+    applySurface(x, y, snapImage, snapRegion, screen, NULL);
     return;
 }
 
 //adds a visual representation of the snap region to the screen
 void GameMaster::applySnapRegion(SDL_Surface *) {
-    apply_surface(snapRegion.x, snapRegion.y, snapImage, snapRegion, screen, NULL);
+    applySurface(snapRegion.x, snapRegion.y, snapImage, snapRegion, screen, NULL);
     return;
 }
 

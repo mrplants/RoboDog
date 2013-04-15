@@ -21,11 +21,12 @@ SDL_Rect SDL_Token::snapToLocation(SDL_Rect rect) {
     int centerX = rect.x+(rect.w/2);
     int centerY = rect.y+(rect.h/2);
     
-    if (centerX > snapRegion.x && centerX < snapRegion.x+snapRegion.w && centerY > snapRegion.y && centerY < snapRegion.y+snapRegion.h) {
-        rect.x = snapRegion.x;
-        rect.y = snapRegion.y;
-    }
-    
+    /*Snap region is defined in GameMaster, needs to be passed in?
+     if (centerX > snapRegion.x && centerX < snapRegion.x+snapRegion.w && centerY > snapRegion.y && centerY < snapRegion.y+snapRegion.h) {
+     rect.x = snapRegion.x;
+     rect.y = snapRegion.y;
+     }
+     */
     return rect;
 }
 

@@ -12,9 +12,8 @@
 #ifndef SDL_TOKEN
 #define SDL_TOKEN
 
-#include <iostream>
-#include <string>
-#include "SDL_Program.h" //includes all SDL frameworks needed
+//Base class
+#include "SDL_Program.h" //includes all SDL frameworks, iostream, etc. needed
 
 class SDL_Token : public SDL_Program {
 public:
