@@ -10,13 +10,6 @@
 #ifndef GAME_MASTER
 #define GAME_MASTER
 
-/*
- #include //Maribeth's classes
- #include //Jon's classes
- #include //Sean's classes
- #include //Daniel's classes
- */
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -30,6 +23,9 @@
 #include "pthread.h"
 //Base class for GameMaster.h
 #include "SDL_Program.h"
+//contains program-wide constants like screen size
+#include "constants.h"
+#include "TokenQueue.h"
 
 class GameMaster : public SDL_Program {
     
@@ -43,29 +39,28 @@ private:
     //show welcome screen
     //show high scores
     
-    //Screen attributes
-    static const int SCREEN_WIDTH = 640;
-    static const int SCREEN_HEIGHT = 480;
-    static const int SCREEN_BPP = 32;
     SDL_Surface *screen; //screen or canvas all images are blit onto
     SDL_Surface *background; //whatever fills the whole screen's background
     
     //sets up the screen and the background, the last parameter is for the title of the window
     bool SDL_Init(int = SCREEN_WIDTH, int = SCREEN_HEIGHT, int = SCREEN_BPP, std::string = "Robodog");
+    //SDL_Rect applySurface(int, int, SDL_Surface *, SDL_Rect, SDL_Surface *, SDL_Rect *); //blits image to destination at (x, y)
+    bool mouseInTokenPane(int, int);
     void updateScreen();
     virtual void cleanUp(); //implemented in this class
     
     //------------- Snap Region Data Members/Methods -------------
-    SDL_Rect snapRegion; //rectangle that defines the area an image will snap to
+    SDL_Rect tokenPane; //area that user will drop tokens to write their code
+    /*SDL_Rect snapRegion; //rectangle that defines the area an image will snap to
     SDL_Surface *snapImage; //visual representation of the snap region (probably not needed for final project)
     
     void setUpSnapRegion(int, int, int, int); //adds a rect to the screen that will  be used to snap tokens into place
     void applySnapRegion(SDL_Surface *); //adds a visual representation of the snap region to the screen
     SDL_Surface* createBlankSurface(Uint32 flags, int width, int height); //creates the blank surface applied to the screen by applySnapRegion
-    //------------------------------------------------------------
+    *///------------------------------------------------------------
     
     //interpreter
-    //token queue
+    TokenQueue queueOfTokens;
     //game world
     
 };

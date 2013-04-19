@@ -25,7 +25,6 @@ public:
     TTF_Font *loadFont(std::string, int);  //takes single filename, opens and returns a font
     SDL_Surface *loadImage(std::string);   //takes single filename, loads image, optimizes it to screen and returns it
     SDL_Rect createRect(SDL_Surface *, int, int); //creates an SDL_Rect that corresponds to an image (SDL_Surface)
-    SDL_Rect applySurface(int, int, SDL_Surface *, SDL_Rect, SDL_Surface *, SDL_Rect *); //blits image to destination at (x, y)
     
     //NOTE: update for new class heirarchy later...possibly make pure virtual here
     bool mouseOverImage(SDL_Rect, int, int); //checks if the mouse is located within the perimeter of the image
@@ -34,4 +33,4 @@ public:
 
 };
 
-#endif /* defined SDL_PROGRAM */
+#endif // defined SDL_PROGRAM
