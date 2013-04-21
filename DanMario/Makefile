@@ -10,7 +10,7 @@ Timer.o: Timer.cpp Timer.h Constants.h
 	g++ -c Timer.cpp Timer.h Constants.h -lSDL_image
 
 Mario.o: Mario.cpp Mario.h Constants.h
-	g++ -c TImer.cpp Timer.h Constants.h -lSDL_image
+	g++ -c Mario.cpp Mario.h Constants.h -lSDL_image
 
 Main.o: Main.cpp Mario.h Background.h Timer.h Constants.h
 	g++ -c Main.cpp Mario.h Background.h Timer.h Constants.h -lSDL_image
