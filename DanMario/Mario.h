@@ -1,3 +1,5 @@
+#ifndef MARIO_H
+#define MARIO_H
 
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
@@ -32,3 +34,5 @@ public:
   //Shows Mario
   void show();
 };
+
+#endif

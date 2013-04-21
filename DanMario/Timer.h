@@ -1,7 +1,12 @@
+
+#ifndef TIMER_H
+#define TIMER_H
+
 #include <iostream>
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include <string>
+#include "Constants.h"
 
 
 //The timer
@@ -35,3 +40,6 @@ public:
   bool is_started();
   bool is_paused();
 };
+
+
+#endif

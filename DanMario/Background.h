@@ -1,8 +1,12 @@
 
+#ifndef BACKGROUND_H
+#define BACKGROUND_H
+
 #include <iostream>
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include <string>
+#include "Constants.h"
 
 
 //The background
@@ -25,3 +29,5 @@ public:
   void show();
 
 };
+
+#endif

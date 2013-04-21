@@ -1,6 +1,7 @@
 
 #include "GameAnimationMario.h"
 #include "Mario.h"
+#include "Constants.h"
 
 //prototypes
 SDL_Surface *load_image( std::string filename );
