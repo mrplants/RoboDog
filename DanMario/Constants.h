@@ -4,25 +4,25 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 
- extern const int SCREEN_WIDTH = 640;
- extern const int SCREEN_HEIGHT = 480;
-extern  const int SCREEN_BPP = 32;
+#define SCREEN_WIDTH 640;
+ #define SCREEN_HEIGHT 480;
+#define SCREEN_BPP 32;
 
 //The frame rate
- extern const int FRAMES_PER_SECOND = 20;
+ #define FRAMES_PER_SECOND 20;
 
 //The dimensions of Mario
- extern const int MARIO_WIDTH = 184;
- extern const int MARIO_HEIGHT = 200;
+ #define MARIO_WIDTH 184;
+ #define MARIO_HEIGHT 200;
 
 //The action status of Mario
- extern const int MARIO_STAND = 0;
- const int MARIO_JUMP = 1;
+ #define MARIO_STAND 0;
+ #define MARIO_JUMP 1;
 
 //The surfaces
- extern SDL_Surface *mario = NULL;
- extern SDL_Surface *background = NULL;
- extern SDL_Surface *screen = NULL;
+ extern SDL_Surface *mario;
+ extern SDL_Surface *background ;
+ extern SDL_Surface *screen ;
 
 //The event structure
  extern SDL_Event event;
