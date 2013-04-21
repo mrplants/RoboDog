@@ -15,27 +15,29 @@
 #include "GameStats.h"
 // #include "GameAnimation.h" // Daniel's class
 
+using namespace std;
+
 class GameWorld
 {
   
-  public:
+public:
   
-    void step();
-    void jump();
-    void turn();
-    void kick();
-    //character actions
+	void step();
+	void jump();
+	void turn();
+	void kick();
+	//character actions
   
-    GameStats getStatsFromProgram();
+	GameStats getStatsFromProgram();
   
-  private:
+private:
   
-    GameAnimation gameAnimationScreen;
+	GameAnimation gameAnimationScreen;
   
-    int tokensInProgram;
-    int livesLeft;
-    int scoreTotal;
-    
+	int tokensInProgram;
+	int livesLeft;
+	int scoreTotal;
+	
 };
 
 #endif // defined GAME_WORLD

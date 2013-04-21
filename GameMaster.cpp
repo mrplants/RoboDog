@@ -48,23 +48,23 @@ void GameMaster::play()
             if (event.type == SDL_QUIT) {   // If user clicks 'x' in top left corner
                 quit = true;
                 
-            }else if (event.type == SDL_MOUSEBUTTONDOWN) { // If mouse was pressed down
+            } else if (event.type == SDL_MOUSEBUTTONDOWN) { // If mouse was pressed down
                 mousePressedOnImage = true;//in TQ mouseOverToken(imageRect, event.motion.x, event.motion.y);
                 SDL_GetRelativeMouseState(&dx, &dy);
 		//std::cout << dx << ", " << dy << std::endl;
                 
-            }else if (event.type == SDL_MOUSEBUTTONUP) { // If the mouse button was released
+            } else if (event.type == SDL_MOUSEBUTTONUP) { // If the mouse button was released
                 mousePressedOnImage = false;
 		
 		if (mouseInTokenPane(event.motion.x, event.motion.y)) { //NOTE: may be incorrect x and y
 		  //tells TokenQueue to drop token, TQ will snap it and release it
 		  queueOfTokens.snapActiveToken();
-		}else{
+		} else {
 		  //tells TQ to delete the last token in the queue (the active token)
 		  queueOfTokens.releaseActiveToken();
 		}
                 
-            }else if (event.type == SDL_MOUSEMOTION && mousePressedOnImage) { // If the user clicks and drags
+            } else if (event.type == SDL_MOUSEMOTION && mousePressedOnImage) { // If the user clicks and drags
                 
                 SDL_GetRelativeMouseState(&dx, &dy); //gets mouse's change in position since last time this was called
 		// Reapply image
@@ -139,7 +139,7 @@ SDL_Rect applySurface(int x, int y, SDL_Surface *source, SDL_Rect offset, SDL_Su
 bool GameMaster::mouseInTokenPane(int x, int y) {
  if (x > tokenPane.x && y > tokenPane.y && x <= (tokenPane.x + tokenPane.w) && y <= (tokenPane.y + tokenPane.h)) {
     return true;
- }else{
+ } else {
    return false;
  }
 }

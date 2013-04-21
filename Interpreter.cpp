@@ -89,40 +89,44 @@ void Interpreter::parse( v2int program ) {
         switch (program[i][0]) {
             case 1:
                 if (program[i][1] == 0) {
-                    cout << "*step one space" << endl;
+                    cout << "*step one space (0 entered)" << endl;
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "step one space" << endl;
+                        // world->step();
                     }
                 }
                 break;
                 
             case 2:
                 if (program[i][1] == 0) {
-                    cout << "*Jump once" << endl;
+                    cout << "*Jump once (0 entered)" << endl;
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "Jump once" << endl;
+                        // world->jump();
                     }
                 }
                 break;
                 
             case 3:
                 if (program[i][1] == 0) {
-                    cout << "*Turn around" << endl;
+                    cout << "*Turn around (0 entered)" << endl;
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "Turn around" << endl;
+                        // world->turn();
                     }
                 }
                 break;
                 
             case 4:
                 if (program[i][1] == 0) {
-                    cout << "*Kick once" << endl;
+                    cout << "*Kick once (0 entered)" << endl;
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "Kick once" << endl;
+                        // world->kick();
                     }
                 }
                 break;
