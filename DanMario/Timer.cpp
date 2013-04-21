@@ -1,4 +1,3 @@
-
 #include "Timer.h"
 
 //default constructor for Timer
@@ -93,4 +92,4 @@ bool Timer::is_paused()
   return paused;
 }
 
-//main function
+

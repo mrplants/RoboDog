@@ -9,23 +9,23 @@ Background::Background()
   bgY = 0;
 }
 
-// handle key presses                                                                                            
+// handle key presses                                                
 void Background::handle_events()
 {
-  //If a key was pressed                                                                                         
+  //If a key was pressed             
   if( event.type == SDL_KEYDOWN )
     {
-      //Set the velocity                                                                                          
+      //Set the velocity 
       switch( event.key.keysym.sym )
         {
         case SDLK_RIGHT: scrolling = 1; break;
         }
     }
 
-  //If a key was released                                                                                         
+  //If a key was released 
   else if( event.type == SDL_KEYUP )
     {
-      //Set the velocity                                                                                          
+      //Set the velocity            
       switch( event.key.keysym.sym )
         {
         case SDLK_RIGHT: scrolling = 0; break;
@@ -36,7 +36,7 @@ void Background::handle_events()
 
 void Background::show()
 {
-  //Show the Background                                                                                          
+  //Show the Background  
   if( scrolling == 1 )
     {
       bgX -= 50;
@@ -45,14 +45,14 @@ void Background::show()
     {
       bgX = bgX;
     }
-  //If the background has gone too far                                                                          
+  //If the background has gone too far 
   if( bgX <= -background->w )
     {
-      //Reset the offset                                                                                        
+      //Reset the offset  
       bgX = 0;
     }
 
-  //Show the background                                                                                         
+  //Show the background                                
   apply_surface( bgX, bgY, background, screen );
   apply_surface( bgX + background->w, bgY, background, screen );
 }

@@ -30,7 +30,7 @@
 //The areas of the sprite sheet
  extern SDL_Rect clips[ 2 ];
 
-// tells us if we are scrolling (1 if yes, 0 if no)                                                               
+//Tells us if we are scrolling (1 if yes, 0 if no)                     
  extern int scrolling;
 
 

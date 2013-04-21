@@ -1,5 +1,3 @@
-
-
 #include "Mario.h"
 
 Mario::Mario()
@@ -38,9 +36,9 @@ void Mario::handle_events()
    
 }
 
+//Show Mario
 void Mario::show()
 {
-  //Show Mario
   if( status == MARIO_JUMP )
     {
       apply_surface( x, y, mario, screen, &clips[ 1 ] );

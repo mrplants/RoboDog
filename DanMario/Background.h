@@ -14,7 +14,7 @@ class Background
 {
 private:
 
-  //The offsets of the background                                                                                  
+  //The offsets of the background                                     
   int bgX; 
   int bgY;
 

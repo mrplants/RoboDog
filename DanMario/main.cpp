@@ -5,7 +5,6 @@
 #include "Background.h"
 #include "Constants.h"
 
-
 SDL_Surface *load_image( std::string filename )
 {
   //The image that's loaded
@@ -128,8 +127,6 @@ void clean_up()
   //Quit SDL
   SDL_Quit();
 }
-
-
 
 //main function
 int main( int argc, char* args[] )

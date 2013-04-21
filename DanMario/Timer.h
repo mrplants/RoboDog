@@ -1,4 +1,3 @@
-
 #ifndef TIMER_H
 #define TIMER_H
 
@@ -7,7 +6,6 @@
 #include "SDL/SDL_image.h"
 #include <string>
 #include "Constants.h"
-
 
 //The timer
 class Timer
@@ -40,6 +38,5 @@ public:
   bool is_started();
   bool is_paused();
 };
-
 
 #endif
