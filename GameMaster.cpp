@@ -50,6 +50,9 @@ void GameMaster::play()
                 
             } else if (event.type == SDL_MOUSEBUTTONDOWN) { // If mouse was pressed down
                 mousePressedOnImage = true;//in TQ mouseOverToken(imageRect, event.motion.x, event.motion.y);
+
+                #warning
+                
                 SDL_GetRelativeMouseState(&dx, &dy);
 		//std::cout << dx << ", " << dy << std::endl;
                 
