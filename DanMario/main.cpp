@@ -75,16 +75,16 @@ bool init()
     {
       return false;
     }
-  
+
   //Set up the screen
   screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
-  
+
   //If there was an error in setting up the screen
   if( screen == NULL )
     {
       return false;
     }
-  
+
   //Set the window caption
   SDL_WM_SetCaption( "Jumping Mario on Scrolling Background", NULL );
 
@@ -131,60 +131,59 @@ void clean_up()
 //main function
 int main( int argc, char* args[] )
 {
-  
   //Quit flag
   bool quit = false;
 
   //The frame rate regulator
   Timer fps;
-  
+
   //Initialize
   if( init() == false )
     {
       return 1;
     }
-  
+
   //Load the files
   if( load_files() == false )
     {
       return 1;
     }
-  
+
   //Clip the sprite sheet                                                    
   set_clips();
-  
+
   //instantiate Mario                                                         
   Mario action;
-  
+
   //instantiate Background
   Background back;
-  
+
   //While the user hasn't quit
   while( quit == false )
     {
       //Start the frame timer
       fps.start();
-      
+
       //While there's events to handle
       while( SDL_PollEvent( &event ) )
         {
-	  
+
 	  //Handle events for Mario and the Background
 	  action.handle_events();
 	  back.handle_events();
-	  
-	  
+	   
+	    
 	  //If the user has Xed out the window
 	  if( event.type == SDL_QUIT )
-	    {
+            {
 	      //Quit the program
 	      quit = true;
-	    }
+            }
         }
       
       back.show();
       action.show();
-      
+
       //Update the screen
       if( SDL_Flip( screen ) == -1 ) {
 	return 1;
@@ -201,5 +200,3 @@ int main( int argc, char* args[] )
   
   return 0;
 }
-
-
