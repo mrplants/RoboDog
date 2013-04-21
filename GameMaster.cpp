@@ -17,6 +17,10 @@ GameMaster::GameMaster() : SDL_Program() {
     tokenPane.y = 0;
     tokenPane.h = SCREEN_HEIGHT * TOKEN_PANE_PERCENT_H;
     tokenPane.w = SCREEN_WIDTH * TOKEN_PANE_PERCENT_W;
+    
+    //load background image
+    background = loadImage("background.jpg"); //method inherited from SDL_Program
+    if (background == NULL) std::cout << "ERR: Background could not be loaded\n" << std::endl;
 }
 
 GameMaster::~GameMaster() {
@@ -35,7 +39,7 @@ void GameMaster::play() {
     
     while (!quit) {
 
-        // Processes events while events are in the queue
+        // Processes any events that are in an event queue
         while (SDL_PollEvent( &event )) {
             
             if (event.type == SDL_QUIT) {   // If user clicks 'x' in top left corner
@@ -46,10 +50,10 @@ void GameMaster::play() {
                 SDL_GetRelativeMouseState(&dx, &dy);
 		//std::cout << dx << ", " << dy << std::endl;
                 
-            }else if (event.type == SDL_MOUSEBUTTONUP) {
+            }else if (event.type == SDL_MOUSEBUTTONUP) { // If the mouse button was released
                 mousePressedOnImage = false;
-		//NOTE: may be incorrect x and y
-		if (mouseInTokenPane(event.motion.x, event.motion.y)) {
+		
+		if (mouseInTokenPane(event.motion.x, event.motion.y)) { //NOTE: may be incorrect x and y
 		  //tells TokenQueue to drop token, TQ will snap it and release it
 		  queueOfTokens.snapActiveToken();
 		}else{
@@ -57,16 +61,19 @@ void GameMaster::play() {
 		  queueOfTokens.releaseActiveToken();
 		}
                 
-            }else if (event.type == SDL_MOUSEMOTION && mousePressedOnImage) {
+            }else if (event.type == SDL_MOUSEMOTION && mousePressedOnImage) { // If the user clicks and drags
                 
-                SDL_GetRelativeMouseState(&dx, &dy);
-//                int xcoord = event.motion.x;
-//                int ycoord = event.motion.y;
-//                std::cout << "(" << xcoord << ", " << ycoord << ")" << std::endl;
-                //std::cout << "Changed: " << x << ", " << y << std::endl;
-
-                // Reapply image
-                queueOfTokens.translateToken(dx, dy);
+                SDL_GetRelativeMouseState(&dx, &dy); //gets mouse's change in position since last time this was called
+		// Reapply image
+                queueOfTokens.translateActiveToken(dx, dy); //moves the token however much the mouse moved
+		
+		/*//debugging output
+                int xcoord = event.motion.x;
+                int ycoord = event.motion.y;
+                std::cout << "(" << xcoord << ", " << ycoord << ")" << std::endl;
+                std::cout << "Changed: " << x << ", " << y << std::endl;
+		*/
+                
             }
             updateScreen();
         }
@@ -82,7 +89,7 @@ void GameMaster::play() {
 //      Basic SDL Methods (init, clean up, update screen)
 //-----------------------------------------------------------------------------
 
-//sets up the screen and the background
+//Sets up the screen surface and physical window
 bool GameMaster::SDL_Init(int width, int height, int bpp, std::string caption) {
     
     //Initialize all SDL subsystems
@@ -107,7 +114,24 @@ bool GameMaster::SDL_Init(int width, int height, int bpp, std::string caption) {
     return true;
 }
 
-//checks if mouse is in the lefthand pane that tokens can be dropped 
+//NOTE: only x, y, and destination should be passed in, possibly clip at lower level-
+//		offset and source known by class being called on
+//blits image to destination at (x, y)
+//Parameters 1, 2: x and y coordinates where image will be blitted
+//Parameter 3: image to be blitted
+//Parameter 4: SDL_Rect associated with the surface being blitted
+//Parameter 5: image being blitted onto
+//Parameter 6: which clip of source to blit
+/*
+SDL_Rect applySurface(int x, int y, SDL_Surface *source, SDL_Rect offset, SDL_Surface *destination, SDL_Rect *clip) {
+    offset.x+=x;
+    offset.y+=y;
+    
+    SDL_BlitSurface( source, clip, destination, &offset );
+    return offset;
+}*/
+
+//checks if mouse is in the lefthand pane that tokens can be dropped in 
 bool GameMaster::mouseInTokenPane(int x, int y) {
  if (x > tokenPane.x && y > tokenPane.y && x <= (tokenPane.x + tokenPane.w) && y <= (tokenPane.y + tokenPane.h)) {
     return true;
@@ -116,22 +140,27 @@ bool GameMaster::mouseInTokenPane(int x, int y) {
  }
 }
 
-void GameMaster::updateScreen() {
-    //SDL method to update the screen
-    // Fill the screen white
-    SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) );
+void GameMaster::updateScreen() 
+{
+    //Re-applies the background
+    //SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) ); //fills screen with white
+    SDL_Rect offset;
+    offset.x = 0;
+    offset.y = 0;
+    SDL_BlitSurface(background, NULL, screen, &offset);
     
     //Call all update screen methods in game and token queue
     queueOfTokens.updateScreen(screen);
     //gameWorld.updateScreen(screen);
     
-    //must be called for images that have been applied to the screen to show up
+    //SDL_Flip must be called for images that have been applied to the screen to show up
     if (SDL_Flip(screen) == -1) std::cout << "ERR: Updating screen failed" << std::endl;
     return;
 }
 
 //Frees all of GameMaster's surfaces, and calls the clean up method of its composed classes
-void GameMaster::cleanUp() {
+void GameMaster::cleanUp()
+{
     SDL_FreeSurface(screen);
     SDL_FreeSurface(background);
     

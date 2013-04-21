@@ -60,7 +60,7 @@ private:
     SDL_Surface* createBlankSurface(Uint32 flags, int width, int height); //creates the blank surface applied to the screen by applySnapRegion
     *///------------------------------------------------------------
     
-    void compileUserCode();
+    void compileUserCode(); //called when user presses play, gets tokenQueue and gives it to the interpreter
     
     Interpreter interpreter;
     TokenQueue queueOfTokens;

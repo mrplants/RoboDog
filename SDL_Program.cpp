@@ -58,22 +58,6 @@ SDL_Rect SDL_Program::createRect(SDL_Surface * image, int startX, int startY) {
     return rect;
 }
 
-//NOTE: only x, y, and destination should be passed in, possibly clip at lower level-
-//		offset and source known by class being called on
-//blits image to destination at (x, y)
-//Parameters 1, 2: x and y coordinates where image will be blitted
-//Parameter 3: image to be blitted
-//Parameter 4: SDL_Rect associated with the surface being blitted
-//Parameter 5: image being blitted onto
-//Parameter 6: which clip of source to blit
-SDL_Rect applySurface(int x, int y, SDL_Surface *source, SDL_Rect offset, SDL_Surface *destination, SDL_Rect *clip) {
-    offset.x+=x;
-    offset.y+=y;
-    
-    SDL_BlitSurface( source, clip, destination, &offset );
-    return offset;
-}
-
 //NOTE: No parameters needed-
 //		rect will be data member of class being called on
 //		x and y will be taken directly from the mouse
