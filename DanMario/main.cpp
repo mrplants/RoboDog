@@ -1,6 +1,8 @@
 
 #include "GameAnimationMario.h"
 #include "Mario.h"
+#include "Timer.h"
+#include "Background.h"
 #include "Constants.h"
 
 //prototypes
