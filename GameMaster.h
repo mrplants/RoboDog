@@ -25,8 +25,10 @@
 #include "SDL_Program.h"
 //contains program-wide constants like screen size
 #include "constants.h"
+
 #include "TokenQueue.h"
 #include "Interpreter.h"
+#include "CokeToken.h"
 
 class GameMaster : public SDL_Program {
     
@@ -44,7 +46,7 @@ private:
     SDL_Surface *background; //whatever fills the whole screen's background
     
     //sets up the screen and the background, the last parameter is for the title of the window
-    bool SDL_Init(int = SCREEN_WIDTH, int = SCREEN_HEIGHT, int = SCREEN_BPP, std::string = "Robodog");
+    bool initializeSDL(int = SCREEN_WIDTH, int = SCREEN_HEIGHT, int = SCREEN_BPP, std::string = "Robodog");
     //SDL_Rect applySurface(int, int, SDL_Surface *, SDL_Rect, SDL_Surface *, SDL_Rect *); //blits image to destination at (x, y)
     bool mouseInTokenPane(int, int);
     void updateScreen();
@@ -62,7 +64,7 @@ private:
     
     void compileUserCode(); //called when user presses play, gets tokenQueue and gives it to the interpreter
     
-    Interpreter interpreter;
+    //Interpreter interpreter;
     TokenQueue queueOfTokens;
     //game world
     

@@ -9,29 +9,32 @@
 
 #include "GameMaster.h"
 
-GameMaster::GameMaster() : SDL_Program() {
-    //init SDL stuff here? Or in play?
-    
+GameMaster::GameMaster() : SDL_Program() 
+{
+    initializeSDL(); //sets up SDL systems, screen
+    std::cout << "GM constructor begin" << std::endl;
     //area where tokens will be dropped
     tokenPane.x = 0;
     tokenPane.y = 0;
     tokenPane.h = SCREEN_HEIGHT * TOKEN_PANE_PERCENT_H;
     tokenPane.w = SCREEN_WIDTH * TOKEN_PANE_PERCENT_W;
-    
+    std::cout << "GM constructor middle" << std::endl;
     //load background image
-    background = loadImage("background.jpg"); //method inherited from SDL_Program
+    background = loadImage("background.png"); //method inherited from SDL_Program
+    std::cout << "background loaded" << std::endl;
     if (background == NULL) std::cout << "ERR: Background could not be loaded\n" << std::endl;
+    std::cout << "GM constructor end" << std::endl;
 }
 
 GameMaster::~GameMaster() {
+  
     cleanUp();
 }
 
 //****************************************************************************
 //This starts the master game
-void GameMaster::play() {
-    SDL_Init(); //maybe quit program if this returns false?
-    
+void GameMaster::play() 
+{
     SDL_Event event;
     bool quit = false;
     int dx, dy;
@@ -90,14 +93,15 @@ void GameMaster::play() {
 //-----------------------------------------------------------------------------
 
 //Sets up the screen surface and physical window
-bool GameMaster::SDL_Init(int width, int height, int bpp, std::string caption) {
-    
+bool GameMaster::initializeSDL(int width, int height, int bpp, std::string caption) 
+{
+    std::cout << "in sdl init" << std::endl;
     //Initialize all SDL subsystems
     if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
         std::cout << "ERR: SDL_INIT_EVERYTHING was not successful" << std::endl;
         return false;
     }
-    
+
     //Set up the screen
     screen = SDL_SetVideoMode( width, height, bpp, SDL_SWSURFACE );
     

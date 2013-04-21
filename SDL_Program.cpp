@@ -27,7 +27,9 @@ SDL_Surface * SDL_Program::loadImage(std::string filename) {
     loadedImage = IMG_Load(filename.c_str());
     
     if (loadedImage != NULL) {
+	std::cout << "passed if using filename " << filename << std::endl;
         optimizedImage = SDL_DisplayFormat(loadedImage);
+	std::cout << "SDL_DisplayFormat successful" << std::endl;
         SDL_FreeSurface(loadedImage);
         
         //Map the color key
