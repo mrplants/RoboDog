@@ -28,7 +28,7 @@
 
 #include "TokenQueue.h"
 #include "Interpreter.h"
-#include "CokeToken.h"
+#include "CodeToken.h"
 
 class GameMaster : public SDL_Program {
     
@@ -37,6 +37,8 @@ public:
     ~GameMaster();
     
     void play(); //this starts the master game
+    //sets up the screen and the background, the last parameter is for the title of the window
+    bool initializeSDL(int = SCREEN_WIDTH, int = SCREEN_HEIGHT, int = SCREEN_BPP, std::string = "Robodog");
     
 private:
     //show welcome screen
@@ -45,8 +47,7 @@ private:
     SDL_Surface *screen; //screen or canvas all images are blit onto
     SDL_Surface *background; //whatever fills the whole screen's background
     
-    //sets up the screen and the background, the last parameter is for the title of the window
-    bool initializeSDL(int = SCREEN_WIDTH, int = SCREEN_HEIGHT, int = SCREEN_BPP, std::string = "Robodog");
+    
     //SDL_Rect applySurface(int, int, SDL_Surface *, SDL_Rect, SDL_Surface *, SDL_Rect *); //blits image to destination at (x, y)
     bool mouseInTokenPane(int, int);
     void updateScreen();

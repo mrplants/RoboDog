@@ -12,22 +12,16 @@
 GameMaster::GameMaster() : SDL_Program() 
 {
     initializeSDL(); //sets up SDL systems, screen
-    std::cout << "GM constructor begin" << std::endl;
+
     //area where tokens will be dropped
     tokenPane.x = 0;
     tokenPane.y = 0;
     tokenPane.h = SCREEN_HEIGHT * TOKEN_PANE_PERCENT_H;
     tokenPane.w = SCREEN_WIDTH * TOKEN_PANE_PERCENT_W;
-    std::cout << "GM constructor middle" << std::endl;
-    //load background image
-    background = loadImage("background.png"); //method inherited from SDL_Program
-    std::cout << "background loaded" << std::endl;
-    if (background == NULL) std::cout << "ERR: Background could not be loaded\n" << std::endl;
-    std::cout << "GM constructor end" << std::endl;
 }
 
-GameMaster::~GameMaster() {
-  
+GameMaster::~GameMaster()
+{
     cleanUp();
 }
 
@@ -44,10 +38,10 @@ void GameMaster::play()
 
         // Processes any events that are in an event queue
         while (SDL_PollEvent( &event )) {
-            
+            std::cout << "event detected" << std::endl;
             if (event.type == SDL_QUIT) {   // If user clicks 'x' in top left corner
                 quit = true;
-                
+                std::cout << "quit: " << quit << std::endl;
             } else if (event.type == SDL_MOUSEBUTTONDOWN) { // If mouse was pressed down
                 mousePressedOnImage = true;//in TQ mouseOverToken(imageRect, event.motion.x, event.motion.y);
 
@@ -98,7 +92,7 @@ void GameMaster::play()
 //Sets up the screen surface and physical window
 bool GameMaster::initializeSDL(int width, int height, int bpp, std::string caption) 
 {
-    std::cout << "in sdl init" << std::endl;
+    //std::cout << "in sdl init" << std::endl;
     //Initialize all SDL subsystems
     if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
         std::cout << "ERR: SDL_INIT_EVERYTHING was not successful" << std::endl;
@@ -116,6 +110,10 @@ bool GameMaster::initializeSDL(int width, int height, int bpp, std::string capti
     
     //Set the window caption
     SDL_WM_SetCaption( caption.c_str(), NULL );
+    
+    //load background image
+    background = loadImage("background.png"); //method inherited from SDL_Program
+    if (background == NULL) std::cout << "ERR: Background could not be loaded\n" << std::endl;
     
     //If everything initialized fine
     return true;

@@ -4,8 +4,8 @@
 #define _CONSTANTS
 
 //Screen attributes
-    #define SCREEN_WIDTH 1930
-    #define SCREEN_HEIGHT 1090
+    #define SCREEN_WIDTH 640
+    #define SCREEN_HEIGHT 480
     #define SCREEN_BPP 32
     
     #define TOKEN_PANE_PERCENT_W (.2)
