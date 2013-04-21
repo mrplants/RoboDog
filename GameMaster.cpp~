@@ -94,7 +94,7 @@ bool GameMaster::checkMousePositionOnPress(int x, int y)
 	//	  queueOfTokens.newToken(); //create a new token in the queue
 	//	  mousePressedOnImage = true;
 	//should a token in the library or in the pane be handled in the same function and have TokenQueue figure it out underneath?
-	/*}else */if ( queueOfTokens.mouseOverToken(x, y) ) {
+	/*}else */if ( queueOfTokens.mouseOverToken(event.motion.x, event.motion.y) ) {
 		  //the token the mouse was over is now the active token and can be dragged
 		  return true;
 		  

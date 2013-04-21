@@ -85,7 +85,7 @@ public:
 	//removes the token at the specified index and deletes it from memory
 	
 	bool mouseOverToken(int, int);
-	//checks if the mouse was clicked over an existing token or one in the library
+	//
 	
 	void newToken();
 	//creates a new token, which is added to the end of the queue, and made the active token

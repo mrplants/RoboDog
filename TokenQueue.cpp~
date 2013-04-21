@@ -105,7 +105,7 @@ bool TokenQueue::mouseOverToken(int x, int y)
 	//iterate through all existing tokens to see if the mouse was clicked on one
 	//make that token active if so
 	for (int i=0; i < _tokenDeque.size(); i++) {
-		if (_tokenDeque[i].visualToken.mouseOverImage(_tokenDeque[i].visualToken.getRect(), x, y)) {
+		if (mouseOverImage(_tokenDeque[i].visualToken.getRect(), x, y)) {
 		    *activeToken = _tokenDeque[i];
 		    return true;
 		}

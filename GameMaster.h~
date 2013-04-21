@@ -49,7 +49,7 @@ private:
     
     
     //SDL_Rect applySurface(int, int, SDL_Surface *, SDL_Rect, SDL_Surface *, SDL_Rect *); //blits image to destination at (x, y)
-    bool checkMousePositionOnPress(int, int);
+    void checkMousePositionOnPress(int, int);
     bool mouseInTokenPane(int, int);
     //bool mouseInTokenLibrary(int, int);
     void updateScreen();
