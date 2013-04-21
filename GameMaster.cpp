@@ -42,8 +42,8 @@ void GameMaster::play() {
                 quit = true;
                 
             }else if (event.type == SDL_MOUSEBUTTONDOWN) { // If mouse was pressed down
-                mousePressedOnImage = true;//in TQ mouseOverImage(imageRect, event.motion.x, event.motion.y);
-                SDL_GetRelativeMouseState(&dx, &dy); 
+                mousePressedOnImage = true;//in TQ mouseOverToken(imageRect, event.motion.x, event.motion.y);
+                SDL_GetRelativeMouseState(&dx, &dy);
 		//std::cout << dx << ", " << dy << std::endl;
                 
             }else if (event.type == SDL_MOUSEBUTTONUP) {
@@ -53,7 +53,7 @@ void GameMaster::play() {
 		  //tells TokenQueue to drop token, TQ will snap it and release it
 		  queueOfTokens.snapActiveToken();
 		}else{
-		  //tells TQ to release token
+		  //tells TQ to delete the last token in the queue (the active token)
 		  queueOfTokens.releaseActiveToken();
 		}
                 
@@ -66,7 +66,7 @@ void GameMaster::play() {
                 //std::cout << "Changed: " << x << ", " << y << std::endl;
 
                 // Reapply image
-                queueOfTokens.translateToken(dx, dy, screen);
+                queueOfTokens.translateToken(dx, dy);
             }
             updateScreen();
         }

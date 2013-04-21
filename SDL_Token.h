@@ -17,13 +17,16 @@
 
 class SDL_Token : public SDL_Program {
 public:
-    SDL_Token(std::string);
+    SDL_Token(std::string = "default.bmp");
     
     SDL_Rect snapToLocation(SDL_Rect); //checks if image's associated rect is over a snap region, adjusting the offsets if it is
     
     void setPosition(int, int); //parameters are absolute coordinates
     void translate(int, int); //parameters are change in position relative to its previous position
+    
+    void setRect(int, int);
     SDL_Rect getRect();
+    SDL_Surface *getSurface();
     
     virtual void cleanUp();
     

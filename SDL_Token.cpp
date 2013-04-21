@@ -30,6 +30,20 @@ SDL_Rect SDL_Token::snapToLocation(SDL_Rect rect) {
     return rect;
 }
 
+void SDL_Token::setRect(int x, int y) {
+ tokenRect.x = x;
+ tokenRect.y = y;
+ return;
+}
+
+SDL_Rect SDL_Token::getRect() {
+  return tokenRect;
+}
+
+SDL_Surface * SDL_Token::getSurface() {
+  return token;
+}
+
 void SDL_Token::cleanUp() {
     SDL_FreeSurface(token);
     return;

@@ -26,6 +26,7 @@
 //contains program-wide constants like screen size
 #include "constants.h"
 #include "TokenQueue.h"
+#include "Interpreter.h"
 
 class GameMaster : public SDL_Program {
     
@@ -59,7 +60,9 @@ private:
     SDL_Surface* createBlankSurface(Uint32 flags, int width, int height); //creates the blank surface applied to the screen by applySnapRegion
     *///------------------------------------------------------------
     
-    //interpreter
+    void compileUserCode();
+    
+    Interpreter interpreter;
     TokenQueue queueOfTokens;
     //game world
     
