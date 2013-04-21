@@ -1,6 +1,9 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
+
  extern const int SCREEN_WIDTH = 640;
  extern const int SCREEN_HEIGHT = 480;
 extern  const int SCREEN_BPP = 32;
