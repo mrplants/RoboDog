@@ -21,18 +21,18 @@ SDL_Surface *load_image( std::string filename )
     {
       //Create an optimized surface
       optimizedImage = SDL_DisplayFormat( loadedImage );
-
+      
       //Free the old surface
       SDL_FreeSurface( loadedImage );
-
+      
       //If the surface was optimized
       if( optimizedImage != NULL )
         {
-    //Color key surface
-    SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, SDL_MapRGB( optimizedImage->format, 0, 0xFF, 0xFF ) );
+	  //Color key surface
+	  SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, SDL_MapRGB( optimizedImage->format, 0, 0xFF, 0xFF ) );
         }
     }
-
+  
   //Return the optimized surface
   return optimizedImage;
 }
@@ -42,11 +42,11 @@ void apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination,
 {
   //Holds offsets
   SDL_Rect offset;
-
+  
   //Get offsets
   offset.x = x;
   offset.y = y;
-
+  
   //Blit
   SDL_BlitSurface( source, clip, destination, &offset );
 }
@@ -75,16 +75,16 @@ bool init()
     {
       return false;
     }
-
+  
   //Set up the screen
   screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
-
+  
   //If there was an error in setting up the screen
   if( screen == NULL )
     {
       return false;
     }
-
+  
   //Set the window caption
   SDL_WM_SetCaption( "Jumping Mario on Scrolling Background", NULL );
 
@@ -123,7 +123,7 @@ void clean_up()
   //Free the surfaces
   SDL_FreeSurface( mario );
   SDL_FreeSurface( background );
-
+  
   //Quit SDL
   SDL_Quit();
 }
@@ -131,69 +131,69 @@ void clean_up()
 //main function
 int main( int argc, char* args[] )
 {
-
+  
   //Quit flag
   bool quit = false;
 
   //The frame rate regulator
   Timer fps;
-
+  
   //Initialize
   if( init() == false )
     {
       return 1;
     }
-
+  
   //Load the files
   if( load_files() == false )
     {
       return 1;
     }
-
+  
   //Clip the sprite sheet                                                    
   set_clips();
-
+  
   //instantiate Mario                                                         
   Mario action;
-
+  
   //instantiate Background
   Background back;
-
+  
   //While the user hasn't quit
   while( quit == false )
     {
       //Start the frame timer
       fps.start();
-
+      
       //While there's events to handle
       while( SDL_PollEvent( &event ) )
         {
-
-    //Handle events for Mario and the Background
-    action.handle_events();
-    back.handle_events();
-   
-    
-    //If the user has Xed out the window
-    if( event.type == SDL_QUIT )
-            {
-        //Quit the program
-        quit = true;
-            }
+	  
+	  //Handle events for Mario and the Background
+	  action.handle_events();
+	  back.handle_events();
+	  
+	  
+	  //If the user has Xed out the window
+	  if( event.type == SDL_QUIT )
+	    {
+	      //Quit the program
+	      quit = true;
+	    }
         }
       
       back.show();
       action.show();
-
+      
       //Update the screen
       if( SDL_Flip( screen ) == -1 ) {
-  return 1;
+	return 1;
       }
       
       if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND) 
-  {
-    SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.get_ticks() );
-  }
+	{
+	  SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.get_ticks() );
+	}
     }    
   
   //Clean up
