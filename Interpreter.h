@@ -13,6 +13,8 @@
 #include <vector>
 #include <string>
 #include <unistd.h>
+#include "GameWorld.h"
+
 using namespace std;
 
 typedef vector<int> VecOfInt;
@@ -34,6 +36,7 @@ public:
 private:
     
     v2int user_program;
+    GameWorld *world;
     
 };
 
