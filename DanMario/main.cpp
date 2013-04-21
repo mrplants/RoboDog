@@ -5,11 +5,11 @@
 #include "Background.h"
 #include "Constants.h"
 
-const int SCREEN_WIDTH=640;
-const int SCREEN_HEIGHT=480;
-const int SCREEN_BPP=32;
+const SCREEN_WIDTH=640;
+const SCREEN_HEIGHT=480;
+const SCREEN_BPP=32;
 
-const int FRAMES_PER_SECOND=20;
+const FRAMES_PER_SECOND=20;
 
 SDL_Surface *load_image( std::string filename )
 {
