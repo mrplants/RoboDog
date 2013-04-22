@@ -2,9 +2,9 @@
 
 GameAnimation::GameAnimation(GameMaster* theGameMaster) {
 
-	background = loadImage("NYC.jpg");
-	gameMaster = theGameMaster;
-
+  background = loadImage("NYC.jpg");
+  gameMaster = theGameMaster;
+  
 }
 
 void GameAnimation::step() {
@@ -21,7 +21,7 @@ void GameAnimation::step() {
 }
 
 void GameAnimation::jump() {
-
+  
   mario.status = MARIO_JUMP;
   mario.marioRect.y -= 50;
   gameMaster->updateScreen();
@@ -65,6 +65,6 @@ void GameAnimation::turn() {
 
 void GameAnimation::cleanUp()
 {
-	mario.cleanUp();
-	SDL_FreeSurface(background);
+  mario.cleanUp();
+  SDL_FreeSurface(background);
 }
