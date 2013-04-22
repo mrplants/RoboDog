@@ -157,7 +157,7 @@ void TokenQueue::newToken(int repeatNumber)
 #pragma mark -
 #pragma mark Methods About Accessing the Queue
 
-std::vector<std::vector<int> > TokenQueue::getInterpreterVector();
+std::vector<std::vector<int> > TokenQueue::getInterpreterVector()
 {
   // the vector with the interpreters commands
   std::vector<std::vector<int> > returnVector;
