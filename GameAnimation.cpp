@@ -1,23 +1,30 @@
 #include "GameAnimation.h"
 
+GameAnimation::GameAnimation() {
+
+background = load_image  
+
+}
+
 void GameAnimation::step() {
   
   Mario.status = MARIO_STEP; 
-  Background.x -= 50; 
+  backRect.x -= 50; 
 
 }
 
 void GameAnimation::jump() {
 
   Mario.status = MARIO_JUMP;
-  Mario.y -= 50;
-  Backround.x -= 50;
+  Mario.marioRect.y -= 50;
+  backRect.x -= 50;
 
 }
 
 void GameAnimation::kick() {
 
   Mario.status = MARIO_KICK;
+  
 
 }
 

@@ -1,12 +1,9 @@
+#include "Defines.h"
+
 class Mario
 {
  private:
-  //The offset                                                             
-  int offSet;
-
-  // x and y coordinates                                                    
-  int x;
-  int y;
+  SDL_Rect marioRect;
 
   //Its current frame                                                        
   int frame;
@@ -20,4 +17,7 @@ class Mario
 
   //Shows Mario                                                              
   void show();
+
+  //Mario surface                                                                                                                                                 
+  SDL_Surface *marioSurface;
 };
