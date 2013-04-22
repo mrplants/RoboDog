@@ -11,6 +11,8 @@ class GameAnimation : public SDL_Program {
   void jump();
   void turn();
   void kick();
+
+  void cleanUp();
   
  private:
   SDL_Surface *background;
