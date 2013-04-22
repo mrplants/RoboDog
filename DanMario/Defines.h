@@ -16,4 +16,7 @@
 
 //The action status of Mario                                                                                       
 #define MARIO_STAND 0;
-#define MARIO_JUMP 1;
+#define MARIO_STEP 1;
+#define MARIO_JUMP 2;
+#define MARIO_TURN 3;
+#define MARIO_KICK 4;

@@ -10,13 +10,14 @@
 #define __Coding_Game__CodeToken__
 
 #include <iostream>
+#include "SDL_LoopToken.h"
 #include "SDL_Token.h"
 
 class CodeToken
 {
   
   public:  
-	CodeToken(); //the constructor, initializes with an empty identifier and position on screen
+	CodeToken(std::string); //the constructor, initializes with an empty identifier and position on screen
 	~CodeToken(); //the deconstructor
 	
 	//ViewPosition positionOnScreen; //The token's center position with respect to the view that it is in. It is public solely so that the user can invoke the special transformation methods upon it

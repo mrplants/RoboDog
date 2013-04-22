@@ -1,11 +1,35 @@
-#include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
-#include "Mario.h"
-#include "Timer.h"
-#include "Background.h"
-#include "Defines.h"
-#include "Externs.h"
+#include <string>
 
+//Screen attributes
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
+const int SCREEN_BPP = 32;
+
+//The frame rate
+const int FRAMES_PER_SECOND = 20;
+
+//The dimensions of Mario
+const int MARIO_WIDTH = 184;
+const int MARIO_HEIGHT = 200;
+
+//The action status of Mario
+const int MARIO_STAND = 0;
+const int MARIO_JUMP = 1;
+const int MARIO_KICK = 2;
+const int MARIO_ATTACK = 3;
+
+//The surfaces
+SDL_Surface *mario = NULL;
+SDL_Surface *background = NULL;
+SDL_Surface *screen = NULL;
+
+//The event structure
+SDL_Event event;
+
+//The areas of the sprite sheet
+SDL_Rect clips[ 2 ];
+
+//loads the image
 SDL_Surface *load_image( std::string filename )
 {
   //The image that's loaded
@@ -22,10 +46,10 @@ SDL_Surface *load_image( std::string filename )
     {
       //Create an optimized surface
       optimizedImage = SDL_DisplayFormat( loadedImage );
-      
+
       //Free the old surface
       SDL_FreeSurface( loadedImage );
-      
+
       //If the surface was optimized
       if( optimizedImage != NULL )
         {
@@ -33,7 +57,7 @@ SDL_Surface *load_image( std::string filename )
 	  SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, SDL_MapRGB( optimizedImage->format, 0, 0xFF, 0xFF ) );
         }
     }
-  
+
   //Return the optimized surface
   return optimizedImage;
 }
@@ -43,11 +67,11 @@ void apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination,
 {
   //Holds offsets
   SDL_Rect offset;
-  
+
   //Get offsets
   offset.x = x;
   offset.y = y;
-  
+
   //Blit
   SDL_BlitSurface( source, clip, destination, &offset );
 }
@@ -97,7 +121,7 @@ bool init()
 bool load_files()
 {
   //Load Mario image
-  mario = load_image( "characterTest.png" );
+  mario = load_image( "Mario.bmp" );
 
   //Load the background
   background = load_image( "NYC.jpg" );
@@ -124,80 +148,8 @@ void clean_up()
   //Free the surfaces
   SDL_FreeSurface( mario );
   SDL_FreeSurface( background );
-  
+
   //Quit SDL
   SDL_Quit();
 }
 
-//main function
-int main( int argc, char* args[] )
-{
-  //Quit flag
-  bool quit = false;
-
-  //The frame rate regulator
-  Timer fps;
-
-  //Initialize
-  if( init() == false )
-    {
-      return 1;
-    }
-
-  //Load the files
-  if( load_files() == false )
-    {
-      return 1;
-    }
-
-  //Clip the sprite sheet                                                    
-  set_clips();
-
-  //instantiate Mario                                                         
-  Mario action;
-
-  //instantiate Background
-  Background back;
-
-  //While the user hasn't quit
-  while( quit == false )
-    {
-      //Start the frame timer
-      fps.start();
-
-      //While there's events to handle
-      while( SDL_PollEvent( &event ) )
-        {
-
-	  //Handle events for Mario and the Background
-	  action.handle_events();
-	  back.handle_events();
-	   
-	    
-	  //If the user has Xed out the window
-	  if( event.type == SDL_QUIT )
-            {
-	      //Quit the program
-	      quit = true;
-            }
-        }
-      
-      back.show();
-      action.show();
-
-      //Update the screen
-      if( SDL_Flip( screen ) == -1 ) {
-	return 1;
-      }
-      
-      if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND) 
-      	{
-	  SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.get_ticks() );
-	}
-    }    
-  
-  //Clean up
-  clean_up();
-  
-  return 0;
-}

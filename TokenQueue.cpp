@@ -99,7 +99,7 @@ void TokenQueue::addTokenToEnd(CodeToken newToken)
  
 void TokenQueue::removeTokenAtIndex(int index)
 {
-  if (_tokenDeque[index]._commandID.compare("open_loop") || _tokenDeque[index]._commandID.compare("close_loop"))
+  if (!_tokenDeque[index]._commandID.compare("open_loop") || !_tokenDeque[index]._commandID.compare("close_loop"))
   {
     //save the loop ID number so that you can take out all the blocks with that ID number
     int uniqueLoopID = _tokenDeque[index]._uniqueLoopID;
@@ -132,7 +132,6 @@ bool TokenQueue::mouseOverToken(int x, int y)
   
 	//if none was made active, check if the mouse clicked in the library
 	//potentially make a new token if so
-	if (x > TOKEN
 	
   
   return false;
@@ -143,11 +142,11 @@ void TokenQueue::newToken(std::string commandID)
 {
   #warning More specifics needed when making a new token since there are different types - FIXED, whoever put this warning, check out the fix and remove the warning if it looks good
 
-	CodeToken newToken;
+	CodeToken newToken(commandID);
 
   newToken._commandID = commandID;
 
-  if(commandID.compare("open_loop")) {
+  if(!commandID.compare("open_loop")) {
     // This token is not a loop so we set their repeat number and loop ID to -1
     newToken._repeatNumber = -1;
     newToken._uniqueLoopID = -1;
@@ -159,7 +158,7 @@ void TokenQueue::newToken(std::string commandID)
     int uniqueLoopID = -1;
     for (int i = 0; i < _tokenDeque.size(); i++)
     {
-      if (_tokenDeque[i]._commandID.compare("open_loop"))
+      if (!_tokenDeque[i]._commandID.compare("open_loop"))
         uniqueLoopID++; //oops, this unique ID is taken by some other loop;
     }
     uniqueLoopID++; //so that we get a truly unique ID
@@ -202,17 +201,17 @@ std::vector<std::vector<int> > TokenQueue::getInterpreterVector()
 //
 
     //store the command ID of the token
-    if (_tokenDeque[i]._commandID.compare("step"))
+    if (!_tokenDeque[i]._commandID.compare("step"))
       tokenVectorOfIdentifiers.push_back(1);
-    else if (_tokenDeque[i]._commandID.compare("jump"))
+    else if (!_tokenDeque[i]._commandID.compare("jump"))
       tokenVectorOfIdentifiers.push_back(2);
-    else if (_tokenDeque[i]._commandID.compare("turn"))
+    else if (!_tokenDeque[i]._commandID.compare("turn"))
       tokenVectorOfIdentifiers.push_back(3);
-    else if (_tokenDeque[i]._commandID.compare("kick"))
+    else if (!_tokenDeque[i]._commandID.compare("kick"))
       tokenVectorOfIdentifiers.push_back(4);
-    else if (_tokenDeque[i]._commandID.compare("open_loop"))
+    else if (!_tokenDeque[i]._commandID.compare("open_loop"))
       tokenVectorOfIdentifiers.push_back(5);
-    else if (_tokenDeque[i]._commandID.compare("close_loop"))
+    else if (!_tokenDeque[i]._commandID.compare("close_loop"))
       tokenVectorOfIdentifiers.push_back(6);
 
     //store the loop identifier
@@ -276,10 +275,9 @@ void TokenQueue::snapActiveToken()
     _tokenDeque.insert(it, *activeToken);
 
     //if the token is a loop token, then we need to add a close loop underneath it
-    if ((*activeToken)._commandID.compare("open_loop"))
+    if (!(*activeToken)._commandID.compare("open_loop"))
     {
-      CodeToken closeLoopToken;
-      closeLoopToken._commandID = "close_loop";
+      CodeToken closeLoopToken("close_loop");
       closeLoopToken._uniqueLoopID = activeToken->_uniqueLoopID;
       closeLoopToken._repeatNumber = activeToken->_repeatNumber;
       it++;

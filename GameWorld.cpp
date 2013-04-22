@@ -16,28 +16,33 @@ GameWorld::GameWorld() {
 
 
 void GameWorld::step() {
-	// gameAnimationScreen.step(); or its equivalent	
-	cout << "Kick from GameWorld" << endl;
+  // gameAnimationScreen.step(); or its equivalent	
+  gameAnimation.step();
+  cout << "Step from GameWorld" << endl;
 }
 
 
 void GameWorld::jump() {
-	// gameAnimationScreen.jump(); or its equivalent
-	cout << "Kick from GameWorld" << endl;
+  // gameAnimationScreen.jump(); or its equivalent
+  gameAnimation.jump();
+  cout << "Jump from GameWorld" << endl;
 }
 
 void GameWorld::turn() {
 	// gameAnimationScreen.turn(); or its equivalent
-	cout << "Kick from GameWorld" << endl;
+  gameAnimation.turn();
+  cout << "Turn from GameWorld" << endl;
 }
 
 void GameWorld::kick() {
-	// gameAnimationScreen.kick(); or its equivalent
-	cout << "Kick from GameWorld" << endl;
-
+  // gameAnimationScreen.kick(); or its equivalent
+  gameAnimation.kick();
+  cout << "Kick from GameWorld" << endl;
 }
 
 GameWorld::getStatsFromProgram() {
-	cout << "Stats and stuff" << endl;
-
+  cout << "Stats and stuff" << endl;  
 }
+
+
+
