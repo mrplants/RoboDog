@@ -31,7 +31,7 @@ public:
     virtual void cleanUp();
     
 private:
-    SDL_Surface *token;
+    SDL_Surface *tokenSurface;
     SDL_Rect tokenRect;
     
 };

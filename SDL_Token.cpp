@@ -7,13 +7,23 @@
 
 #include "SDL_Token.h"
 
-SDL_Token::SDL_Token(std::string filename) : SDL_Program() {
+SDL_Token::SDL_Token(std::string ID) : SDL_Program() {
     //could put in switch statement to create token corresponding to whatever identifier was passed in
     //or we could allow the token to be customized to whatever type we need by passing in everything
     //(correct image etc.)
     
-    token = loadImage(filename);
-    tokenRect = createRect(token, 0, 0); //WILL NOT WORK WITH CURRENT APPLY SURFACE
+    if (!ID.compare("step"))
+        tokenSurface = loadImage(""); //load the file for step token element
+    if (!ID.compare("jump"))
+        tokenSurface = loadImage(""); //load the file for jump token element
+    if (!ID.compare("kick"))
+        tokenSurface = loadImage(""); //load the file for kick token element
+    if (!ID.compare("turn"))
+        tokenSurface = loadImage(""); //load the file for turn token element
+
+    #warning add the files for the tokens here
+
+    tokenRect = createRect(tokenSurface, 0, 0); //WILL NOT WORK WITH CURRENT APPLY SURFACE
 }
 
 //checks if image's associated rect is over a snap region, adjusting the offsets if it is
