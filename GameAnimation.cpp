@@ -1,16 +1,22 @@
 #include "GameAnimation.h"
 
-GameAnimation::GameAnimation() {
+GameAnimation::GameAnimation(GameMaster* theGameMaster) {
 
 	background = loadImage("NYC.jpg");
+	gameMaster = theGameMaster;
 
 }
 
 void GameAnimation::step() {
   
   mario.status = MARIO_STEP; 
+  gameMaster->updateScreen();
+  SDL_Delay(50);
   backRect.x -= 50; 
-  SDL_Delay(100);
+  gameMaster->updateScreen();
+  SDL_Delay(50);
+  mario.status = MARIO_STAND; 
+  gameMaster->updateScreen();
 
 }
 
@@ -18,31 +24,43 @@ void GameAnimation::jump() {
 
   mario.status = MARIO_JUMP;
   mario.marioRect.y -= 50;
+  gameMaster->updateScreen();
+  SDL_Delay(100);
+  mario.marioRect.y -= 50;
   backRect.x -= 50;
+  gameMaster->updateScreen();
+  SDL_Delay(100);
+  mario.marioRect.y += 50;
+  backRect.x -= 50;
+  gameMaster->updateScreen();
+  SDL_Delay(100);
+  mario.marioRect.y += 50;
+  mario.status = MARIO_STAND;
+  gameMaster->updateScreen();
   SDL_Delay(100);
 
 }
 
+void updateScreen(SDL_Surface* screen)
+{
+	mario.show(screen);
+	#warning still need to blit the background to the screen. !!It needs to scroll!!
+}
+
+
 void GameAnimation::kick() {
 
-	if (mario.status == MARIO_STEP)
-	{
-		mario.status = MARIO_KICK;
-		SDL_Delay(100);
-		mario.status = MARIO_STEP; 
-	} else
-	{
-
-	}
+	mario.status = MARIO_KICK;
+	gameMaster->updateScreen();
+	SDL_Delay(100);
+	mario.status = MARIO_STAND; 
+	gameMaster->updateScreen();
 
 }
 
 void GameAnimation::turn() {
-
-  mario.status = MARIO_TURN;
-
-  #warning this needs to be worked on because all the other images return to MARIO_STEP instead of MARIO_TURN
-
+	std::cout << "ERROR: Still need to create the sprite sheet and stuff for reversed orientation of character" << std::endl;
+  #warning Still need to create the sprite sheet and stuff for reversed orientation of character
 }
 
 void GameAnimation::cleanUp()

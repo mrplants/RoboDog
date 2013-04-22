@@ -200,7 +200,7 @@ void GameMaster::updateScreen()
     
     //Call all update screen methods in game and token queue
     queueOfTokens.updateScreen(screen);
-    //gameWorld.updateScreen(screen);
+    gameWorld.updateScreen(screen);
     
     //SDL_Flip must be called for images that have been applied to the screen to show up
     if (SDL_Flip(screen) == -1) std::cout << "ERR: Updating screen failed" << std::endl;

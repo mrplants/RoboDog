@@ -1,11 +1,13 @@
 #include "constants.h"
 #include "SDL_Program.h"
 #include "Mario.h"
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 
 class GameAnimation : public SDL_Program {
  public:
   
-  GameAnimation();
+  GameAnimation(GameMaster *);
   //player commands
   void step();
   void jump();
@@ -13,9 +15,11 @@ class GameAnimation : public SDL_Program {
   void kick();
 
   void cleanUp();
+  void updateScreen(SDL_Surface*);
   
  private:
   SDL_Surface *background;
   Mario mario;
+  GameMaster *gameMaster;
 
 };

@@ -13,6 +13,8 @@
 #include <iostream>
 #include "GameStats.h"
 #include "GameAnimation.h" // Daniel's class
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
 
 using namespace std;
 
@@ -29,6 +31,7 @@ public:
 	//character actions
   
 	GameStats getStatsFromProgram();
+	void updateScreen(SDL_Surface*);
   
 private:
   
