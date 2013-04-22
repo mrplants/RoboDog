@@ -13,6 +13,10 @@ GameMaster::GameMaster() : SDL_Program()
 {
     initializeSDL(); //sets up SDL systems, screen, and background
 
+    GameWorld tempGameWorld(this);
+
+    gameWorld = tempGameWorld;
+
     //area where tokens will be dropped
     tokenPane.x = 0;
     tokenPane.y = 0;
@@ -122,7 +126,7 @@ bool GameMaster::checkMousePositionOnPress(int x, int y)
 void GameMaster::compileUserCode() {
 
     cout << "In the compileUserCodeFunction" << endl;
-    interpreter.parse(queueOfTokens.getInterpreterVector(), &world);
+    interpreter.parse(queueOfTokens.getInterpreterVector(), &gameWorld);
 
 }
 
