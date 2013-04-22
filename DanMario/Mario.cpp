@@ -1,14 +1,14 @@
 #include "Mario.h"
-#include "Constants.h"
+#include "Defines.h"
+#include "Externs.h"
 
 Mario::Mario()
 {
   //Initialize movement variables
   offSet = 0;
   x = 0;
-  // y = SCREEN_HEIGHT - MARIO_HEIGHT;
-  y = 480 - MARIO_HEIGHT;
-
+  y = SCREEN_HEIGHT - MARIO_HEIGHT;
+  
   //Initialize animation variables
   status = MARIO_STAND;
 }

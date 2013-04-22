@@ -4,8 +4,6 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include <string>
-#include "Constants.h"
-
 
 #include <iostream>
 

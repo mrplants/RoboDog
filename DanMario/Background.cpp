@@ -1,4 +1,6 @@
 #include "Background.h"
+#include "Defines.h"
+#include "Externs.h"
 
 //default constructor for Background
 Background::Background()
