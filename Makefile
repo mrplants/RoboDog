@@ -35,7 +35,7 @@ Interpreter.o: Interpreter.cpp Interpreter.h
 GameWorld.o: GameWorld.cpp GameWorld.h GameAnimation.h GameMaster.h
 	g++ -c GameWorld.cpp -lSDL_image
 
-GameAnimation.o: GameAnimation.cpp GameAnimation.h
+GameAnimation.o: GameAnimation.cpp GameAnimation.h GameMaster.h
 	g++ -c GameAnimation.cpp
 
 GameStats.o: GameStats.cpp GameStats.h
