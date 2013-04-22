@@ -74,7 +74,7 @@ void Interpreter::printRaw() {
 //  6 - close loop
 
 
-void Interpreter::parse( vector<vector<int> > program, GameWorld *world ) {
+void Interpreter::parse( vector<vector<int> > program, GameWorld *world_pointer ) {
     
     
     // 'i' is the index in the program,
@@ -93,7 +93,7 @@ void Interpreter::parse( vector<vector<int> > program, GameWorld *world ) {
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "step one space" << endl;
-                        world->step();
+                        world_pointer->step();
                     }
                 }
                 break;
@@ -104,7 +104,7 @@ void Interpreter::parse( vector<vector<int> > program, GameWorld *world ) {
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "Jump once" << endl;
-                        world->jump();
+                        world_pointer->jump();
                     }
                 }
                 break;
@@ -115,7 +115,7 @@ void Interpreter::parse( vector<vector<int> > program, GameWorld *world ) {
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "Turn around" << endl;
-                        world->turn();
+                        world_pointer->turn();
                     }
                 }
                 break;
@@ -126,7 +126,7 @@ void Interpreter::parse( vector<vector<int> > program, GameWorld *world ) {
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "Kick once" << endl;
-                        world->kick();
+                        world_pointer->kick();
                     }
                 }
                 break;
@@ -137,7 +137,8 @@ void Interpreter::parse( vector<vector<int> > program, GameWorld *world ) {
                 cout << "{ Open loop }" << "  (should loop " << program[i][1] << " times)." << endl;
 
                 // TODO: Refactor the following initialization lines to it's own function.
-                v2int recursed_program;
+                // v2int recursed_program;
+                vector<vector<int> > recursed_program;
                 
                 // Now find the length to the end of the loop
                 int j = i;
@@ -158,7 +159,7 @@ void Interpreter::parse( vector<vector<int> > program, GameWorld *world ) {
                 
                 // Now, however many times is specified in the params, loop
                 for (int k = 0; k < program[i][1]; k++) {
-                    parse(recursed_program);
+                    parse(recursed_program, world_pointer);
                 }
 
                 

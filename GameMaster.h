@@ -70,7 +70,7 @@ private:
     
     Interpreter interpreter;
     TokenQueue queueOfTokens;
-    GameWorld *world;
+    GameWorld world;
     
 };
 

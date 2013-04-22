@@ -36,7 +36,7 @@ public:
 private:
     
     v2int user_program;
-    GameWorld *world;
+    // GameWorld *world;
     
 };
 
