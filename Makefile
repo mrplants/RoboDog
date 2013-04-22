@@ -11,8 +11,8 @@ main: main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o CodeToken.o Int
 main.o: main.cpp
 	g++ -c main.cpp -lSDL -lSDL_image -lSDL_ttf
     
-GameMaster.o: GameMaster.h GameMaster.cpp TokenQueue.cpp SDL_Program.cpp Interpreter.cpp constants.h
-	g++ -c GameMaster.cpp TokenQueue.cpp GameMaster.cpp Interpreter.cpp SDL_Program.cpp -lSDL -lSDL_image -lSDL_ttf
+GameMaster.o: GameMaster.h GameMaster.cpp TokenQueue.cpp TokenQueue.h SDL_Program.cpp SDL_Program.h Interpreter.cpp Interpreter.h constants.h GameWorld.cpp GameWorld.h
+	g++ -c GameMaster.cpp TokenQueue.cpp GameWorld.cpp Interpreter.cpp SDL_Program.cpp -lSDL -lSDL_image -lSDL_ttf
 
 SDL_Program.o: SDL_Program.cpp SDL_Program.h
 	g++ -c SDL_Program.cpp -lSDL -lSDL_image -lSDL_ttf
