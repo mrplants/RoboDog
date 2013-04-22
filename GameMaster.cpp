@@ -99,10 +99,34 @@ bool GameMaster::checkMousePositionOnPress(int x, int y)
 		  return true;
 		  
 	} else if (0 /*user presses a play button*/) {
+
+
+
+
+          // 
+          // This is where it goes down...
+          // 
+          // 
+          // 
+          // 
 		  compileUserCode();
 	}
 	return false;
 }
+
+
+//-----------------------------------------------------------------------------
+//      CompileUserCode() Function. 
+//-----------------------------------------------------------------------------
+
+void GameMaster::compileUserCode() {
+
+    cout << "In the compileUserCodeFunction" << endl;
+    interpreter.parse(queueOfTokens.getInterpreterVector(), &world);
+
+}
+
+
 
 
 //-----------------------------------------------------------------------------

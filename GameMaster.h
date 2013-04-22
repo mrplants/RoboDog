@@ -29,6 +29,7 @@
 #include "TokenQueue.h"
 #include "Interpreter.h"
 #include "CodeToken.h"
+#include "GameWorld.h"
 
 class GameMaster : public SDL_Program {
     
@@ -67,9 +68,9 @@ private:
     
     void compileUserCode(); //called when user presses play, gets tokenQueue and gives it to the interpreter
     
-    //Interpreter interpreter;
+    Interpreter interpreter;
     TokenQueue queueOfTokens;
-    //game world
+    GameWorld *world;
     
 };
 
