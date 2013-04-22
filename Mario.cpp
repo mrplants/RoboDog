@@ -1,9 +1,7 @@
-#include "Defines.h"
+#include "constants.h"
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
 
-//The surfaces
-SDL_Surface *mario = NULL;
-SDL_Surface *background = NULL;
-SDL_Surface *screen = NULL;
 
 //The event structure
 SDL_Event event;
@@ -124,17 +122,6 @@ bool load_files()
   return true;
 }
 
-//perform a clean up for SDL
-void clean_up()
-{
-  //Free the surfaces
-  SDL_FreeSurface( mario );
-  SDL_FreeSurface( background );
-
-  //Quit SDL
-  SDL_Quit();
-}
-
 // default constructor
 Mario::Mario()
 {
@@ -162,3 +149,9 @@ void Mario::show(SDL_Surface *screen)
 
 }
 
+// clean up function for Mario
+void Mario::cleanUp() {
+
+  SDL_FreeSurface( mario );
+
+}

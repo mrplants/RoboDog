@@ -8,30 +8,34 @@ background = load_image
 
 void GameAnimation::step() {
   
-  Mario.status = MARIO_STEP; 
+  mario.status = MARIO_STEP; 
   backRect.x -= 50; 
 
 }
 
 void GameAnimation::jump() {
 
-  Mario.status = MARIO_JUMP;
-  Mario.marioRect.y -= 50;
+  mario.status = MARIO_JUMP;
+  mario.marioRect.y -= 50;
   backRect.x -= 50;
 
 }
 
 void GameAnimation::kick() {
 
-  Mario.status = MARIO_KICK;
+  mario.status = MARIO_KICK;
   
 
 }
 
 void GameAnimation::turn() {
 
-  Mario.status = MARIO_TURN;
+  mario.status = MARIO_TURN;
 
 }
 
-			  
+void GameAnimation::cleanUp()
+{
+	mario.cleanUp();
+	SDL_FreeSurface(background);
+}
