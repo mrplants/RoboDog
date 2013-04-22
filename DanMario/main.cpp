@@ -78,7 +78,7 @@ bool init()
     }
 
   //Set up the screen
-  SDL_Surface *screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
+  screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
 
   //If there was an error in setting up the screen
   if( screen == NULL )
