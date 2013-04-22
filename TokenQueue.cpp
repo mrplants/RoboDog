@@ -266,8 +266,7 @@ void TokenQueue::snapActiveToken()
     //if the token is a loop token, then we need to add a close loop underneath it
     if (!(*activeToken)._commandID.compare("open_loop"))
     {
-      CodeToken closeLoopToken;
-      closeLoopToken._commandID = "close_loop";
+      CodeToken closeLoopToken("close_loop");
       closeLoopToken._uniqueLoopID = activeToken->_uniqueLoopID;
       closeLoopToken._repeatNumber = activeToken->_repeatNumber;
       it++;
