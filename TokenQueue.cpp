@@ -113,14 +113,44 @@ bool TokenQueue::mouseOverToken(int x, int y)
 }
 //checks if the mouse was clicked over an existing token or one in the library
 
-void TokenQueue::newToken()
+void TokenQueue::newToken(std::string commandID)
 {
-  #warning More specifics needed when making a new token since there are different types
-  //add parameters to get this information?
+  #warning More specifics needed when making a new token since there are different types - FIXED, whoever put this warning, check out the fix and remove the warning if it looks good
+
 	CodeToken newToken;
-	_tokenDeque.push_back(newToken);
-	*activeToken = _tokenDeque.back();
+
+  newToken._commandID = commandID;
+  // This token is not a loop so we set their repeat number and loop ID to -1
+  newToken._repeatNumber = -1;
+  newToken._uniqueLoopID = -1;
+
+	_tokenDeque.push_back(newToken); //put the token at the back of the deque in the activeToken spot
+	activeToken = &(_tokenDeque.back());
 	return;
+}
+
+void TokenQueue::newToken(int repeatNumber)
+{
+  CodeToken newToken;
+  newToken._commandID = "open_loop";
+  newToken._repeatNumber = repeatNumber;
+
+  //get a unique loop ID by parsing all the other loop tokens
+  int uniqueLoopID = -1;
+  for (int i = 0; i < _tokenDeque.size(); i++)
+  {
+    if (_tokenDeque[i]._commandID.compare("open_loop"))
+      uniqueLoopID++; //oops, this unique ID is taken by some other loop;
+  }
+  uniqueLoopID++; //so that we get a truly unique ID
+  newToken._uniqueLoopID = uniqueLoopID;
+
+  //add the token to the back of the tokendeque
+  _tokenDeque.push_back(newToken);
+  #warning only the open_loop token is pushed with creation. when the mouse is released and open_loop is added to the deque, close_loop is added below it. to do this, we must also have remove functions such that if you click on either and open or a close, and pull it out, both are removed.
+
+  activeToken = &(_tokenDeque.back());
+  //assign the active token to the new token
 }
 
 
@@ -137,22 +167,30 @@ std::vector<std::vector<int> > TokenQueue::getInterpreterVector();
   {
     vector<int> tokenVectorOfIdentifiers;
 
+#warning These are the token identifiers. If you use other identifiers, it won't work. 
+#warning Maybe we should #define these somewhere?
+//
+#warning // 1 - "step"
+#warning // 2 - "jump"
+#warning // 3 - "turn"
+#warning // 4 - "kick"
+#warning // 5 - "open_loop"
+#warning // 6 - "close_loop"
+//
 
-//
-// 1 - STEP
-// 2 - JUMP
-// 3 - TURN
-// 4 - KICK
-//
     //store the command ID of the token
     if (_tokenDeque[i]._commandID.compare("step"))
-      tokenVectorOfIdentifiers.push_back(0);
-    else if (_tokenDeque[1]._commandID.compare("jump"))
       tokenVectorOfIdentifiers.push_back(1);
-    else if (_tokenDeque[2]._commandID.compare("turn"))
+    else if (_tokenDeque[1]._commandID.compare("jump"))
       tokenVectorOfIdentifiers.push_back(2);
-    else if (_tokenDeque[3]._commandID.compare("kick"))
+    else if (_tokenDeque[2]._commandID.compare("turn"))
       tokenVectorOfIdentifiers.push_back(3);
+    else if (_tokenDeque[3]._commandID.compare("kick"))
+      tokenVectorOfIdentifiers.push_back(4);
+    else if (_tokenDeque[3]._commandID.compare("open_loop"))
+      tokenVectorOfIdentifiers.push_back(5);
+    else if (_tokenDeque[3]._commandID.compare("close_loop"))
+      tokenVectorOfIdentifiers.push_back(6);
 
     //store the loop identifier
     tokenVectorOfIdentifiers.push_back(_tokenDeque._uniqueLoopID);

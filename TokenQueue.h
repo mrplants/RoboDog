@@ -84,11 +84,13 @@ public:
 	
 	void removeTokenAtIndex(int = 0);
 	//removes the token at the specified index and deletes it from memory
+	#warning when loop tokens are removed, their corresponding open or close token must be as well, since they are added pairwise, they should be removed that way.
 	
 	bool mouseOverToken(int, int);
 	//checks if the mouse was clicked over an existing token or one in the library
 	
-	void newToken();
+	void newToken(std::string); //for actions
+	void newToken(int repeatNumber); //for loops, creates two tokens, an open and close loop token and puts them in the correct place
 	//creates a new token, which is added to the end of the queue, and made the active token
 	
 #pragma mark -
