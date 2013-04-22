@@ -131,7 +131,7 @@ void TokenQueue::newToken(std::string commandID)
 {
   #warning More specifics needed when making a new token since there are different types - FIXED, whoever put this warning, check out the fix and remove the warning if it looks good
 
-	CodeToken newToken;
+	CodeToken newToken(commandID);
 
   newToken._commandID = commandID;
 
