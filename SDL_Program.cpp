@@ -64,7 +64,9 @@ SDL_Rect SDL_Program::createRect(SDL_Surface * image, int startX, int startY) {
 //		rect will be data member of class being called on
 //		x and y will be taken directly from the mouse
 //checks if the mouse is located within the perimeter of the image (whose associated rect is passed in)
-bool mouseOverImage(SDL_Rect imageRect, int x, int y) {
+
+#warning MARIBETH - I fixed a small bug in SDL_Program. I added a namespace that was missing. see it in the code below this line.
+bool /*ADDED THIS-->>*/SDL_Program::/*<<__ADDED THAT*/mouseOverImage(SDL_Rect imageRect, int x, int y) {
     if (x > imageRect.x && x < (imageRect.x + imageRect.w) && y > imageRect.y && y < (imageRect.y + imageRect.h)) {
         return true;
     }else{
