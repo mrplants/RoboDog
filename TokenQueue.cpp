@@ -141,7 +141,7 @@ void TokenQueue::newToken(std::string commandID)
     newToken._uniqueLoopID = -1;
   }
   else {
-    newToken._repeatNumber = repeatNumber;
+    newToken._repeatNumber = 0;
 
     //get a unique loop ID by parsing all the other loop tokens
     int uniqueLoopID = -1;
