@@ -44,7 +44,7 @@ void GameAnimation::jump() {
 void updateScreen(SDL_Surface* screen)
 {
 	mario.show(screen);
-	#warning still need to blit the background to the screen. !!It needs to scroll!!
+	SDL_BlitSurface( background, NULL, screen, &backRect);
 }
 
 
