@@ -181,22 +181,22 @@ std::vector<std::vector<int> > TokenQueue::getInterpreterVector()
     //store the command ID of the token
     if (_tokenDeque[i]._commandID.compare("step"))
       tokenVectorOfIdentifiers.push_back(1);
-    else if (_tokenDeque[1]._commandID.compare("jump"))
+    else if (_tokenDeque[i]._commandID.compare("jump"))
       tokenVectorOfIdentifiers.push_back(2);
-    else if (_tokenDeque[2]._commandID.compare("turn"))
+    else if (_tokenDeque[i]._commandID.compare("turn"))
       tokenVectorOfIdentifiers.push_back(3);
-    else if (_tokenDeque[3]._commandID.compare("kick"))
+    else if (_tokenDeque[i]._commandID.compare("kick"))
       tokenVectorOfIdentifiers.push_back(4);
-    else if (_tokenDeque[3]._commandID.compare("open_loop"))
+    else if (_tokenDeque[i]._commandID.compare("open_loop"))
       tokenVectorOfIdentifiers.push_back(5);
-    else if (_tokenDeque[3]._commandID.compare("close_loop"))
+    else if (_tokenDeque[i]._commandID.compare("close_loop"))
       tokenVectorOfIdentifiers.push_back(6);
 
     //store the loop identifier
-    tokenVectorOfIdentifiers.push_back(_tokenDeque._uniqueLoopID);
+    tokenVectorOfIdentifiers.push_back(_tokenDeque[i]._uniqueLoopID);
 
     //store the number of repeats in the loop
-    tokenVectorOfIdentifiers.push_back(_tokenDeque._repeatNumber);
+    tokenVectorOfIdentifiers.push_back(_tokenDeque[i]._repeatNumber);
 
     //store the tokens identifiers to the vector<vector<int> >
     returnVector.push_back(tokenVectorOfIdentifiers);
