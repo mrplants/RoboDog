@@ -13,15 +13,16 @@ CodeToken::CodeToken(std::string commandID)
 	_commandID = commandID;
 	if (!commandID.compare("open_loop"))
 	{
-		visualToken = new SDL_LoopToken(commandID);
+		SDL_LoopToken tempToken(commandID);
 		_repeatNumber = 0;
 		_uniqueLoopID = 0;
 	} else
 	{
-		visualToken = new SDL_Token(commandID);
+		SDL_Token tempToken(commandID);
 		_repeatNumber = -1;
 		_uniqueLoopID = -1;
 	}
+	visualToken = tempToken;
 }//the constructor, initializes with an empty identifier and position on screen
 
 CodeToken::~CodeToken()
