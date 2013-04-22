@@ -55,14 +55,14 @@ void GameMaster::play()
             } else if (event.type == SDL_MOUSEBUTTONUP) { // If the mouse button was released
                 mousePressedOnImage = false;
 		
-		if (mouseInTokenPane(event.motion.x, event.motion.y)) { //NOTE: may be incorrect x and y
-		  //tells TokenQueue to drop token, TQ will snap it and release it
-		  queueOfTokens.snapActiveToken();
+		      if (mouseInTokenPane(event.motion.x, event.motion.y)) { //NOTE: may be incorrect x and y
+		          //tells TokenQueue to drop token, TQ will snap it and release it
+		          queueOfTokens.snapActiveToken();
 		  
-		} else {
-		  //tells TQ to delete the last token in the queue (the active token)
-		  queueOfTokens.releaseActiveToken();
-		}
+		      } else {
+		          //tells TQ to delete the last token in the queue (the active token)
+		          queueOfTokens.releaseActiveToken();
+		      }
                 
             } else if (event.type == SDL_MOUSEMOTION && mousePressedOnImage) { // If the user clicks and drags
                 
