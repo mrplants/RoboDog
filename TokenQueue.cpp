@@ -183,7 +183,7 @@ std::vector<std::vector<int> > TokenQueue::getInterpreterVector()
   {
     std::vector<int> tokenVectorOfIdentifiers;
 
-#warning These are the token identifiers. If you use other identifiers, it won't work. 
+#warning These are the token identifiers. If you use other identifiers, it wont work. 
 #warning Maybe we should #define these somewhere?
 //
 #warning 1 - "step"
