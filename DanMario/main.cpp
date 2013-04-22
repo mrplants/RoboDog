@@ -5,11 +5,9 @@
 #include "Background.h"
 #include "Constants.h"
 
-const SCREEN_WIDTH=640;
-const SCREEN_HEIGHT=480;
-const SCREEN_BPP=32;
-
-const FRAMES_PER_SECOND=20;
+#define SCREEN_WIDTH 400
+#define SCREEN_HEIGHT 600
+#define SCREEN_BPP 40
 
 SDL_Surface *load_image( std::string filename )
 {
