@@ -48,6 +48,11 @@ public:
 #pragma mark -
 #pragma mark Methods About Dispatching Code
 	
+<<<<<<< HEAD
+=======
+	std::vector<std::vector<int> > getInterpreterVector();
+	
+>>>>>>> leftovers syncing the branch
 	//now implemented in gameMaster
 	/*
 	void dispatchTokenQueueToInterpreter();
@@ -99,10 +104,13 @@ public:
 	CodeToken operator[](int);
   const CodeToken operator[](int) const;
   
+<<<<<<< HEAD
  	std::deque<CodeToken> getTokenQueue();
 	//returns the deque of CodeTokens as is
   
 	// deque<deque<int>> getInterpreterQueue();
+=======
+>>>>>>> leftovers syncing the branch
 	// the getter for John's interpreter metadata
   
 #pragma mark -

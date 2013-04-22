@@ -43,9 +43,18 @@ TokenQueue::~TokenQueue()
 #pragma mark -
 #pragma mark Methods About Dispatching Code
 
-std::deque<CodeToken> TokenQueue::getTokenQueue()
+std::vector<std::vector<int> > TokenQueue::getInterpreterVector();
 {
- return _tokenDeque; 
+  // the vector with the interpreters commands
+  std::vector<std::vector<int> > returnVector;
+
+  // loops throught he tokens and adds their identifiers to the vector
+  for(int i = 0; i < _tokenDeque.size(); i++)
+  {
+      vector<int> tokenVectorOfIdentifiers;
+
+      switch (_tokenDeque[i].)
+  }
 }
 
 /*
