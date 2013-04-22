@@ -20,10 +20,15 @@ class Mario
   //Shows Mario                                                              
   void show();
 
+  //define clip locations
+  void set_clips(); 
+
   //clean up function for Mario
   void cleanUp();
 
   //Mario surface                                                                                                                                                 
   SDL_Surface *marioSurface;
 
+  //Areas of the sprite sheet
+  SDL_Rect clips[ 2 ]
 };
