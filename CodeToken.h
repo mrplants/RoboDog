@@ -10,6 +10,7 @@
 #define __Coding_Game__CodeToken__
 
 #include <iostream>
+#include "SDL_LoopToken"
 #include "SDL_Token.h"
 
 class CodeToken
