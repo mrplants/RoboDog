@@ -38,5 +38,8 @@ GameWorld.o: GameWorld.cpp GameWorld.h GameAnimation.h
 GameAnimation.o: GameAnimation.cpp GameAnimation.h
 	g++ -c GameAnimation.cpp
 
+#GameStats.o: GameStats.cpp GameStats.h
+#	g++ -c GameStats.cpp
+
 clean:
 	rm -f *.o main

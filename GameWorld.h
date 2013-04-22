@@ -11,7 +11,6 @@
 #define GAME_WORLD
 
 #include <iostream>
-
 //#include "GameStats.h"
 #include "GameAnimation.h" // Daniel's class
 
