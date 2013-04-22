@@ -1,4 +1,3 @@
-#include "GameStats.h"
 
 class GameStats {
 public:
