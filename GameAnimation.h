@@ -1,6 +1,6 @@
 #include "constants.h"
 #include "SDL_Program.h"
-#inlcude "Mario.h"
+#include "Mario.h"
 
 class GameAnimation : public SDL_Program {
  public:
