@@ -28,7 +28,7 @@ public:
 	void kick();
 	//character actions
   
-	//GameStats getStatsFromProgram();
+	GameStats getStatsFromProgram();
   
 private:
   
