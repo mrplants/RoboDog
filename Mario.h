@@ -20,6 +20,10 @@ class Mario
   //Shows Mario                                                              
   void show();
 
+  //clean up function for Mario
+  void cleanUp();
+
   //Mario surface                                                                                                                                                 
   SDL_Surface *marioSurface;
+
 };
