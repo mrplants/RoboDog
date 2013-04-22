@@ -215,7 +215,6 @@ std::vector<std::vector<int> > TokenQueue::getInterpreterVector()
   return returnVector;
 }
 
-//-----------------------------------------------------------------------------------------------------
 CodeToken TokenQueue::getTokenAtIndex(int index)
 {
 	return _tokenDeque.at(index);
