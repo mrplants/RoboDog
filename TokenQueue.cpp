@@ -85,10 +85,18 @@ int TokenQueue::getWaitTime()
 
 void TokenQueue::addTokenToEnd(CodeToken newToken)
 {
-	_tokenDeque.push_back(newToken);
+	if (newToken._commandID.compare("close_loop") {
+	  CodeToken newLoopToken("open_loop");
+	  newLoopToken._repeatNumber = newToken._repeatNumber;
+	  newLoopToken._uniqueID = newToken._uniqueID;
+	  _tokeDeque.push_back(newLoopToken);
+	}
+	else {
+	  _tokenDeque.push_back(newToken);
+	}
 }
 //adds a token to the end of the tokenQueue
-
+ 
 void TokenQueue::removeTokenAtIndex(int index)
 {
   if (_tokenDeque[index]._commandID.compare("open_loop") || _tokenDeque[index]._commandID.compare("close_loop"))
@@ -115,13 +123,17 @@ bool TokenQueue::mouseOverToken(int x, int y)
 	//make that token active if so
 	for (int i=0; i < _tokenDeque.size(); i++) {
 		if (_tokenDeque[i].visualToken.mouseOverImage(_tokenDeque[i].visualToken.getRect(), x, y)) {
-		    *activeToken = _tokenDeque[i];
+		    addTokenToEnd(_tokenDeque[i]);
+		    activeToken = &(_tokenDeque.back());
+		    removeTokenAtIndex(i);
 		    return true;
 		}
 	}
   
-  //if none was made active, check if the mouse clicked in the library
-  //potentially make a new token if so
+	//if none was made active, check if the mouse clicked in the library
+	//potentially make a new token if so
+	if (x > TOKEN
+	
   
   return false;
 }

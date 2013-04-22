@@ -41,7 +41,7 @@ void GameMaster::play()
             std::cout << "event detected" << std::endl;
             if (event.type == SDL_QUIT) {   // If user clicks 'x' in top left corner
                 quit = true;
-                
+                break;
             } else if (event.type == SDL_MOUSEBUTTONDOWN) { // If mouse was pressed down
 
                 #warning More implementation needed in here
