@@ -35,7 +35,7 @@ public:
     
 private:
     
-    v2int user_program;
+    vector<vector<int> > user_program;
     // GameWorld *world;
     
 };
