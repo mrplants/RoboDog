@@ -23,6 +23,7 @@ class GameWorld
   
 public:
 	GameWorld(void*);
+	GameWorld();
 	
 	void step();
 	void jump();

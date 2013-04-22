@@ -5,6 +5,11 @@
 
 #include "GameWorld.h"
 
+  GameWorld::GameWorld()
+  {
+
+  }
+
 GameWorld::GameWorld(void* gameMaster)
 {
 
@@ -13,7 +18,7 @@ GameWorld::GameWorld(void* gameMaster)
   GameAnimation tempGameAnimation(gameMaster);
 
   gameAnimationScreen = tempGameAnimation;
-  
+
 	tokensInProgram = 0;
 	livesLeft       = 3;
 	scoreTotal      = 0;

@@ -8,6 +8,7 @@
  */
 
 #include "GameMaster.h"
+ 
 
 GameMaster::GameMaster() : SDL_Program() 
 {
