@@ -30,5 +30,5 @@ class Mario
   SDL_Surface *marioSurface;
 
   //Areas of the sprite sheet
-  SDL_Rect clips[ 2 ]
+  SDL_Rect clips[ 2 ];
 };
