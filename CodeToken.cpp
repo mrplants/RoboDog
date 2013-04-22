@@ -8,7 +8,7 @@
 
 #include "CodeToken.h"
 
-CodeToken::CodeToken(std::string identifier)
+CodeToken::CodeToken()
 {
   
 }//the constructor, initializes with an empty identifier and position on screen

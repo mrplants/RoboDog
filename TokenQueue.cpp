@@ -43,20 +43,6 @@ TokenQueue::~TokenQueue()
 #pragma mark -
 #pragma mark Methods About Dispatching Code
 
-std::vector<std::vector<int> > TokenQueue::getInterpreterVector();
-{
-  // the vector with the interpreters commands
-  std::vector<std::vector<int> > returnVector;
-
-  // loops throught he tokens and adds their identifiers to the vector
-  for(int i = 0; i < _tokenDeque.size(); i++)
-  {
-      vector<int> tokenVectorOfIdentifiers;
-
-      switch (_tokenDeque[i].)
-  }
-}
-
 /*
 void TokenQueue::dispatchTokenQueueToInterpreter()
 {
@@ -141,6 +127,46 @@ void TokenQueue::newToken()
 #pragma mark -
 #pragma mark Methods About Accessing the Queue
 
+std::vector<std::vector<int> > TokenQueue::getInterpreterVector();
+{
+  // the vector with the interpreters commands
+  std::vector<std::vector<int> > returnVector;
+
+  // loops throught he tokens and adds their identifiers to the vector
+  for(int i = 0; i < _tokenDeque.size(); i++)
+  {
+    vector<int> tokenVectorOfIdentifiers;
+
+
+//
+// 1 - STEP
+// 2 - JUMP
+// 3 - TURN
+// 4 - KICK
+//
+    //store the command ID of the token
+    if (_tokenDeque[i]._commandID.compare("step"))
+      tokenVectorOfIdentifiers.push_back(0);
+    else if (_tokenDeque[1]._commandID.compare("jump"))
+      tokenVectorOfIdentifiers.push_back(1);
+    else if (_tokenDeque[2]._commandID.compare("turn"))
+      tokenVectorOfIdentifiers.push_back(2);
+    else if (_tokenDeque[3]._commandID.compare("kick"))
+      tokenVectorOfIdentifiers.push_back(3);
+
+    //store the loop identifier
+    tokenVectorOfIdentifiers.push_back(_tokenDeque._uniqueLoopID);
+
+    //store the number of repeats in the loop
+    tokenVectorOfIdentifiers.push_back(_tokenDeque._repeatNumber);
+
+    //store the tokens identifiers to the vector<vector<int> >
+    returnVector.push_back(tokenVectorOfIdentifiers);
+  }
+  return returnVector;
+}
+
+//-----------------------------------------------------------------------------------------------------
 CodeToken TokenQueue::getTokenAtIndex(int index)
 {
 	return _tokenDeque.at(index);
