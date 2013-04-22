@@ -13,13 +13,13 @@ SDL_Token::SDL_Token(std::string ID) : SDL_Program() {
     //(correct image etc.)
     
     if (!ID.compare("step"))
-        tokenSurface = loadImage(""); //load the file for step token element
+        tokenSurface = loadImage("tokenImages/stepToken.jpg"); //load the file for step token element
     if (!ID.compare("jump"))
-        tokenSurface = loadImage(""); //load the file for jump token element
+        tokenSurface = loadImage("tokenImages/jumpToken.jpg"); //load the file for jump token element
     if (!ID.compare("kick"))
-        tokenSurface = loadImage(""); //load the file for kick token element
+        tokenSurface = loadImage("tokenImages/kickToken.jpg"); //load the file for kick token element
     if (!ID.compare("turn"))
-        tokenSurface = loadImage(""); //load the file for turn token element
+        tokenSurface = loadImage("tokenImages/turnToken.jpg"); //load the file for turn token element
 
     #warning add the files for the tokens here
 

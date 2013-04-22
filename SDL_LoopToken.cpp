@@ -12,7 +12,7 @@
 
 SDL_LoopToken::SDL_LoopToken(std::string ID) : SDL_Token(ID) {
 	if (!ID.compare("open_loop"))
-        tokenSurface = loadImage(""); //load the file for open_loop token element
+        tokenSurface = loadImage("tokenImages/openLoopToken.jpg"); //load the file for open_loop token element
     if (!ID.compare("close_loop"))
-        tokenSurface = loadImage(""); //load the file for close_loop token element
+        tokenSurface = loadImage("tokenImages/closeLoopToken.jpg"); //load the file for close_loop token element
 }
