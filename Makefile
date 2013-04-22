@@ -29,11 +29,11 @@ TokenQueue.o: TokenQueue.cpp TokenQueue.h
 CodeToken.o: CodeToken.cpp CodeToken.h SDL_Token.o #SDL_LoopToken.o
 	g++ -c CodeToken.cpp -lSDL -lSDL_image
 
-Interpreter.o: Interpreter.cpp Interpreter.h
-	g++ -c Interpreter.cpp
+Interpreter.o: Interpreter.cpp Interpreter.h GameWorld.o
+	g++ -c Interpreter.cpp GameWorld.o -lSDL_image
 
 GameWorld.o: GameWorld.cpp GameWorld.h
-	g++ -c GameWorld.cpp
+	g++ -c GameWorld.cpp -lSDL_image
 
 #GameAnimation.o: GameAnimation.cpp GameAnimation.h
 #	g++ -c GameAnimation.cpp
