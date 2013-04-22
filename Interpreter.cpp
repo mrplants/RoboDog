@@ -22,22 +22,22 @@ Interpreter::Interpreter(vector<int> program_codes, vector<int> numTimes, vector
     // This will resize the v2int to the appropriate size
     // This prevents seg fault when accessing locations
     
-    user_program.resize(program_codes.size());
-    for (int i = 0; i < program_codes.size(); i++) {
-        user_program[i].resize(3);
-    }
+    // user_program.resize(program_codes.size());
+    // for (int i = 0; i < program_codes.size(); i++) {
+    //     user_program[i].resize(3);
+    // }
     
-    //vector<int> temp = {0, 0};  // The little sets of two that will be pushed into the
-                                // user program
+    // //vector<int> temp = {0, 0};  // The little sets of two that will be pushed into the
+    //                             // user program
     
-    for (int i = 0; i < program_codes.size(); i++) {
-        user_program[i][0] = program_codes[i];
-        user_program[i][1] = numTimes[i];
-        user_program[i][2] = IDnums[i];
-    }
+    // for (int i = 0; i < program_codes.size(); i++) {
+    //     user_program[i][0] = program_codes[i];
+    //     user_program[i][1] = numTimes[i];
+    //     user_program[i][2] = IDnums[i];
+    // }
     
-    printRaw();
-    parse( user_program );
+    // printRaw();
+    // parse( user_program,  );
 }
 
 
