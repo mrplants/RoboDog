@@ -32,7 +32,7 @@ CodeToken.o: CodeToken.cpp CodeToken.h SDL_Token.o #SDL_LoopToken.o
 Interpreter.o: Interpreter.cpp Interpreter.h
 	g++ -c Interpreter.cpp -lSDL_image
 
-GameWorld.o: GameWorld.cpp GameWorld.h GameAnimation.h
+GameWorld.o: GameWorld.cpp GameWorld.h GameAnimation.h GameMaster.h
 	g++ -c GameWorld.cpp -lSDL_image
 
 GameAnimation.o: GameAnimation.cpp GameAnimation.h
