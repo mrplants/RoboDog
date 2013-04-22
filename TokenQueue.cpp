@@ -134,41 +134,36 @@ void TokenQueue::newToken(std::string commandID)
 	CodeToken newToken;
 
   newToken._commandID = commandID;
-  // This token is not a loop so we set their repeat number and loop ID to -1
-  newToken._repeatNumber = -1;
-  newToken._uniqueLoopID = -1;
+
+  if(commandID.compare("open_loop")) {
+    // This token is not a loop so we set their repeat number and loop ID to -1
+    newToken._repeatNumber = -1;
+    newToken._uniqueLoopID = -1;
+  }
+  else {
+    newToken._repeatNumber = repeatNumber;
+
+    //get a unique loop ID by parsing all the other loop tokens
+    int uniqueLoopID = -1;
+    for (int i = 0; i < _tokenDeque.size(); i++)
+    {
+      if (_tokenDeque[i]._commandID.compare("open_loop"))
+        uniqueLoopID++; //oops, this unique ID is taken by some other loop;
+    }
+    uniqueLoopID++; //so that we get a truly unique ID
+    newToken._uniqueLoopID = uniqueLoopID;
+
+  }
+
+  #warning Only the open_loop token is pushed with creation.
+  #warning When the mouse is released and open_loop is added to the deque, close_loop is added below it.
+  #warning To do this, we must also have remove functions such that if you click on either an "open" or a "close", and pull it out, both are removed.
+
 
 	_tokenDeque.push_back(newToken); //put the token at the back of the deque in the activeToken spot
 	activeToken = &(_tokenDeque.back());
 	return;
 }
-
-void TokenQueue::newToken(int repeatNumber)
-{
-  CodeToken newToken;
-  newToken._commandID = "open_loop";
-  newToken._repeatNumber = repeatNumber;
-
-  //get a unique loop ID by parsing all the other loop tokens
-  int uniqueLoopID = -1;
-  for (int i = 0; i < _tokenDeque.size(); i++)
-  {
-    if (_tokenDeque[i]._commandID.compare("open_loop"))
-      uniqueLoopID++; //oops, this unique ID is taken by some other loop;
-  }
-  uniqueLoopID++; //so that we get a truly unique ID
-  newToken._uniqueLoopID = uniqueLoopID;
-
-  //add the token to the back of the tokendeque
-  _tokenDeque.push_back(newToken);
-  #warning Only the open_loop token is pushed with creation.
-  #warning When the mouse is released and open_loop is added to the deque, close_loop is added below it.
-  #warning To do this, we must also have remove functions such that if you click on either an "open" or a "close", and pull it out, both are removed.
-
-  activeToken = &(_tokenDeque.back());
-  //assign the active token to the new token
-}
-
 
 #pragma mark -
 #pragma mark Methods About Accessing the Queue

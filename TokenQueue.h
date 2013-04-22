@@ -90,7 +90,6 @@ public:
 	//checks if the mouse was clicked over an existing token or one in the library
 	
 	void newToken(std::string); //for actions
-	void newToken(int repeatNumber); //for loops, creates two tokens, an open and close loop token and puts them in the correct place
 	//creates a new token, which is added to the end of the queue, and made the active token
 	
 #pragma mark -
