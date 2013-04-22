@@ -25,6 +25,7 @@
 #include <iostream>
 #include <algorithm>
 #include <deque>
+#include <vector>
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include "CodeToken.h"
