@@ -91,9 +91,23 @@ void TokenQueue::addTokenToEnd(CodeToken newToken)
 
 void TokenQueue::removeTokenAtIndex(int index)
 {
-	_tokenDeque.erase(_tokenDeque.begin() + index);
+  if (_tokenDeque[index]._commandID.compare("open_loop") || _tokenDeque[index]._commandID.compare("close_loop"))
+  {
+    //save the loop ID number so that you can take out all the blocks with that ID number
+    int uniqueLoopID = _tokenDeque[index]._uniqueLoopID;
+
+    //delete the two (start and end) loop tokens with that ID number
+    for (int i = 0; i < _tokenDeque.size(); ++i)
+    {
+      if (_tokenDeque[i]._uniqueLoopID == uniqueLoopID)
+          _tokenDeque.erase(_tokenDeque.begin() + i);
+    }
+
+
+  }
+  else _tokenDeque.erase(_tokenDeque.begin() + index);
 }
-//removes the token at the specified index and deletes it from memory
+//removes the token at the specified index and deletes it from memory if the token is a loop, it deletes both loop tokens
 
 bool TokenQueue::mouseOverToken(int x, int y)
 {
@@ -147,7 +161,9 @@ void TokenQueue::newToken(int repeatNumber)
 
   //add the token to the back of the tokendeque
   _tokenDeque.push_back(newToken);
-  #warning only the open_loop token is pushed with creation. when the mouse is released and open_loop is added to the deque, close_loop is added below it. to do this, we must also have remove functions such that if you click on either and open or a close, and pull it out, both are removed.
+  #warning Only the open_loop token is pushed with creation.
+  #warning When the mouse is released and open_loop is added to the deque, close_loop is added below it.
+  #warning To do this, we must also have remove functions such that if you click on either an "open" or a "close", and pull it out, both are removed.
 
   activeToken = &(_tokenDeque.back());
   //assign the active token to the new token
@@ -252,6 +268,17 @@ void TokenQueue::snapActiveToken()
     i++;
   }
     _tokenDeque.insert(it, *activeToken);
+
+    //if the token is a loop token, then we need to add a close loop underneath it
+    if ((*activeToken)._commandID.compare("open_loop"))
+    {
+      CodeToken closeLoopToken;
+      closeLoopToken._commandID = "close_loop";
+      closeLoopToken._uniqueLoopID = activeToken->_uniqueLoopID;
+      closeLoopToken._repeatNumber = activeToken->_repeatNumber;
+      it++;
+      _tokenDeque.insert(it, closeLoopToken);
+    }
   
   //places the newly dropped token on the screen
   //Note: all tokens have the same x coordinate
@@ -275,8 +302,10 @@ void TokenQueue::shiftTokens(int index)
 
 void TokenQueue::releaseActiveToken() 
 {
-  _tokenDeque.pop_back();
-  activeToken = NULL;
+  if (activeToken) {
+    _tokenDeque.pop_back();
+    activeToken = NULL;
+  }
   return;
 }
 
