@@ -1,4 +1,6 @@
-#include "Constants.h"
+#include "constants.h"
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
 
 //The surfaces
 SDL_Surface *mario = NULL;
