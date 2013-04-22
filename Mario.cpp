@@ -17,10 +17,10 @@ Mario::Mario()
   marioSurface = load_image( "Mario.bmp" );
 }
 
-// figure out how to pass in screen
+//show Mario
 void Mario::show(SDL_Surface *screen)
 {
-  //Show Mario
+
   if( status == MARIO_STAND )
     {
       SDL_BlitSurface( marioSurface, &standClip[ frame ], screen, &marioRect); 
@@ -28,8 +28,14 @@ void Mario::show(SDL_Surface *screen)
 
   if( status == MARIO_STEP ) 
     {
-      SDL_BlitSurface( marioSurface, &stepClips[ frame ], screen, &marioRect);
+      //increment the frame
       frame++;
+      //loop the animation
+      if( frame >= 2 )
+	{
+          frame = 0;
+        }
+      SDL_BlitSurface( marioSurface, &stepClips[ frame ], screen, &marioRect);
     }
 
   if( status == MARIO_JUMP ) 
