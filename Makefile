@@ -20,8 +20,8 @@ SDL_Program.o: SDL_Program.cpp SDL_Program.h
 SDL_Token.o: SDL_Token.cpp SDL_Token.h
 	g++ -c SDL_Token.cpp -lSDL -lSDL_image -lSDL_ttf
     
-#SDL_LoopToken.o: SDL_LoopToken.cpp SDL_LoopToken.h
-#	g++ -c SDL_LoopToken.cpp -lSDL -lSDL_image -lSDL_ttf
+SDL_LoopToken.o: SDL_LoopToken.cpp SDL_LoopToken.h
+	g++ -c SDL_LoopToken.cpp -lSDL -lSDL_image -lSDL_ttf
     
 TokenQueue.o: TokenQueue.cpp TokenQueue.h
 	g++ -c TokenQueue.cpp -lSDL -lSDL_image
@@ -32,9 +32,9 @@ CodeToken.o: CodeToken.cpp CodeToken.h SDL_Token.o #SDL_LoopToken.o
 Interpreter.o: Interpreter.cpp Interpreter.h
 	g++ -c Interpreter.cpp
 
-#GameWorld.o: GameWorld.cpp GameWorld.h
-#	g++ -c GameWorld.cpp
-#
+GameWorld.o: GameWorld.cpp GameWorld.h
+	g++ -c GameWorld.cpp
+
 #GameAnimation.o: GameAnimation.cpp GameAnimation.h
 #	g++ -c GameAnimation.cpp
 #
