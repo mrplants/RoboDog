@@ -5,10 +5,6 @@
 #include "Background.h"
 #include "Constants.h"
 
-#define SCREEN_WIDTH 400
-#define SCREEN_HEIGHT 600
-#define SCREEN_BPP 40
-
 SDL_Surface *load_image( std::string filename )
 {
   //The image that's loaded
@@ -81,7 +77,9 @@ bool init()
     }
 
   //Set up the screen
-  screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
+  //screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
+
+  screen = SDL_SetVideoMode( 640, 480, 32, SDL_SWSURFACE );
 
   //If there was an error in setting up the screen
   if( screen == NULL )
@@ -193,9 +191,11 @@ int main( int argc, char* args[] )
 	return 1;
       }
       
-      if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND) 
+      //      if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND) 
+      if( fps.get_ticks() < 1000 / 20)
 	{
-	  SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.get_ticks() );
+	  // SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.get_ticks() );
+	  SDL_Delay( ( 1000 / 20 ) - fps.get_ticks() );
 	}
     }    
   
