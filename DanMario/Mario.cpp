@@ -1,24 +1,4 @@
-#include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
-#include <string>
-
-//Screen attributes
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
-const int SCREEN_BPP = 32;
-
-//The frame rate
-const int FRAMES_PER_SECOND = 20;
-
-//The dimensions of Mario
-const int MARIO_WIDTH = 184;
-const int MARIO_HEIGHT = 200;
-
-//The action status of Mario
-const int MARIO_STAND = 0;
-const int MARIO_JUMP = 1;
-const int MARIO_KICK = 2;
-const int MARIO_
+#include "Defines.h"
 
 //The surfaces
 SDL_Surface *mario = NULL;
@@ -159,24 +139,26 @@ void clean_up()
 Mario::Mario()
 {
   //Initialize movement variables
-  offSet = 0;
-  x = 0;
-  y = SCREEN_HEIGHT - MARIO_HEIGHT;
+  marioRect.x = 0;
+  marioRect.y = SCREEN_HEIGHT - MARIO_HEIGHT;
 
   //Initialize animation variables
   status = MARIO_STAND;
+
+  //Create the Mario surface
+  marioSurface = load_image( "Mario.bmp" );
 }
 
-void Mario::show()
+// figure out how to pass in screen
+void Mario::show(SDL_Surface *screen)
 {
   //Show Mario
   if( status == MARIO_STAND )
     {
-      apply_surface( x, y, mario, screen, &clips[ 0 ] );
+      SDL_BlitSurface( mario, &clips[0], screen, &marioRect); 
     }
-   if( status == MARIO_JUMP )
-    {
-      apply_surface( x, y, mario, screen, &clips[ 1 ] );
-    }
+
+  // include all other statuses
+
 }
 
