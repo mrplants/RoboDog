@@ -191,8 +191,8 @@ int main( int argc, char* args[] )
 	return 1;
       }
       
-      //      if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND) 
-      if( fps.get_ticks() < 1000 / 20)
+      // if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND) 
+      if( fps.get_ticks() < (1000 / 20))
 	{
 	  // SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.get_ticks() );
 	  SDL_Delay( ( 1000 / 20 ) - fps.get_ticks() );
