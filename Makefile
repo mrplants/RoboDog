@@ -29,7 +29,7 @@ TokenQueue.o: TokenQueue.cpp TokenQueue.h
 CodeToken.o: CodeToken.cpp CodeToken.h SDL_Token.o #SDL_LoopToken.o
 	g++ -c CodeToken.cpp -lSDL -lSDL_image
 
-Interpreter.o: Interpreter.cpp Interpreter.h GameWorld.o
+Interpreter.o: Interpreter.cpp Interpreter.h
 	g++ -c Interpreter.cpp GameWorld.o -lSDL_image
 
 GameWorld.o: GameWorld.cpp GameWorld.h GameAnimation.h
@@ -38,8 +38,8 @@ GameWorld.o: GameWorld.cpp GameWorld.h GameAnimation.h
 GameAnimation.o: GameAnimation.cpp GameAnimation.h
 	g++ -c GameAnimation.cpp
 
-#GameStats.o: GameStats.cpp GameStats.h
-#	g++ -c GameStats.cpp
+GameStats.o: GameStats.cpp GameStats.h
+	g++ -c GameStats.cpp
 
 clean:
 	rm -f *.o main

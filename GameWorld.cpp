@@ -40,7 +40,7 @@ void GameWorld::kick() {
   cout << "Kick from GameWorld" << endl;
 }
 
-/*
+
 GameStats GameWorld::getStatsFromProgram() {
-  cout << "Stats and stuff" << endl;  
-}*/
+  cout << "Stats and stuff" << endl; 
+}

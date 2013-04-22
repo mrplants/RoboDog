@@ -11,7 +11,7 @@
 #define GAME_WORLD
 
 #include <iostream>
-//#include "GameStats.h"
+#include "GameStats.h"
 #include "GameAnimation.h" // Daniel's class
 
 using namespace std;
@@ -28,7 +28,7 @@ public:
 	void kick();
 	//character actions
   
-	//GameStats getStatsFromProgram();
+	GameStats getStatsFromProgram();
   
 private:
   
