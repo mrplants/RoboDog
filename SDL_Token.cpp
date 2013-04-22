@@ -51,10 +51,10 @@ SDL_Rect SDL_Token::getRect() {
 }
 
 SDL_Surface * SDL_Token::getSurface() {
-  return token;
+  return tokenSurface;
 }
 
 void SDL_Token::cleanUp() {
-    SDL_FreeSurface(token);
+    SDL_FreeSurface(tokenSurface);
     return;
 }
