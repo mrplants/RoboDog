@@ -21,8 +21,6 @@ SDL_Token::SDL_Token(std::string ID) : SDL_Program() {
     if (!ID.compare("turn"))
         tokenSurface = loadImage("tokenImages/turnToken.jpg"); //load the file for turn token element
 
-    #warning add the files for the tokens here
-
     tokenRect = createRect(tokenSurface, 0, 0); //WILL NOT WORK WITH CURRENT APPLY SURFACE
 }
 
