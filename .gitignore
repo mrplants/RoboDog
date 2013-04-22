@@ -12,5 +12,8 @@
 *.la
 *.a
 
+#extra files
+*~
+
 #mac crap
 .DS_Store
