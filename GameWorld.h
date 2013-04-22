@@ -13,8 +13,7 @@
 #include <iostream>
 #include "GameStats.h"
 
-//#include "GameStats.h"
-// #include "GameAnimation.h" // Daniel's class
+#include "GameAnimation.h" // Daniel's class
 
 using namespace std;
 
