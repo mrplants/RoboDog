@@ -22,7 +22,7 @@ class GameWorld
 {
   
 public:
-	GameWorld();
+	GameWorld(void*);
 	
 	void step();
 	void jump();

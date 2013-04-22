@@ -5,10 +5,15 @@
 
 #include "GameWorld.h"
 
-GameWorld::GameWorld() {
+GameWorld::GameWorld(void* gameMaster)
+{
 
 	// Initialize stats
 
+  GameAnimation tempGameAnimation(gameMaster);
+
+  gameAnimationScreen = tempGameAnimation;
+  
 	tokensInProgram = 0;
 	livesLeft       = 3;
 	scoreTotal      = 0;
