@@ -85,11 +85,11 @@ int TokenQueue::getWaitTime()
 
 void TokenQueue::addTokenToEnd(CodeToken newToken)
 {
-	if (newToken._commandID.compare("close_loop") {
+	if (newToken._commandID.compare("close_loop")) {
 	  CodeToken newLoopToken("open_loop");
 	  newLoopToken._repeatNumber = newToken._repeatNumber;
-	  newLoopToken._uniqueID = newToken._uniqueID;
-	  _tokeDeque.push_back(newLoopToken);
+	  newLoopToken._uniqueLoopID = newToken._uniqueLoopID;
+	  _tokenDeque.push_back(newLoopToken);
 	}
 	else {
 	  _tokenDeque.push_back(newToken);
@@ -132,6 +132,7 @@ bool TokenQueue::mouseOverToken(int x, int y)
   
 	//if none was made active, check if the mouse clicked in the library
 	//potentially make a new token if so
+	//if (inLoop
 	
   
   return false;
