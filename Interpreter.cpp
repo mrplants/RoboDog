@@ -74,7 +74,7 @@ void Interpreter::printRaw() {
 //  6 - close loop
 
 
-void Interpreter::parse( v2int program ) {
+void Interpreter::parse( vector<vector<int> > program, GameWorld *world ) {
     
     
     // 'i' is the index in the program,
@@ -93,7 +93,7 @@ void Interpreter::parse( v2int program ) {
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "step one space" << endl;
-                        // world->step();
+                        world->step();
                     }
                 }
                 break;
@@ -104,7 +104,7 @@ void Interpreter::parse( v2int program ) {
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "Jump once" << endl;
-                        // world->jump();
+                        world->jump();
                     }
                 }
                 break;
@@ -115,7 +115,7 @@ void Interpreter::parse( v2int program ) {
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "Turn around" << endl;
-                        // world->turn();
+                        world->turn();
                     }
                 }
                 break;
@@ -126,7 +126,7 @@ void Interpreter::parse( v2int program ) {
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "Kick once" << endl;
-                        // world->kick();
+                        world->kick();
                     }
                 }
                 break;

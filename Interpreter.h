@@ -28,7 +28,7 @@ public:
     Interpreter(vector<int> program, vector<int> numTimes, vector<int> IDnums);   // Takes the program and params
 
     // This is the interpreter basically
-    void parse( vector<vector<int> > user_program );
+    void parse( vector<vector<int> > user_program, GameWorld *world );
     
     // Prints the raw program and param codes constructed
     void printRaw();
