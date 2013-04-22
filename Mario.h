@@ -26,9 +26,14 @@ class Mario
   //clean up function for Mario
   void cleanUp();
 
-  //Mario surface                                                                                                                                                 
+  //Mario surface
   SDL_Surface *marioSurface;
 
   //Areas of the sprite sheet
-  SDL_Rect clips[ 2 ];
+  SDL_Rect standClip[ 1 ];
+  SDL_Rect stepClips[ 2 ];
+  SDL_Rect jumpClip[ 1 ];
+  SDL_Rect turnClip[ 1 ];
+  SDL_Rect kickClip[ 1 ];
+
 };
