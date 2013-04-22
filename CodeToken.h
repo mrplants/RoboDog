@@ -24,8 +24,8 @@ class CodeToken
 	SDL_Token visualToken;
 	
 	std::string _commandID; //this is the token's command identifier
-	std::string _uniqueLoopID; //this is the token's loop ID
-	std::string _repeatNumber; //this is the number of times the loop repeats
+	int _uniqueLoopID; //this is the token's loop ID
+	int _repeatNumber; //this is the number of times the loop repeats
   
 };
 
