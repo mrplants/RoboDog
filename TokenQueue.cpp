@@ -132,12 +132,43 @@ bool TokenQueue::mouseOverToken(int x, int y)
   
 	//if none was made active, check if the mouse clicked in the library
 	//potentially make a new token if so
-	//if (inLoop
+	if (overLoopTokenStack(x, y)) {
+	  //instantiate loop token
+	}else if (overStepTokenStack(x, y)) {
+	  //instantiate step token
+	}else if (overJumpTokenStack(x, y)) {
+	  //instantiate jump token
+	}else if (overKickTokenStack(x, y)) {
+	  //instantiate kick token
+	}else if (overTurnTokenStack(x, y)) {
+	  //instantiate turn token
+	}
 	
-  
   return false;
 }
 //checks if the mouse was clicked over an existing token or one in the library
+
+bool TokenQueue::overLoopTokenStack(int x, int y) 
+{
+	//if (x > 640 - 
+	  
+}
+
+bool TokenQueue::overStepTokenStack(int x, int y) 
+{
+}
+
+bool TokenQueue::overJumpTokenStack(int x, int y) 
+{
+}
+
+bool TokenQueue::overKickTokenStack(int x, int y) 
+{
+}
+
+bool TokenQueue::overTurnTokenStack(int x, int y) 
+{
+}
 
 void TokenQueue::newToken(std::string commandID)
 {

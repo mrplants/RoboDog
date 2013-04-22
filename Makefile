@@ -5,8 +5,8 @@ make: main
 #Interpreter (and its composed classes?)
 #GameWorld and its composed classes
 
-main: main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o CodeToken.o Interpreter.o
-	g++ main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o CodeToken.o Interpreter.o -o main -lSDL -lSDL_image -lSDL_ttf
+main: main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o CodeToken.o Interpreter.o GameAnimation.o
+	g++ main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o CodeToken.o Interpreter.o GameAnimation.o -o main -lSDL -lSDL_image -lSDL_ttf
     
 main.o: main.cpp
 	g++ -c main.cpp -lSDL -lSDL_image -lSDL_ttf
@@ -32,11 +32,11 @@ CodeToken.o: CodeToken.cpp CodeToken.h SDL_Token.o #SDL_LoopToken.o
 Interpreter.o: Interpreter.cpp Interpreter.h GameWorld.o
 	g++ -c Interpreter.cpp GameWorld.o -lSDL_image
 
-GameWorld.o: GameWorld.cpp GameWorld.h
+GameWorld.o: GameWorld.cpp GameWorld.h GameAnimation.h
 	g++ -c GameWorld.cpp -lSDL_image
 
-#GameAnimation.o: GameAnimation.cpp GameAnimation.h
-#	g++ -c GameAnimation.cpp
-#
+GameAnimation.o: GameAnimation.cpp GameAnimation.h
+	g++ -c GameAnimation.cpp
+
 clean:
 	rm -f *.o main

@@ -23,5 +23,8 @@
     #define TOKEN_LIB_W 464
     #define TOKEN_LIB_PERCENT_H 150/640
     #define TOKEN_LIB_H 150
+    
+    #define TOKEN_STACK_W 89
+    #define TOKEN_STACK_H 58
 
 #endif //_CONSTANTS defined

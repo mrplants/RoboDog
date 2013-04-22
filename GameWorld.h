@@ -13,7 +13,7 @@
 #include <iostream>
 
 //#include "GameStats.h"
-// #include "GameAnimation.h" // Daniel's class
+#include "GameAnimation.h" // Daniel's class
 
 using namespace std;
 
@@ -21,7 +21,8 @@ class GameWorld
 {
   
 public:
-  
+	GameWorld();
+	
 	void step();
 	void jump();
 	void turn();
@@ -32,7 +33,7 @@ public:
   
 private:
   
-	//GameAnimation gameAnimationScreen;
+	GameAnimation gameAnimationScreen;
   
 	int tokensInProgram;
 	int livesLeft;
