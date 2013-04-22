@@ -165,17 +165,17 @@ std::vector<std::vector<int> > TokenQueue::getInterpreterVector()
   // loops throught he tokens and adds their identifiers to the vector
   for(int i = 0; i < _tokenDeque.size(); i++)
   {
-    vector<int> tokenVectorOfIdentifiers;
+    std::vector<int> tokenVectorOfIdentifiers;
 
 #warning These are the token identifiers. If you use other identifiers, it won't work. 
 #warning Maybe we should #define these somewhere?
 //
-#warning // 1 - "step"
-#warning // 2 - "jump"
-#warning // 3 - "turn"
-#warning // 4 - "kick"
-#warning // 5 - "open_loop"
-#warning // 6 - "close_loop"
+#warning 1 - "step"
+#warning 2 - "jump"
+#warning 3 - "turn"
+#warning 4 - "kick"
+#warning 5 - "open_loop"
+#warning 6 - "close_loop"
 //
 
     //store the command ID of the token
