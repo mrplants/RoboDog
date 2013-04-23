@@ -45,4 +45,4 @@ Mario.o: Mario.cpp Mario.h
 	g++ -c Mario.cpp -lSDL -lSDL_image
 
 clean:
-	rm -f *.o main
+	rm -f *.o *.gch main
