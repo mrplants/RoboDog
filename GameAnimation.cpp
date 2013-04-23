@@ -7,8 +7,8 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) {
   background = loadImage("NYC.jpg");
   backRect.x = 0;
   backRect.y = 0;
-  backRect.width = background.width;
-  backRect.height = background.height;
+  backRect.w = background->w;
+  backRect.h = background->h;
   gameMasterPointer = theGameMaster;
   
 }
