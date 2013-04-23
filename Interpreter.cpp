@@ -74,7 +74,7 @@ void Interpreter::printRaw() {
 //  6 - close loop
 
 
-void Interpreter::parse( vector<vector<int> > program, void *world_pointer ) {
+void Interpreter::parse( vector<vector<int> > program, GameWorld *world_pointer ) {
     
     
     // 'i' is the index in the program,
