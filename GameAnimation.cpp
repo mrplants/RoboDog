@@ -1,6 +1,6 @@
-//#include "GameAnimation.h"
+#include "GameAnimation.h"
 #include "GameMaster.h"
-
+#include "Mario.h"
 
 GameAnimation::GameAnimation(){}
 

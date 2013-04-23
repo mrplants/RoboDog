@@ -1,10 +1,10 @@
 #include "constants.h"
 #include "SDL_Program.h"
-#include "Mario.h"
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
 class GameMaster;
+class Mario;
 
 class GameAnimation : public SDL_Program {
  public:
