@@ -1,4 +1,6 @@
 #include "GameAnimation.h"
+#include "GameMaster.h"
+
 
 GameAnimation::GameAnimation(){}
 
@@ -65,7 +67,7 @@ void GameAnimation::kick() {
 }
 
 void GameAnimation::turn() {
-	std::cout << "ERROR: Still need to create the sprite sheet and stuff for reversed orientation of character" << std::endl;
+	std::cout << "ERROR: Still need to create the sprite sheet for reversed orientation of character" << std::endl;
   #warning Still need to create the sprite sheet and stuff for reversed orientation of character
 }
 

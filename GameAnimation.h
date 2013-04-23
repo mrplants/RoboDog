@@ -1,7 +1,6 @@
 #include "constants.h"
 #include "SDL_Program.h"
 #include "Mario.h"
-// #include "GameMaster.h"
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
