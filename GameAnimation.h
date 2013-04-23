@@ -7,7 +7,7 @@
 
 class GameAnimation : public SDL_Program {
  public:
-  
+
   GameAnimation(GameMaster*);
   //player commands
   void step();
