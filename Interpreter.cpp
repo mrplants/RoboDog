@@ -93,7 +93,7 @@ void Interpreter::parse( vector<vector<int> > program, void *world_pointer ) {
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "step one space" << endl;
-                        (*world_pointer).step();
+                        world_pointer->step();
                     }
                 }
                 break;
@@ -104,7 +104,7 @@ void Interpreter::parse( vector<vector<int> > program, void *world_pointer ) {
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "Jump once" << endl;
-                        (*world_pointer).jump();
+                        world_pointer->jump();
                     }
                 }
                 break;
@@ -115,7 +115,7 @@ void Interpreter::parse( vector<vector<int> > program, void *world_pointer ) {
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "Turn around" << endl;
-                        (*world_pointer).turn();
+                        world_pointer->turn();
                     }
                 }
                 break;
@@ -126,7 +126,7 @@ void Interpreter::parse( vector<vector<int> > program, void *world_pointer ) {
                 } else {
                     for (int j = 0; j < program[i][1]; j++) {
                         cout << "Kick once" << endl;
-                        (*world_pointer).kick();
+                        world_pointer->kick();
                     }
                 }
                 break;
