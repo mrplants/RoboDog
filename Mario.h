@@ -30,8 +30,9 @@ class Mario
   //Its animation status                                                      
   int status;
 
-   private:
   SDL_Rect marioRect;
+
+   private:
 
   //Its current frame                                                        
   int frame;
