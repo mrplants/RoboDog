@@ -8,7 +8,7 @@
  */
 
 #include "GameMaster.h"
- class GameWorld;
+#include "GameWorld.h"
 
 GameMaster::GameMaster() : SDL_Program() 
 {
