@@ -24,7 +24,7 @@ class GameWorld
 {
   
 public:
-	GameWorld(GameMaster*);
+	GameWorld(GameMaster* gameMaster)
 	
 	void step();
 	void jump();
