@@ -20,6 +20,7 @@ using namespace std;
 
 class GameMaster;
 
+class GameWorld
 {
   
 public:
