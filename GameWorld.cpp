@@ -4,10 +4,6 @@
 //handle the animation of the game, and the stats about levels, health, and other playing-related things
 
 #include "GameWorld.h"
-  GameWorld::GameWorld()
-  {
-
-  }
 
 GameWorld::GameWorld(GameMaster* gameMaster)
 {
