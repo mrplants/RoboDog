@@ -15,6 +15,8 @@
 #include <unistd.h>
 // #include "GameWorld.h"
 
+class GameWorld;
+
 using namespace std;
 
 typedef vector<int> VecOfInt;
