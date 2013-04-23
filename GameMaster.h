@@ -31,6 +31,9 @@
 #include "GameWorld.h"
 #include "Interpreter.h"
 
+class Interpreter;
+class GameWorld;
+
 class GameMaster : public SDL_Program {
     
 public:
