@@ -47,7 +47,7 @@ void GameAnimation::jump() {
 
 }
 
-void updateScreen(SDL_Surface* screen)
+void GameAnimation::updateScreen(SDL_Surface* screen)
 {
 	mario.show(screen);
 	SDL_BlitSurface( background, NULL, screen, &backRect);
