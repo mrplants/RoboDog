@@ -27,10 +27,9 @@
 #include "constants.h"
 
 #include "TokenQueue.h"
-#include "Interpreter.h"
 #include "CodeToken.h"
 #include "GameWorld.h"
-
+#include "Interpreter.h"
 
 class GameMaster : public SDL_Program {
     
