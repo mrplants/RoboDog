@@ -26,6 +26,6 @@ class GameAnimation : public SDL_Program {
   SDL_Surface *background;
   SDL_Rect backRect;
   Mario mario;
-  gameMasterPointer *gameMaster;
+  GameMaster *gameMasterPointer;
 
 };
