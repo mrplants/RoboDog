@@ -13,7 +13,8 @@
 #include <vector>
 #include <string>
 #include <unistd.h>
-#include "GameWorld.h"
+
+class GameWorld;
 
 using namespace std;
 
