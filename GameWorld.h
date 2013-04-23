@@ -24,6 +24,8 @@ class GameWorld
 {
   
 public:
+	GameWorld();
+
 	GameWorld(GameMaster* gameMaster);
 	
 	void step();

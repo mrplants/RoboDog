@@ -1,5 +1,7 @@
 #include "GameAnimation.h"
 
+GameAnimation::GameAnimation(){}
+
 GameAnimation::GameAnimation(GameMaster* theGameMaster) {
 
   background = loadImage("NYC.jpg");

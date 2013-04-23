@@ -5,6 +5,9 @@
 
 #include "GameWorld.h"
 
+GameWorld::GameWorld(){}
+
+
 GameWorld::GameWorld(GameMaster* gameMaster)
 {
 
