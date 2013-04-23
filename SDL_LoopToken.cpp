@@ -10,7 +10,7 @@
 
 #include "SDL_LoopToken.h"
 
-SDL_LoopToken::SDL_LoopToken(std::string ID) : SDL_Token(ID) {
+SDL_LoopToken::SDL_LoopToken(std::string ID) /*: SDL_Token(ID)*/ {
 	// if (!ID.compare("open_loop"))
  //        tokenSurface = loadImage("tokenImages/openLoopToken.jpg"); //load the file for open_loop token element
  //    if (!ID.compare("close_loop"))
