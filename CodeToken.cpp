@@ -13,10 +13,10 @@ CodeToken::CodeToken(std::string commandID)
 	_commandID = commandID;
 	if (!commandID.compare("open_loop"))
 	{
-		SDL_LoopToken tempToken(commandID);
+		SDL_LoopToken visualToken(commandID);
 		_repeatNumber = 0;
 		_uniqueLoopID = 0;
-		visualToken = tempToken;
+		// visualToken = tempToken;
 	} else
 	{
 		SDL_Token tempToken(commandID);
