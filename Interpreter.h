@@ -14,7 +14,7 @@
 #include <string>
 #include <unistd.h>
 
-class GameWorld;
+// class GameWorld;
 
 using namespace std;
 
@@ -29,7 +29,7 @@ public:
     Interpreter(vector<int> program, vector<int> numTimes, vector<int> IDnums);   // Takes the program and params
 
     // This is the interpreter basically
-    void parse( vector<vector<int> > user_program, GameWorld *world );
+    void parse( vector<vector<int> > user_program, void *world );
     
     // Prints the raw program and param codes constructed
     void printRaw();
