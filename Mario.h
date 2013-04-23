@@ -27,13 +27,13 @@ class Mario
   SDL_Rect turnClip[ 1 ];
   SDL_Rect kickClip[ 1 ];
 
+  //Its animation status                                                      
+  int status;
+
    private:
   SDL_Rect marioRect;
 
   //Its current frame                                                        
   int frame;
-
-  //Its animation status                                                      
-  int status;
 
 };
