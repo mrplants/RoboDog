@@ -18,7 +18,8 @@
 
 using namespace std;
 
-class GameWorld
+class GameMaster;
+
 {
   
 public:

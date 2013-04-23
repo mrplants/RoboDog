@@ -5,6 +5,8 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
+class GameMaster;
+
 class GameAnimation : public SDL_Program {
  public:
 
