@@ -31,6 +31,9 @@
 #include "CodeToken.h"
 #include "GameWorld.h"
 
+class Interpreter;
+class GameWorld;
+
 class GameMaster : public SDL_Program {
     
 public:
