@@ -4,15 +4,6 @@
 
 class Mario
 {
- private:
-  SDL_Rect marioRect;
-
-  //Its current frame                                                        
-  int frame;
-
-  //Its animation status                                                      
-  int status;
-
  public:
   //Initializes the variables                                                 
   Mario();
@@ -35,5 +26,14 @@ class Mario
   SDL_Rect jumpClip[ 1 ];
   SDL_Rect turnClip[ 1 ];
   SDL_Rect kickClip[ 1 ];
+
+   private:
+  SDL_Rect marioRect;
+
+  //Its current frame                                                        
+  int frame;
+
+  //Its animation status                                                      
+  int status;
 
 };
