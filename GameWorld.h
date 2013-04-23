@@ -15,6 +15,7 @@
 #include "GameAnimation.h" // Daniel's class
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
+#include "GameMaster.h"
 
 using namespace std;
 
