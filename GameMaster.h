@@ -27,6 +27,7 @@
 #include "constants.h"
 
 #include "TokenQueue.h"
+ #include "GameAnimation.h"
 #include "CodeToken.h"
 #include "GameWorld.h"
 #include "Interpreter.h"

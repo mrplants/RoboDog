@@ -9,7 +9,7 @@ class Mario
   Mario();
 
   //Shows Mario                                                              
-  void show();
+  void show(SDL_Surface*);
 
   //define clip locations
   void set_clips(); 
