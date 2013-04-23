@@ -28,6 +28,7 @@
 
 #include "TokenQueue.h"
 #include "Interpreter.h"
+#include "GameWorld.h"
 
 class GameWorld;
 
