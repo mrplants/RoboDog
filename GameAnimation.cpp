@@ -1,22 +1,22 @@
 #include "GameAnimation.h"
 
-GameAnimation::GameAnimation(void* theGameMaster) {
+GameAnimation::GameAnimation(GameMaster* theGameMaster) {
 
   background = loadImage("NYC.jpg");
-  gameMaster = theGameMaster;
+  gameMasterPointer = theGameMaster;
   
 }
 
 void GameAnimation::step() {
   
   mario.status = MARIO_STEP; 
-  gameMaster->updateScreen();
+  gameMasterPointer->updateScreen();
   SDL_Delay(50);
   backRect.x -= 50; 
-  gameMaster->updateScreen();
+  gameMasterPointer->updateScreen();
   SDL_Delay(50);
   mario.status = MARIO_STAND; 
-  gameMaster->updateScreen();
+  gameMasterPointer->updateScreen();
 
 }
 
@@ -24,19 +24,19 @@ void GameAnimation::jump() {
   
   mario.status = MARIO_JUMP;
   mario.marioRect.y -= 50;
-  gameMaster->updateScreen();
+  gameMasterPointer->updateScreen();
   SDL_Delay(100);
   mario.marioRect.y -= 50;
   backRect.x -= 50;
-  gameMaster->updateScreen();
+  gameMasterPointer->updateScreen();
   SDL_Delay(100);
   mario.marioRect.y += 50;
   backRect.x -= 50;
-  gameMaster->updateScreen();
+  gameMasterPointer->updateScreen();
   SDL_Delay(100);
   mario.marioRect.y += 50;
   mario.status = MARIO_STAND;
-  gameMaster->updateScreen();
+  gameMasterPointer->updateScreen();
   SDL_Delay(100);
 
 }
@@ -51,10 +51,10 @@ void updateScreen(SDL_Surface* screen)
 void GameAnimation::kick() {
 
 	mario.status = MARIO_KICK;
-	gameMaster->updateScreen();
+	gameMasterPointer->updateScreen();
 	SDL_Delay(100);
 	mario.status = MARIO_STAND; 
-	gameMaster->updateScreen();
+	gameMasterPointer->updateScreen();
 
 }
 

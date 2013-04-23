@@ -10,7 +10,7 @@
 
   }
 
-GameWorld::GameWorld(void* gameMaster)
+GameWorld::GameWorld(GameMaster* gameMaster)
 {
 
 	// Initialize stats
