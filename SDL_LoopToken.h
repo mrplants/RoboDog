@@ -16,7 +16,7 @@
 //Base class
 #include "SDL_Token.h" //includes all SDL frameworks, iostream, etc. needed
 
-class SDL_LoopToken /*: public SDL_Token*/ {
+class SDL_LoopToken : public SDL_Token {
 public:
     SDL_LoopToken(std::string); //parameters are ID ("if" or "loop") and subID for the action
 
