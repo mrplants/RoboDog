@@ -5,8 +5,8 @@ make: main
 #Interpreter (and its composed classes?)
 #GameWorld and its composed classes
 
-main: main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o SDL_LoopToken.o CodeToken.o Interpreter.o GameAnimation.o Mario.o GameStats.o
-	g++ main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o CodeToken.o Interpreter.o GameAnimation.o -o main -lSDL -lSDL_image
+main: main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o SDL_LoopToken.o CodeToken.o Interpreter.o GameAnimation.o Mario.o GameStats.o GameWorld.o
+	g++ main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o CodeToken.o Interpreter.o GameAnimation.o GameWorld.o -o main -lSDL -lSDL_image
     
 main.o: main.cpp
 	g++ -c main.cpp
