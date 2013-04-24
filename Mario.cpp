@@ -1,6 +1,7 @@
 #include "constants.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
+#include "Mario.h"
 
 // default constructor
 Mario::Mario()
