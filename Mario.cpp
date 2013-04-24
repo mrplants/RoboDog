@@ -56,7 +56,7 @@ void Mario::show(SDL_Surface *screen)
 }
 
 // define clip locations
-void set_clips()
+void Mario::set_clips()
 {
   //Clip the sprites
   standClip[ 0 ].x = 0;
