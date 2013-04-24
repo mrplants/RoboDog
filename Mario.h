@@ -1,3 +1,7 @@
+#ifndef MARIO_H
+#define MARIO_H
+
+
 #include "constants.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
@@ -38,3 +42,5 @@ class Mario
   int frame;
 
 };
+
+#endif //defined MARIO_H 

@@ -1,3 +1,6 @@
+#ifndef GAMEANIMATION_H
+#define GAMEANIMATION_H
+
 #include "constants.h"
 #include "SDL_Program.h"
 #include "Mario.h"
@@ -28,3 +31,6 @@ class GameAnimation : public SDL_Program {
   GameMaster *gameMasterPointer;
 
 };
+
+
+#endif // defined GAMEANIMATION_H
