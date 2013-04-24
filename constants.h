@@ -29,14 +29,14 @@
     #define TOKEN_STACK_H 58
 
     // dimensions of Mario
-    #define MARIO_WIDTH 184;
-    #define MARIO_HEIGHT 200;
+    #define MARIO_WIDTH 184
+    #define MARIO_HEIGHT 200
 
     // Mario action statuses
-    #define MARIO_STAND 0;
-    #define MARIO_STEP 1;
-    #define MARIO_JUMP 2;
-    #define MARIO_TURN 3;
-    #define MARIO_KICK 4;
+    #define MARIO_STAND 0
+    #define MARIO_STEP 1
+    #define MARIO_JUMP 2
+    #define MARIO_TURN 3
+    #define MARIO_KICK 4
 
 #endif //_CONSTANTS defined
