@@ -26,9 +26,7 @@ public:
     // void setInputBoxClicked(bool);
     // //key press event will set any number key pressed to the number of times the loop should run
     // void processKeyPressEvent(char); //ONLY CALL IF inputBoxClicked is true
-    
-    // void cleanUp();
-    
+        
 private:
     //methods to set up inner snap region
     // void setUpInnerSnapRegion(int, int, SDL_Surface *); //sets the the
@@ -39,7 +37,7 @@ private:
     
     // bool inputBoxClicked;
     
-    // //SDL_Surface and associated rect are inherited from base class
+    //SDL_Surface and associated rect are inherited from base class
 };
 
 #endif // defined SDL_LOOPTOKEN

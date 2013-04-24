@@ -27,6 +27,7 @@ public:
     void setRect(int, int);
     SDL_Rect getRect();
     SDL_Surface *getSurface();
+    void setSurface(SDL_Surface*);
     
     virtual void cleanUp();
     

@@ -56,3 +56,8 @@ void SDL_Token::cleanUp() {
     SDL_FreeSurface(tokenSurface);
     return;
 }
+
+void SDL_Token::setSurface(SDL_Surface *newSurface)
+{
+  tokenSurface = newSurface;
+}
