@@ -11,12 +11,12 @@
 CodeToken::CodeToken(std::string commandID)
 {
 	_commandID = commandID;
-	if (!commandID.compare("open_loop"))
+	if (!commandID.compare("open_loop") || !commandID.compare("close_loop"))
 	{
-		SDL_LoopToken visualToken(commandID);
+		SDL_LoopToken tempToken(commandID);
 		_repeatNumber = 0;
 		_uniqueLoopID = 0;
-		// visualToken = tempToken;
+		visualToken = tempToken;
 	} else
 	{
 		SDL_Token tempToken(commandID);
