@@ -3,10 +3,11 @@
 
 
 #include "constants.h"
+#include "SDL_Program.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 
-class Mario
+class Mario : public SDL_Program
 {
  public:
   //Initializes the variables                                                 
@@ -19,7 +20,7 @@ class Mario
   void set_clips(); 
 
   //clean up function for Mario
-  void cleanUp();
+  virtual void cleanUp();
 
   //Mario surface
   SDL_Surface *marioSurface;

@@ -4,18 +4,17 @@
 #include "Mario.h"
 
 // default constructor
-Mario::Mario()
+Mario::Mario() : SDL_Program()
 {
-  //Initialize movement variables
-  marioRect.x = 0;
-  marioRect.y = SCREEN_HEIGHT - MARIO_HEIGHT;
-
   //Initialize animation variables
   status = MARIO_STAND;
   frame = 0;
 
   //Create the Mario surface
-  marioSurface = load_image( "Mario.bmp" );
+  marioSurface = loadImage( "Mario.bmp" );
+
+  //Initialize movement variables
+  marioRect = createRect(marioSurface, 0, SCREEN_HEIGHT - MARIO_HEIGHT);
 }
 
 //show Mario
