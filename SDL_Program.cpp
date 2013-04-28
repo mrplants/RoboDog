@@ -60,8 +60,9 @@ SDL_Surface * SDL_Program::loadImage(std::string filename) {
 
 //creates an SDL_Rect that corresponds to an image (SDL_Surface)
 SDL_Rect SDL_Program::createRect(SDL_Surface * image, int startX, int startY) {
-    std::cout << "Debug SDL_Program.cpp Line: 63 - beginning of method" << std::endl;
+    std::cout << "Debug SDL_Program.cpp Line: 63 - beginning of createRect\n" << std::endl;
     SDL_Rect rect;
+    std::cout << "Debug SDL_Program.cpp Line: 65 - after 'SDL_Rect rect'\n" << std::endl;
     rect.w = image->w;
     rect.h = image->h;
     
