@@ -5,10 +5,10 @@
 
 #include "GameWorld.h"
 
-// GameWorld::GameWorld(){}
+GameWorld::GameWorld(){}
 
 
-GameWorld::GameWorld(GameMaster* gameMaster), gameAnimationScreen(gameMaster)
+GameWorld::GameWorld(GameMaster* gameMaster): gameAnimationScreen(gameMaster)
 {
   std::cout << "Debug GameWorld.cpp Line: 8 - GameWorld Constructor start\n" << std::endl;
 
