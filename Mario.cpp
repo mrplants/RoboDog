@@ -23,7 +23,7 @@ Mario::Mario(std::string imageURL) : SDL_Program()
   std::cout << "Debug Mario.cpp Line:22 - after loadImage(\"Mario.bmp\")\n" << std::endl;
 
   //Initialize movement variables
-  marioRect = createRect(marioSurface, SCREEN_WIDTH - TOKEN_LIB_W, SCREEN_HEIGHT - TOKEN_LIB_H - MARIO_HEIGHT);
+  marioRect = createRect(marioSurface, SCREEN_WIDTH - TOKEN_LIB_W, SCREEN_HEIGHT - TOKEN_LIB_H - TOKEN_HEIGHT - MARIO_HEIGHT);
 
       std::cout << "Debug Mario.cpp Line: 27 - Interpreter Mario end\n" << std::endl;
 
