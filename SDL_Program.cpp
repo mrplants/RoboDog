@@ -63,6 +63,7 @@ SDL_Rect SDL_Program::createRect(SDL_Surface * image, int startX, int startY) {
     std::cout << "Debug SDL_Program.cpp Line: 63 - beginning of createRect\n" << std::endl;
     SDL_Rect rect;
     std::cout << "Debug SDL_Program.cpp Line: 65 - after 'SDL_Rect rect'\n" << std::endl;
+    std::cout << "Debug SDL_Program.cpp Line: 66 - image width:" << image->w << std::endl << std::endl;
     rect.w = image->w;
     rect.h = image->h;
     
