@@ -19,7 +19,7 @@ Mario::Mario(std::string imageURL) : SDL_Program()
 
   //Create the Mario surface
   //  marioSurface = loadImage("tokenImages/RobodogPositions.jpg");
-  marioSurface = loadImage("mario.bmp");
+  marioSurface = loadImage("Mario.bmp");
   std::cout << "Debug Mario.cpp Line:22 - after loadImage(\"Mario.bmp\")\n" << std::endl;
 
   //Initialize movement variables
