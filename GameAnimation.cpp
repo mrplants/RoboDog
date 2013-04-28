@@ -1,9 +1,9 @@
 #include "GameAnimation.h"
 #include "GameMaster.h"
 
-GameAnimation::GameAnimation() : public SDL_Program() {}
+GameAnimation::GameAnimation() : SDL_Program() {}
 
-GameAnimation::GameAnimation(GameMaster* theGameMaster) : public SDL_Program() {
+GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program() {
 
     std::cout << "Debug GameAnimation.cpp Line: 8 - GameAnimation Constructor start\n" << std::endl;
 
