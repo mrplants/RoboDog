@@ -209,7 +209,7 @@ void GameMaster::updateScreen()
     offset.x = 0;
     offset.y = 0;
     SDL_BlitSurface(background, NULL, screen, &offset);
-    queueOfTokens.updateScreen(screen);
+    //queueOfTokens.updateScreen(screen);
     
     //Call all update screen methods in game and token queue
     
