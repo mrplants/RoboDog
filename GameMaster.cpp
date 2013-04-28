@@ -167,7 +167,7 @@ bool GameMaster::initializeSDL(int width, int height, int bpp, std::string capti
     SDL_WM_SetCaption( caption.c_str(), NULL );
     
     //load background image
-    background = loadImage("RoboDogNewUI.png"); //method inherited from SDL_Program
+    background = loadImage("RoboDogNewUI.jpg"); //method inherited from SDL_Program
     if (background == NULL) std::cout << "ERR: Background could not be loaded\n" << std::endl;
     
     //If everything initialized fine
@@ -202,14 +202,14 @@ bool GameMaster::mouseInTokenPane(int x, int y) {
 
 void GameMaster::updateScreen() 
 {
-    //gameWorld.updateScreen(screen);
+    gameWorld.updateScreen(screen);
     //Re-applies the background
     //SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) ); //fills screen with white
     SDL_Rect offset;
     offset.x = 0;
     offset.y = 0;
     SDL_BlitSurface(background, NULL, screen, &offset);
-    //queueOfTokens.updateScreen(screen);
+    queueOfTokens.updateScreen(screen);
     
     //Call all update screen methods in game and token queue
     
