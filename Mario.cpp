@@ -17,7 +17,7 @@ Mario::Mario() : SDL_Program()
 
     if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
         std::cout << "ERR: SDL_INIT_EVERYTHING was not successful" << std::endl;
-        return false;
+        // return false;
     }
 std::cout << "Debug Mario.cpp Line:22 - after SDL_Init\n" << std::endl;
   //Create the Mario surface
