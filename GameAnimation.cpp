@@ -1,9 +1,12 @@
 #include "GameAnimation.h"
 #include "GameMaster.h"
 
-GameAnimation::GameAnimation(){}
+GameAnimation::GameAnimation() : public SDL_Program() {}
 
-GameAnimation::GameAnimation(GameMaster* theGameMaster) {
+GameAnimation::GameAnimation(GameMaster* theGameMaster) : public SDL_Program() {
+
+    std::cout << "Debug GameAnimation.cpp Line: 8 - GameAnimation Constructor start\n" << std::endl;
+
 
   background = loadImage("NYC.jpg");
   backRect.x = 0;
@@ -11,7 +14,9 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) {
   backRect.w = background->w;
   backRect.h = background->h;
   gameMasterPointer = theGameMaster;
-  
+
+    std::cout << "Debug GameAnimation.cpp Line: 8 - GameAnimation Constructor end\n" << std::endl;
+
 }
 
 void GameAnimation::step() {

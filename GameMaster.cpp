@@ -11,6 +11,9 @@
 
 GameMaster::GameMaster() : SDL_Program() 
 {
+
+    std::cout << "Debug GameMaster.cpp Line: 8 - GameMaster Constructor start\n" << std::endl;
+
     initializeSDL(); //sets up SDL systems, screen, and background
 
     GameWorld tempGameWorld(this);
@@ -22,6 +25,9 @@ GameMaster::GameMaster() : SDL_Program()
     tokenPane.y = 0;
     tokenPane.h = SCREEN_HEIGHT * TOKEN_PANE_PERCENT_H;
     tokenPane.w = SCREEN_WIDTH * TOKEN_PANE_PERCENT_W;
+
+    std::cout << "Debug GameMaster.cpp Line: 8 - GameMaster Constructor end\n" << std::endl;
+
 }
 
 GameMaster::~GameMaster()

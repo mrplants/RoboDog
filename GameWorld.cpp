@@ -10,6 +10,8 @@ GameWorld::GameWorld(){}
 
 GameWorld::GameWorld(GameMaster* gameMaster)
 {
+      std::cout << "Debug GameWorld.cpp Line: 8 - GameWorld Constructor start\n" << std::endl;
+
 
 	// Initialize stats
 
@@ -20,6 +22,9 @@ GameWorld::GameWorld(GameMaster* gameMaster)
 	tokensInProgram = 0;
 	livesLeft       = 3;
 	scoreTotal      = 0;
+
+      std::cout << "Debug GameWorld.cpp Line: 8 - GameWorld Constructor end\n" << std::endl;
+
 }
 
 

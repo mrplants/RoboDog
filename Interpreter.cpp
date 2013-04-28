@@ -10,6 +10,9 @@
 
 
 Interpreter::Interpreter() {
+
+    std::cout << "Debug GameWorld.cpp Line: 8 - GameWorld Constructor start\n" << std::endl;
+
     cout << "Interpreter initialized:\n\n";
     cout << "This is the wrong constructor though." << endl;
     
