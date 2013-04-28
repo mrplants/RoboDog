@@ -180,46 +180,6 @@ bool TokenQueue::overTokenStack(int x, int y, int i)
 	}
 	return false; 
 }
-/*
-bool TokenQueue::overStepTokenStack(int x, int y) 
-{
-	if (x > TOKEN_LIB_START_X+TOKEN_STACK_W && x < TOKEN_LIB_START_X+2*TOKEN_STACK_W) {
-		if (y > TOKEN_LIB_H && y < SCREEN_HEIGHT) {
-			return true;
-		}
-	}
-	return false;
-}
-
-bool TokenQueue::overJumpTokenStack(int x, int y) 
-{
-	if (x > TOKEN_LIB_START_X+2*TOKEN_STACK_W && x < TOKEN_LIB_START_X+3*TOKEN_STACK_W) {
-		if (y > TOKEN_LIB_H && y < SCREEN_HEIGHT) {
-			return true;
-		}
-	}
-	return false;
-}
-
-bool TokenQueue::overKickTokenStack(int x, int y) 
-{
-	if (x > TOKEN_LIB_START_X+3*TOKEN_STACK_W && x < TOKEN_LIB_START_X+4*TOKEN_STACK_W) {
-		if (y > TOKEN_LIB_H && y < SCREEN_HEIGHT) {
-			return true;
-		}
-	}
-	return false;
-}
-
-bool TokenQueue::overTurnTokenStack(int x, int y) 
-{
-	if (x > TOKEN_LIB_START_X+4*TOKEN_STACK_W && x < TOKEN_LIB_START_X+5*TOKEN_STACK_W) {
-		if (y > TOKEN_LIB_H && y < SCREEN_HEIGHT) {
-			return true;
-		}
-	}
-	return false;
-}*/
 
 void TokenQueue::newToken(std::string commandID)
 {

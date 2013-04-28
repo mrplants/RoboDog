@@ -132,10 +132,6 @@ private:
 	//will be returned to GameMaster upon request
 	
 	bool overTokenStack(int, int, int);
-	//bool overStepTokenStack(int, int);
-	//bool overJumpTokenStack(int, int);
-	//bool overKickTokenStack(int, int);
-	//bool overTurnTokenStack(int, int);
 	//checks if the mouse is over certain portions of the token library
 	
 	//now implemented in gameMaster
