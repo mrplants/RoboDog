@@ -1,7 +1,7 @@
 #include "GameAnimation.h"
 #include "GameMaster.h"
 
-GameAnimation::GameAnimation() : SDL_Program() {}
+// GameAnimation::GameAnimation() : SDL_Program() {}
 
 GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program() {
 
