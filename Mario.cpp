@@ -36,6 +36,7 @@ void Mario::show(SDL_Surface *screen)
   if( status == MARIO_STAND )
     {
       SDL_BlitSurface( marioSurface, &standClip[ frame ], screen, &marioRect); 
+      std::cout << "Debug: SHOW MARIO" << std::endl;
     }
 
   if( status == MARIO_STEP ) 
