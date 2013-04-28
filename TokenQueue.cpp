@@ -140,30 +140,30 @@ bool TokenQueue::mouseOverToken(int x, int y)
   
 	//if none was made active, check if the mouse clicked in the library
 	//potentially make a new token if so
-	if (overLoopTokenStack(x, y)) {
+	if (overTokenStack(x, y, 0)) {
 	  //instantiate loop token
-	  std::cout << "loop token!" << std::endl;
-	  newToken("open_loop");
-	  return true;
-	}else if (overStepTokenStack(x, y)) {
-	  //instantiate step token
 	  std::cout << "step token!" << std::endl;
 	  newToken("step");
 	  return true;
-	}else if (overJumpTokenStack(x, y)) {
-	  //instantiate jump token
-	  std::cout << "jump token!" << std::endl;
-	  newToken("jump");
+	}else if (overTokenStack(x, y, 1)) {
+	  //instantiate step token
+	  std::cout << "turn token!" << std::endl;
+	  newToken("turn");
 	  return true;
-	}else if (overKickTokenStack(x, y)) {
-	  //instantiate kick token
+	}else if (overTokenStack(x, y, 2)) {
+	  //instantiate jump token
 	  std::cout << "kick token!" << std::endl;
 	  newToken("kick");
 	  return true;
-	}else if (overTurnTokenStack(x, y)) {
+	}else if (overTokenStack(x, y, 3)) {
+	  //instantiate kick token
+	  std::cout << "jump token!" << std::endl;
+	  newToken("jump");
+	  return true;
+	}else if (overTokenStack(x, y, 4)) {
 	  //instantiate turn token
-	  std::cout << "turn token!" << std::endl;
-	  newToken("turn");
+	  std::cout << "loop token!" << std::endl;
+	  newToken("open_loop");
 	  return true;
 	}
 	std::cout << "not over library or pane" << std::endl;
@@ -171,17 +171,16 @@ bool TokenQueue::mouseOverToken(int x, int y)
 }
 //checks if the mouse was clicked over an existing token or one in the library
 
-bool TokenQueue::overLoopTokenStack(int x, int y) 
+bool TokenQueue::overTokenStack(int x, int y, int i) 
 {
-	std::cout << "mouse at: " << y << ", stack at: " << SCREEN_HEIGHT-TOKEN_LIB_H << std::endl;
-	if (x > TOKEN_LIB_START_X && x < TOKEN_LIB_START_X+TOKEN_STACK_W) {
+	if (x > TOKEN_LIB_START_X+i*TOKEN_STACK_W && x < TOKEN_LIB_START_X+(i+1)*TOKEN_STACK_W) {
 	  if (y > SCREEN_HEIGHT-TOKEN_LIB_H && y < SCREEN_HEIGHT) {
 	    return true;
 	  }
 	}
 	return false; 
 }
-
+/*
 bool TokenQueue::overStepTokenStack(int x, int y) 
 {
 	if (x > TOKEN_LIB_START_X+TOKEN_STACK_W && x < TOKEN_LIB_START_X+2*TOKEN_STACK_W) {
@@ -220,7 +219,7 @@ bool TokenQueue::overTurnTokenStack(int x, int y)
 		}
 	}
 	return false;
-}
+}*/
 
 void TokenQueue::newToken(std::string commandID)
 {
