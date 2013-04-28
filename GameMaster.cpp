@@ -199,7 +199,7 @@ void GameMaster::updateScreen()
     offset.y = 0;
     SDL_BlitSurface(background, NULL, screen, &offset);
     queueOfTokens.updateScreen(screen);
-    
+    mario.show(screen);
     //Call all update screen methods in game and token queue
     
     //SDL_Flip must be called for images that have been applied to the screen to show up
