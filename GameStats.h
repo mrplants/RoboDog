@@ -1,4 +1,6 @@
 
+#include <iostream>
+
 class GameStats {
 public:
 	GameStats(); 	//constructor
