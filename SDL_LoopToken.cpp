@@ -11,8 +11,15 @@
 #include "SDL_LoopToken.h"
 
 SDL_LoopToken::SDL_LoopToken(std::string ID) : SDL_Token(ID) {
+
+	    std::cout << "Debug SDL_LoopToken.cpp Line: 15 - SDL_LoopToken Constructor start\n" << std::endl;
+
 	 if (!ID.compare("open_loop"))
         setSurface(loadImage("tokenImages/openLoopToken.jpg")); //load the file for open_loop token element
      if (!ID.compare("close_loop"))
         setSurface(loadImage("tokenImages/closeLoopToken.jpg")); //load the file for close_loop token element
+
+    	    std::cout << "Debug SDL_LoopToken.cpp Line: 15 - SDL_LoopToken Constructor end\n" << std::endl;
+
 }
+

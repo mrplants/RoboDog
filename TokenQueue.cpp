@@ -28,7 +28,13 @@ void *TokenQueue::runTokenInInterpretter(threadTokenDataStruct)
 
 TokenQueue::TokenQueue()
 {
+
+  std::cout << "Debug TokenQueue.cpp Line: 32 - TokenQueue Constructor start\n" << std::endl;
+
 	activeToken = NULL;
+
+  std::cout << "Debug TokenQueue.cpp Line: 37 - TokenQueue Constructor end\n" << std::endl;
+
 }
 //constructor
 

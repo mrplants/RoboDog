@@ -6,6 +6,9 @@
 // default constructor
 Mario::Mario() : SDL_Program()
 {
+    std::cout << "Debug Mario.cpp Line: 9 - Mario Constructor start\n" << std::endl;
+
+
   //Initialize animation variables
   status = MARIO_STAND;
   frame = 0;
@@ -20,6 +23,9 @@ Mario::Mario() : SDL_Program()
 
   //Initialize movement variables
   marioRect = createRect(marioSurface, 0, SCREEN_HEIGHT - MARIO_HEIGHT);
+
+      std::cout << "Debug Mario.cpp Line: 27 - Interpreter Mario end\n" << std::endl;
+
 }
 
 //show Mario

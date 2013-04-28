@@ -8,6 +8,9 @@
 #include "SDL_Token.h"
 
 SDL_Token::SDL_Token(std::string ID) : SDL_Program() {
+
+  std::cout << "Debug SDL_Token.cpp Line: 12 - SDL_Token Constructor start\n" << std::endl;
+
     //could put in switch statement to create token corresponding to whatever identifier was passed in
     //or we could allow the token to be customized to whatever type we need by passing in everything
     //(correct image etc.)
@@ -22,6 +25,9 @@ SDL_Token::SDL_Token(std::string ID) : SDL_Program() {
         tokenSurface = loadImage("tokenImages/turnToken.jpg"); //load the file for turn token element
 
     tokenRect = createRect(tokenSurface, 0, 0); //WILL NOT WORK WITH CURRENT APPLY SURFACE
+
+  std::cout << "Debug SDL_Token.cpp Line: 29 - SDL_Token Constructor end\n" << std::endl;
+
 }
 
 //checks if image's associated rect is over a snap region, adjusting the offsets if it is
