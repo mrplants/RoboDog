@@ -125,6 +125,7 @@ void TokenQueue::removeTokenAtIndex(int index)
 
 bool TokenQueue::mouseOverToken(int x, int y)
 {
+	std::cout << "in mouseOverToken" << std::endl;
 	//iterate through all existing tokens to see if the mouse was clicked on one
 	//make that token active if so
 	for (int i=0; i < _tokenDeque.size(); i++) {
@@ -132,6 +133,7 @@ bool TokenQueue::mouseOverToken(int x, int y)
 		    addTokenToEnd(_tokenDeque[i]);
 		    activeToken = &(_tokenDeque.back());
 		    removeTokenAtIndex(i);
+		    std::cout << "Token made active in mouseOverToken" << std::endl;
 		    return true;
 		}
 	}
@@ -164,7 +166,7 @@ bool TokenQueue::mouseOverToken(int x, int y)
 	  newToken("turn");
 	  return true;
 	}
-	
+	std::cout << "not over library or pane" << std::endl;
   return false;
 }
 //checks if the mouse was clicked over an existing token or one in the library
@@ -345,7 +347,7 @@ void TokenQueue::snapActiveToken()
   
   int i;
   for (i = 0; it != _tokenDeque.end(); it++) {
-    
+    std::cout << "in for loop" << std::endl;
     SDL_Rect currentTokenRect = _tokenDeque[i].visualToken.getRect();
     //when the token that was dropped is above the next token, its spot in the queue has been found
     if (currentTokenRect.y > activeTokenRect.y) {
@@ -353,6 +355,7 @@ void TokenQueue::snapActiveToken()
     }
     i++;
   }
+  std::cout << "passed for loop" << std::endl;
     _tokenDeque.insert(it, *activeToken);
 
     //if the token is a loop token, then we need to add a close loop underneath it

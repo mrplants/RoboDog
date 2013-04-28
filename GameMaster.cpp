@@ -48,25 +48,24 @@ void GameMaster::play()
 
         // Processes any events that are in an event queue
         while (SDL_PollEvent( &event )) {
-            //std::cout << "event detected" << std::endl;
+            std::cout << "event detected" << std::endl;
             if (event.type == SDL_QUIT) {   // If user clicks 'x' in top left corner
 		std::cout << "quitting" << std::endl;
                 quit = true;
                 break;
             } else if (event.type == SDL_MOUSEBUTTONDOWN) { // If mouse was pressed down
 		std::cout << "mouse down" << std::endl;
-                #warning More implementation needed in here
+
                 mousePressedOnImage = checkMousePositionOnPress(event.motion.x, event.motion.y);
-                
+                std::cout << "mousePressedOnImage: " << mousePressedOnImage << std::endl;
                 //Because this method gets the change in the mouse's position since the last time it was called,
 		//calling it here removes the big jump
                 SDL_GetRelativeMouseState(&dx, &dy);
 		//std::cout << dx << ", " << dy << std::endl;
                 
             } else if (event.type == SDL_MOUSEBUTTONUP) { // If the mouse button was released
-                mousePressedOnImage = false;
 		std::cout << "mouse up" << std::endl;
-		      if (mouseInTokenPane(event.motion.x, event.motion.y)) { //NOTE: may be incorrect x and y
+		      if (mouseInTokenPane(event.motion.x, event.motion.y) && mousePressedOnImage) { //NOTE: may be incorrect x and y
 		          //tells TokenQueue to drop token, TQ will snap it and release it
 		          queueOfTokens.snapActiveToken();
 		  
@@ -74,6 +73,7 @@ void GameMaster::play()
 		          //tells TQ to delete the last token in the queue (the active token)
 		          queueOfTokens.releaseActiveToken();
 		      }
+                mousePressedOnImage = false;
                 
             } else if (event.type == SDL_MOUSEMOTION && mousePressedOnImage) { // If the user clicks and drags
                 std::cout << "mouse dragging" << std::endl;
@@ -86,8 +86,7 @@ void GameMaster::play()
                 int ycoord = event.motion.y;
                 std::cout << "(" << xcoord << ", " << ycoord << ")" << std::endl;
                 std::cout << "Changed: " << x << ", " << y << std::endl;
-		*/
-                
+		*/ 
             }
             updateScreen();
         }
@@ -101,25 +100,14 @@ void GameMaster::play()
 //calls the appropriate functions depending on where the mouse clicked
 bool GameMaster::checkMousePositionOnPress(int x, int y)
 {
-	//if ( mouseInTokenLibrary(event.motion.x, event.motion.y) ) {
-	//	  queueOfTokens.newToken(); //create a new token in the queue
-	//	  mousePressedOnImage = true;
-	//should a token in the library or in the pane be handled in the same function and have TokenQueue figure it out underneath?
-	/*}else */if ( queueOfTokens.mouseOverToken(x, y) ) {
+	#warning Needs more implementation
+	//a token in the library or in the pane should be handled in the same function and have TokenQueue figure it out underneath
+	if ( queueOfTokens.mouseOverToken(x, y) ) {
 		  //the token the mouse was over is now the active token and can be dragged
 		  return true;
 		  
-	} else if (0 /*user presses a play button*/) {
-
-
-
-
-          // 
+	} else if (x > 171 && x < 255 && y > 287 && y < 327 /*user presses the play button*/) {
           // This is where it goes down...
-          // 
-          // 
-          // 
-          // 
 		  compileUserCode();
 	}
 	return false;
