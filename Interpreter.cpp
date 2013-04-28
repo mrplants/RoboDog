@@ -13,37 +13,11 @@ Interpreter::Interpreter() {
 
     std::cout << "Debug Interpreter.cpp Line: 14 - Interpreter Constructor start\n" << std::endl;
 
-    cout << "Interpreter initialized:\n\n";
-    cout << "This is the wrong constructor though." << endl;
-    
-        std::cout << "Debug Interpreter.cpp Line: 14 - Interpreter Constructor end\n" << std::endl;
+    std::cout << "Debug Interpreter.cpp Line: 14 - Interpreter Constructor end\n" << std::endl;
 
 }
 
 
-//Interpreter::Interpreter(vector<int> program_codes, vector<int> params_codes) {
-Interpreter::Interpreter(vector<int> program_codes, vector<int> numTimes, vector<int> IDnums) {
-    
-    // This will resize the v2int to the appropriate size
-    // This prevents seg fault when accessing locations
-    
-    // user_program.resize(program_codes.size());
-    // for (int i = 0; i < program_codes.size(); i++) {
-    //     user_program[i].resize(3);
-    // }
-    
-    // //vector<int> temp = {0, 0};  // The little sets of two that will be pushed into the
-    //                             // user program
-    
-    // for (int i = 0; i < program_codes.size(); i++) {
-    //     user_program[i][0] = program_codes[i];
-    //     user_program[i][1] = numTimes[i];
-    //     user_program[i][2] = IDnums[i];
-    // }
-    
-    // printRaw();
-    // parse( user_program,  );
-}
 
 
 void Interpreter::printRaw() {

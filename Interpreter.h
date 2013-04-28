@@ -27,7 +27,6 @@ class Interpreter {
 public:
     
     Interpreter();                                          // Default constructor
-    Interpreter(vector<int> program, vector<int> numTimes, vector<int> IDnums);   // Takes the program and params
 
     // This is the interpreter basically
     void parse( vector<vector<int> > user_program, GameWorld *world );
