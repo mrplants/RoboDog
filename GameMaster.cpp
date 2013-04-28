@@ -48,12 +48,13 @@ void GameMaster::play()
 
         // Processes any events that are in an event queue
         while (SDL_PollEvent( &event )) {
-            std::cout << "event detected" << std::endl;
+            //std::cout << "event detected" << std::endl;
             if (event.type == SDL_QUIT) {   // If user clicks 'x' in top left corner
+		std::cout << "quitting" << std::endl;
                 quit = true;
                 break;
             } else if (event.type == SDL_MOUSEBUTTONDOWN) { // If mouse was pressed down
-
+		std::cout << "mouse down" << std::endl;
                 #warning More implementation needed in here
                 mousePressedOnImage = checkMousePositionOnPress(event.motion.x, event.motion.y);
                 
@@ -64,7 +65,7 @@ void GameMaster::play()
                 
             } else if (event.type == SDL_MOUSEBUTTONUP) { // If the mouse button was released
                 mousePressedOnImage = false;
-		
+		std::cout << "mouse up" << std::endl;
 		      if (mouseInTokenPane(event.motion.x, event.motion.y)) { //NOTE: may be incorrect x and y
 		          //tells TokenQueue to drop token, TQ will snap it and release it
 		          queueOfTokens.snapActiveToken();
@@ -75,7 +76,7 @@ void GameMaster::play()
 		      }
                 
             } else if (event.type == SDL_MOUSEMOTION && mousePressedOnImage) { // If the user clicks and drags
-                
+                std::cout << "mouse dragging" << std::endl;
                 SDL_GetRelativeMouseState(&dx, &dy); //gets mouse's change in position since last time this was called
 		// Reapply image
                 queueOfTokens.translateActiveToken(dx, dy); //moves the token however much the mouse moved
