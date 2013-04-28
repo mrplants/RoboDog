@@ -9,16 +9,16 @@
 
 #include "GameMaster.h"
 
-GameMaster::GameMaster() : SDL_Program(), gameWorld(this) 
+GameMaster::GameMaster() : SDL_Program()//, gameWorld(this) 
 {
 
     std::cout << "Debug GameMaster.cpp Line: 8 - GameMaster Constructor start\n" << std::endl;
 
     initializeSDL(); //sets up SDL systems, screen, and background
 
-    // GameWorld tempGameWorld(this);
+    GameWorld tempGameWorld(this);
 
-    // gameWorld = tempGameWorld;
+    gameWorld = tempGameWorld;
 
     //area where tokens will be dropped
     tokenPane.x = 0;

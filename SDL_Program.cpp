@@ -10,12 +10,12 @@
 SDL_Program::SDL_Program() {
         std::cout << "Debug SDL_Program.cpp Line: 11 - SDL_Program Constructor start\n" << std::endl;
 
-    if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
-        std::cout << "ERR: SDL_INIT_EVERYTHING was not successful" << std::endl;
-    }
+    // if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
+    //     std::cout << "ERR: SDL_INIT_EVERYTHING was not successful" << std::endl;
+    // }
 
 
-        std::cout << "Debug SDL_Program.cpp Line: 12 - SDL_Program Constructor end\n" << std::endl;
+    //     std::cout << "Debug SDL_Program.cpp Line: 12 - SDL_Program Constructor end\n" << std::endl;
 
 
 }
@@ -40,7 +40,7 @@ SDL_Surface * SDL_Program::loadImage(std::string filename) {
     if (loadedImage != NULL) {
 	std::cout << "passed if using filename " << filename << std::endl;
         optimizedImage = SDL_DisplayFormat(loadedImage);
-	std::cout << "SDL_DisplayFormat successful" << std::endl;
+	std::cout << "after SDL_DisplayFormat" << std::endl;
         SDL_FreeSurface(loadedImage);
         
         //Map the color key

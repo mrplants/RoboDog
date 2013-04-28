@@ -13,6 +13,8 @@ class Mario : public SDL_Program
   //Initializes the variables                                                 
   Mario();
 
+  Mario(std::string);
+
   //Shows Mario                                                              
   void show(SDL_Surface*);
 

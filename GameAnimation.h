@@ -12,7 +12,7 @@ class GameMaster;
 class GameAnimation : public SDL_Program {
  public:
 
-  // GameAnimation();
+  GameAnimation();
 
   GameAnimation(GameMaster*);
   //player commands

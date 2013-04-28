@@ -4,7 +4,9 @@
 #include "Mario.h"
 
 // default constructor
-Mario::Mario() : SDL_Program()
+Mario::Mario() {}
+
+Mario::Mario(std::string imageURL) : SDL_Program()
 {
     std::cout << "Debug Mario.cpp Line: 9 - Mario Constructor start\n" << std::endl;
 
@@ -16,7 +18,7 @@ Mario::Mario() : SDL_Program()
   std::cout << "Debug Mairo.cpp Line:16 - before loadImage(\"Mario.bmp\")\n" << std::endl;
 
   //Create the Mario surface
-  marioSurface = loadImage( "Mario.bmp" );
+  marioSurface = loadImage(imageURL);
 
   std::cout << "Debug Mairo.cpp Line:22 - after loadImage(\"Mario.bmp\")\n" << std::endl;
 
