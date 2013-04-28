@@ -89,7 +89,7 @@ public:
 	bool mouseOverToken(int, int);
 	//checks if the mouse was clicked over an existing token or one in the library
 	
-	void newToken(std::string); //for actions
+	void newToken(std::string, int, int); //for actions
 	//creates a new token, which is added to the end of the queue, and made the active token
 	
 #pragma mark -

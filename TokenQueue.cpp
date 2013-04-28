@@ -91,7 +91,7 @@ int TokenQueue::getWaitTime()
 
 void TokenQueue::addTokenToEnd(CodeToken newToken)
 {
-	if (newToken._commandID.compare("close_loop")) {
+	if (!newToken._commandID.compare("close_loop")) {
 	  CodeToken newLoopToken("open_loop");
 	  newLoopToken._repeatNumber = newToken._repeatNumber;
 	  newLoopToken._uniqueLoopID = newToken._uniqueLoopID;
@@ -143,27 +143,27 @@ bool TokenQueue::mouseOverToken(int x, int y)
 	if (overTokenStack(x, y, 0)) {
 	  //instantiate loop token
 	  std::cout << "step token!" << std::endl;
-	  newToken("step");
+	  newToken("step", x, y);
 	  return true;
 	}else if (overTokenStack(x, y, 1)) {
 	  //instantiate step token
 	  std::cout << "turn token!" << std::endl;
-	  newToken("turn");
+	  newToken("turn", x, y);
 	  return true;
 	}else if (overTokenStack(x, y, 2)) {
 	  //instantiate jump token
 	  std::cout << "kick token!" << std::endl;
-	  newToken("kick");
+	  newToken("kick", x, y);
 	  return true;
 	}else if (overTokenStack(x, y, 3)) {
 	  //instantiate kick token
 	  std::cout << "jump token!" << std::endl;
-	  newToken("jump");
+	  newToken("jump", x, y);
 	  return true;
 	}else if (overTokenStack(x, y, 4)) {
 	  //instantiate turn token
 	  std::cout << "loop token!" << std::endl;
-	  newToken("open_loop");
+	  newToken("open_loop", x, y);
 	  return true;
 	}
 	std::cout << "not over library or pane" << std::endl;
@@ -181,20 +181,27 @@ bool TokenQueue::overTokenStack(int x, int y, int i)
 	return false; 
 }
 
-void TokenQueue::newToken(std::string commandID)
+void TokenQueue::newToken(std::string commandID, int x, int y)
 {
   #warning More specifics needed when making a new token since there are different types - FIXED, whoever put this warning, check out the fix and remove the warning if it looks good
+    std::cout << "Debug TokenQueue.cpp newToken: before instatiating a new Token\n" << std::endl;
 
 	CodeToken newToken(commandID);
+	    std::cout << "Debug TokenQueue.cpp newToken: after instantiating a new token\n" << std::endl;
+
+	newToken.visualToken.setRect(x, y);
 
   newToken._commandID = commandID;
 
-  if(!commandID.compare("open_loop")) {
+  if(commandID.compare("open_loop")) {
     // This token is not a loop so we set their repeat number and loop ID to -1
     newToken._repeatNumber = -1;
     newToken._uniqueLoopID = -1;
   }
-  else {
+  else { //this token IS a loop token
+    
+    std::cout << "Debug TokenQueue.cpp newToken: This is a loop token\n" << std::endl;
+    
     newToken._repeatNumber = 0;
 
     //get a unique loop ID by parsing all the other loop tokens
