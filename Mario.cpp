@@ -15,12 +15,12 @@ Mario::Mario(std::string imageURL) : SDL_Program()
   status = MARIO_STAND;
   frame = 0;
 
-  std::cout << "Debug Mairo.cpp Line:16 - before loadImage(\"Mario.bmp\")\n" << std::endl;
+  std::cout << "Debug Mario.cpp Line:16 - before loadImage(\"Mario.bmp\")\n" << std::endl;
 
   //Create the Mario surface
   marioSurface = loadImage(imageURL);
 
-  std::cout << "Debug Mairo.cpp Line:22 - after loadImage(\"Mario.bmp\")\n" << std::endl;
+  std::cout << "Debug Mario.cpp Line:22 - after loadImage(\"Mario.bmp\")\n" << std::endl;
 
   //Initialize movement variables
   marioRect = createRect(marioSurface, 0, SCREEN_HEIGHT - MARIO_HEIGHT);

@@ -50,7 +50,6 @@ void GameMaster::play()
         while (SDL_PollEvent( &event )) {
             std::cout << "event detected" << std::endl;
             if (event.type == SDL_QUIT) {   // If user clicks 'x' in top left corner
-		std::cout << "quitting" << std::endl;
                 quit = true;
                 break;
             } else if (event.type == SDL_MOUSEBUTTONDOWN) { // If mouse was pressed down
@@ -64,8 +63,14 @@ void GameMaster::play()
 		//std::cout << dx << ", " << dy << std::endl;
                 
             } else if (event.type == SDL_MOUSEBUTTONUP) { // If the mouse button was released
+<<<<<<< HEAD
 		std::cout << "mouse up" << std::endl;
 		      if (mouseInTokenPane(event.motion.x, event.motion.y) && mousePressedOnImage) { //NOTE: may be incorrect x and y
+=======
+                mousePressedOnImage = false;
+		
+		      if (mouseInTokenPane(event.motion.x, event.motion.y)) { //NOTE: may be incorrect x and y
+>>>>>>> 72e4178f8a97a3fe7aa2b59cd20b38fb45449362
 		          //tells TokenQueue to drop token, TQ will snap it and release it
 		          queueOfTokens.snapActiveToken();
 		  
@@ -76,7 +81,7 @@ void GameMaster::play()
                 mousePressedOnImage = false;
                 
             } else if (event.type == SDL_MOUSEMOTION && mousePressedOnImage) { // If the user clicks and drags
-                std::cout << "mouse dragging" << std::endl;
+                
                 SDL_GetRelativeMouseState(&dx, &dy); //gets mouse's change in position since last time this was called
 		// Reapply image
                 queueOfTokens.translateActiveToken(dx, dy); //moves the token however much the mouse moved
@@ -156,7 +161,7 @@ bool GameMaster::initializeSDL(int width, int height, int bpp, std::string capti
     SDL_WM_SetCaption( caption.c_str(), NULL );
     
     //load background image
-    background = loadImage("background.png"); //method inherited from SDL_Program
+    background = loadImage("tokenImages/RoboDogNewUI.jpg"); //method inherited from SDL_Program
     if (background == NULL) std::cout << "ERR: Background could not be loaded\n" << std::endl;
     
     //If everything initialized fine
@@ -191,16 +196,16 @@ bool GameMaster::mouseInTokenPane(int x, int y) {
 
 void GameMaster::updateScreen() 
 {
+    gameWorld.updateScreen(screen);
     //Re-applies the background
     //SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) ); //fills screen with white
     SDL_Rect offset;
     offset.x = 0;
     offset.y = 0;
     SDL_BlitSurface(background, NULL, screen, &offset);
+    queueOfTokens.updateScreen(screen);
     
     //Call all update screen methods in game and token queue
-    queueOfTokens.updateScreen(screen);
-    gameWorld.updateScreen(screen);
     
     //SDL_Flip must be called for images that have been applied to the screen to show up
     if (SDL_Flip(screen) == -1) std::cout << "ERR: Updating screen failed" << std::endl;

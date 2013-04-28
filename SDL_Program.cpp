@@ -47,7 +47,7 @@ SDL_Surface * SDL_Program::loadImage(std::string filename) {
         if (optimizedImage != NULL) {
                 std::cout << "Debug SDL_Program.cpp Line: 48 - image is not NULL" << std::endl;
 
-            Uint32 colorkey = SDL_MapRGB( optimizedImage->format, 0, 0xFF, 0xFF );
+            Uint32 colorkey = SDL_MapRGB( optimizedImage->format, 0x01, 0xFF, 0xFF );
             
             //Set all pixels of color R 0, G 0xFF, B 0xFF to be transparent
             SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, colorkey );
