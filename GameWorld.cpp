@@ -5,19 +5,19 @@
 
 #include "GameWorld.h"
 
-GameWorld::GameWorld(){}
+// GameWorld::GameWorld(){}
 
 
-GameWorld::GameWorld(GameMaster* gameMaster)
+GameWorld::GameWorld(GameMaster* gameMaster), gameAnimationScreen(gameMaster)
 {
       std::cout << "Debug GameWorld.cpp Line: 8 - GameWorld Constructor start\n" << std::endl;
 
 
 	// Initialize stats
 
-  GameAnimation tempGameAnimation(gameMaster);
+  // GameAnimation tempGameAnimation(gameMaster);
 
-  gameAnimationScreen = tempGameAnimation;
+  // gameAnimationScreen = tempGameAnimation;
 
 	tokensInProgram = 0;
 	livesLeft       = 3;
