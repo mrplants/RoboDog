@@ -45,11 +45,16 @@ SDL_Surface * SDL_Program::loadImage(std::string filename) {
         
         //Map the color key
         if (optimizedImage != NULL) {
+                std::cout << "Debug SDL_Program.cpp Line: 48 - image is not NULL" << std::endl;
+
             Uint32 colorkey = SDL_MapRGB( optimizedImage->format, 0, 0xFF, 0xFF );
             
             //Set all pixels of color R 0, G 0xFF, B 0xFF to be transparent
             SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, colorkey );
         }
+        else
+                std::cout << "Debug SDL_Program.cpp Line: 56 - image is NULL" << std::endl;
+
     }
     
     //used if class has a deque of the surfaces in it
