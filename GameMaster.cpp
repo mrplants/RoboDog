@@ -167,7 +167,7 @@ bool GameMaster::initializeSDL(int width, int height, int bpp, std::string capti
     SDL_WM_SetCaption( caption.c_str(), NULL );
     
     //load background image
-    background = loadImage("RoboDogNewUI.jpg"); //method inherited from SDL_Program
+    background = loadImage("tokenImages/RoboDogNewUI.jpg"); //method inherited from SDL_Program
     if (background == NULL) std::cout << "ERR: Background could not be loaded\n" << std::endl;
     
     //If everything initialized fine
