@@ -173,8 +173,9 @@ bool TokenQueue::mouseOverToken(int x, int y)
 
 bool TokenQueue::overLoopTokenStack(int x, int y) 
 {
+	std::cout << "mouse at: " << y << ", stack at: " << SCREEN_HEIGHT-TOKEN_LIB_H << std::endl;
 	if (x > TOKEN_LIB_START_X && x < TOKEN_LIB_START_X+TOKEN_STACK_W) {
-	  if (y > TOKEN_LIB_H && y < SCREEN_HEIGHT) {
+	  if (y > SCREEN_HEIGHT-TOKEN_LIB_H && y < SCREEN_HEIGHT) {
 	    return true;
 	  }
 	}

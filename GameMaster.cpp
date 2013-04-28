@@ -107,6 +107,7 @@ bool GameMaster::checkMousePositionOnPress(int x, int y)
 		  
 	} else if (x > 171 && x < 255 && y > 287 && y < 327 /*user presses the play button*/) {
           // This is where it goes down...
+		  std::cout << "Run!" << std::endl;
 		  compileUserCode();
 	}
 	return false;
