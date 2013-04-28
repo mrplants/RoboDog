@@ -148,10 +148,11 @@ bool GameMaster::initializeSDL(int width, int height, int bpp, std::string capti
 {
     //std::cout << "in sdl init" << std::endl;
     //Initialize all SDL subsystems
-    if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
-        std::cout << "ERR: SDL_INIT_EVERYTHING was not successful" << std::endl;
-        return false;
-    }
+    //UPDATE 4/28/13 - STF put this in the constructor for SDL_Program
+    // if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
+    //     std::cout << "ERR: SDL_INIT_EVERYTHING was not successful" << std::endl;
+    //     return false;
+    // }
 
     //Set up the screen
     screen = SDL_SetVideoMode( width, height, bpp, SDL_SWSURFACE );

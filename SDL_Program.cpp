@@ -10,6 +10,9 @@
 SDL_Program::SDL_Program() {
         std::cout << "Debug SDL_Program.cpp Line: 11 - SDL_Program Constructor start\n" << std::endl;
 
+    if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
+        std::cout << "ERR: SDL_INIT_EVERYTHING was not successful" << std::endl;
+    }
 
 
         std::cout << "Debug SDL_Program.cpp Line: 12 - SDL_Program Constructor end\n" << std::endl;
