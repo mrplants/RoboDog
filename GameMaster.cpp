@@ -63,14 +63,8 @@ void GameMaster::play()
 		//std::cout << dx << ", " << dy << std::endl;
                 
             } else if (event.type == SDL_MOUSEBUTTONUP) { // If the mouse button was released
-<<<<<<< HEAD
 		std::cout << "mouse up" << std::endl;
 		      if (mouseInTokenPane(event.motion.x, event.motion.y) && mousePressedOnImage) { //NOTE: may be incorrect x and y
-=======
-                mousePressedOnImage = false;
-		
-		      if (mouseInTokenPane(event.motion.x, event.motion.y)) { //NOTE: may be incorrect x and y
->>>>>>> 72e4178f8a97a3fe7aa2b59cd20b38fb45449362
 		          //tells TokenQueue to drop token, TQ will snap it and release it
 		          queueOfTokens.snapActiveToken();
 		  
