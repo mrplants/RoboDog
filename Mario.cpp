@@ -13,6 +13,8 @@ Mario::Mario() : SDL_Program()
   //Create the Mario surface
   marioSurface = loadImage( "Mario.bmp" );
 
+  std::cout << "Debug Mairo.cpp Line:16" << std::endl
+
   //Initialize movement variables
   marioRect = createRect(marioSurface, 0, SCREEN_HEIGHT - MARIO_HEIGHT);
 }
