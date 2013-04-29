@@ -32,11 +32,10 @@ Mario::Mario(std::string imageURL) : SDL_Program()
 void Mario::show(SDL_Surface *screen)
 {
 
-  SDL_BlitSurface (marioSurface, NULL, screen, &marioRect);
-  /*
+ 
   if( status == MARIO_STAND )
     {
-      SDL_BlitSurface( marioSurface, &standClip[ frame ], screen, &marioRect); 
+      SDL_BlitSurface( marioSurface, standClip[ frame ], screen, &marioRect); 
     }
 
   if( status == MARIO_STEP ) 
@@ -48,24 +47,24 @@ void Mario::show(SDL_Surface *screen)
 	{
           frame = 0;
         }
-      SDL_BlitSurface( marioSurface, &stepClips[ frame ], screen, &marioRect);
+      SDL_BlitSurface( marioSurface, stepClips[ frame ], screen, &marioRect);
     }
 
   if( status == MARIO_JUMP ) 
     {
-      SDL_BlitSurface( marioSurface, &jumpClip[ frame ], screen, &marioRect);
+      SDL_BlitSurface( marioSurface, jumpClip[ frame ], screen, &marioRect);
     }
 
   if( status == MARIO_TURN )
     {
-      SDL_BlitSurface( marioSurface, &turnClip[ frame ], screen, &marioRect);
+      SDL_BlitSurface( marioSurface, turnClip[ frame ], screen, &marioRect);
     }
 
   if( status == MARIO_KICK )
     {
-      SDL_BlitSurface( marioSurface, &kickClip[ frame ], screen, &marioRect);
+      SDL_BlitSurface( marioSurface, kickClip[ frame ], screen, &marioRect);
     }
-  */
+  
 }
 
 // define clip locations
