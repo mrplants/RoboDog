@@ -27,7 +27,7 @@ void GameAnimation::step() {
   mario.status = MARIO_STEP; 
   gameMasterPointer->updateScreen();
   SDL_Delay(1000);
-  backRect.x -= 2;
+  backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
   SDL_Delay(1000);
   mario.status = MARIO_STAND; 
@@ -58,7 +58,10 @@ void GameAnimation::jump() {
 
 void GameAnimation::updateScreen(SDL_Surface* screen)
 {
+  tempRect.x = backRect.x + background->w;
+  tempRect.y = backRect.y;
   SDL_BlitSurface( background, NULL, screen, &backRect);
+  SDL_BlitSurface( background, NULL, screen, &tempRect);
   mario.show(screen);
 }
 
