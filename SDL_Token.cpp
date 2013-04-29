@@ -16,13 +16,13 @@ SDL_Token::SDL_Token(std::string ID) : SDL_Program() {
     //(correct image etc.)
     
     if (!ID.compare("step"))
-        tokenSurface = loadImage("tokenImages/stepToken.jpg"); //load the file for step token element
+        tokenSurface = loadImage("tokenImages/stepToken.bmp"); //load the file for step token element
     if (!ID.compare("jump"))
-        tokenSurface = loadImage("tokenImages/jumpToken.jpg"); //load the file for jump token element
+        tokenSurface = loadImage("tokenImages/jumpToken.bmp"); //load the file for jump token element
     if (!ID.compare("kick"))
-        tokenSurface = loadImage("tokenImages/kickToken.jpg"); //load the file for kick token element
+        tokenSurface = loadImage("tokenImages/kickToken.bmp"); //load the file for kick token element
     if (!ID.compare("turn"))
-        tokenSurface = loadImage("tokenImages/turnToken.jpg"); //load the file for turn token element
+        tokenSurface = loadImage("tokenImages/turnToken.bmp"); //load the file for turn token element
 
     tokenRect = createRect(tokenSurface, 0, 0); //WILL NOT WORK WITH CURRENT APPLY SURFACE
 
