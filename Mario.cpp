@@ -72,8 +72,11 @@ void Mario::set_clips()
   //Clip the sprites
   standClip[ 0 ].x = 0;
   standClip[ 0 ].y = 0;
-  standClip[ 0 ].w = MARIO_WIDTH;
-  standClip[ 0 ].h = MARIO_HEIGHT;
+  //  standClip[ 0 ].w = MARIO_WIDTH;
+  // standClip[ 0 ].h = MARIO_HEIGHT;
+  standClip[0].w = 100;
+  standClip[0].h = 200;
+
 
   stepClips[ 0 ].x = 0;
   stepClips[ 0 ].y = MARIO_HEIGHT;
