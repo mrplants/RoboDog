@@ -271,6 +271,9 @@ std::vector<std::vector<int> > TokenQueue::getInterpreterVector()
 
     //store the tokens identifiers to the vector<vector<int> >
     returnVector.push_back(tokenVectorOfIdentifiers);
+    
+    std::cout << "Debug TokenDeque.cpp, getInterpreterVector - token number: " << i << "has commandID: " << returnVector[i][0] << std::endl;
+    
   }
   return returnVector;
 }

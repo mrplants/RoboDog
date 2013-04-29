@@ -38,5 +38,11 @@
     #define MARIO_JUMP 2
     #define MARIO_TURN 3
     #define MARIO_KICK 4
+    
+    #define TOKEN_W (104)
+    #define TOKEN_H (39)
+    
+    #define TOKEN_STACK_W ((SCREEN_WIDTH - TOKEN_PANE_W) / 5)
+    #define TOKEN_STACK_H (60)
 
 #endif //_CONSTANTS defined

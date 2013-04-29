@@ -55,6 +55,17 @@ void Interpreter::printRaw() {
 
 void Interpreter::parse( vector<vector<int> > program, GameWorld *world_pointer ) {
     
+      for (int i = 0; i < program.size(); i++) {
+        cout << "[ "
+        << program[i][0]
+        << ", "
+        << program[i][1]
+        << ", "
+        << program[i][2]
+        <<  " ]"
+        << endl;
+    }
+
     
     // 'i' is the index in the program,
     
@@ -70,10 +81,10 @@ void Interpreter::parse( vector<vector<int> > program, GameWorld *world_pointer 
                 if (program[i][1] == 0) {
                     cout << "*step one space (0 entered)" << endl;
                 } else {
-                    for (int j = 0; j < program[i][1]; j++) {
+//                    for (int j = 0; j < program[i][1]; j++) {
                         cout << "step one space" << endl;
-                        world_pointer->step();
-                    }
+//                        world_pointer->step();
+//                    }
                 }
                 break;
                 
@@ -81,10 +92,10 @@ void Interpreter::parse( vector<vector<int> > program, GameWorld *world_pointer 
                 if (program[i][1] == 0) {
                     cout << "*Jump once (0 entered)" << endl;
                 } else {
-                    for (int j = 0; j < program[i][1]; j++) {
+//                    for (int j = 0; j < program[i][1]; j++) {
                         cout << "Jump once" << endl;
-                        world_pointer->jump();
-                    }
+//                        world_pointer->jump();
+//                    }
                 }
                 break;
                 
@@ -92,10 +103,10 @@ void Interpreter::parse( vector<vector<int> > program, GameWorld *world_pointer 
                 if (program[i][1] == 0) {
                     cout << "*Turn around (0 entered)" << endl;
                 } else {
-                    for (int j = 0; j < program[i][1]; j++) {
+//                    for (int j = 0; j < program[i][1]; j++) {
                         cout << "Turn around" << endl;
-                        world_pointer->turn();
-                    }
+//                        world_pointer->turn();
+//                    }
                 }
                 break;
                 
@@ -103,10 +114,10 @@ void Interpreter::parse( vector<vector<int> > program, GameWorld *world_pointer 
                 if (program[i][1] == 0) {
                     cout << "*Kick once (0 entered)" << endl;
                 } else {
-                    for (int j = 0; j < program[i][1]; j++) {
+//                    for (int j = 0; j < program[i][1]; j++) {
                         cout << "Kick once" << endl;
-                        world_pointer->kick();
-                    }
+//                        world_pointer->kick();
+//                    }
                 }
                 break;
                 
@@ -125,10 +136,15 @@ void Interpreter::parse( vector<vector<int> > program, GameWorld *world_pointer 
                 
                 // While the program instruction code isn't a closing tag with the same IDnum as the
                 // opening tag, increase the count of how many instructions are inside the "loop"
-                while ( program[j][0] != 6 || program[j][2] != program[i][2] ) {
+                while ( program[j][0] != 6 || program[j][2] != program[i][2] && j < program.size()) {
                     j++;
                 }
                 
+                if (j == program.size())
+		{
+		  cout << "Interpreter.cpp, method: void parse() - NO END LOOP FOUND IN INTERPRETER! PROGRAM FAILS" << endl;
+		  return;
+	     	}
 
                 
                 for (int k = i + 1; k <= j-1; k++) { // to get just the instructions between the instructions between the loop blocks at i and j
