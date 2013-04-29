@@ -15,6 +15,7 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
   backRect.h = background->h;
   gameMasterPointer = theGameMaster;
 
+  // clip the sprite sheet
   mario.set_clips();
 
     std::cout << "Debug GameAnimation.cpp Line: 8 - GameAnimation Constructor end\n" << std::endl;
