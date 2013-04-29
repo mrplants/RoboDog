@@ -64,7 +64,6 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
 
 
 void GameAnimation::kick() {
-  
   mario.status = MARIO_KICK;
   gameMasterPointer->updateScreen();
   SDL_Delay(500);
@@ -74,8 +73,12 @@ void GameAnimation::kick() {
 }
 
 void GameAnimation::turn() {
-  std::cout << "ERROR: Still need to create the sprite sheet for reversed orientation of character" << std::endl;
-#warning Still need to create the sprite sheet and stuff for reversed orientation of character
+  mario.status = MARIO_TURN;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(500);
+  mario.status = MARIO_STAND;
+  gameMasterPointer->updateScreen();
+
 }
 
 void GameAnimation::cleanUp()
