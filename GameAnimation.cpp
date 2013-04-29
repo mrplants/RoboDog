@@ -4,10 +4,10 @@
 GameAnimation::GameAnimation() : SDL_Program() {}
 
 GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("Mario.bmp") {
-
-    std::cout << "Debug GameAnimation.cpp Line: 8 - GameAnimation Constructor start\n" << std::endl;
-
-
+  
+  std::cout << "Debug GameAnimation.cpp Line: 8 - GameAnimation Constructor start\n" << std::endl;
+  
+  
   background = loadImage("NYC.jpg");
   backRect.x = 0;
   backRect.y = 0;
@@ -18,7 +18,7 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
   // clip the sprite sheet
   mario.set_clips();
 
-    std::cout << "Debug GameAnimation.cpp Line: 8 - GameAnimation Constructor end\n" << std::endl;
+  std::cout << "Debug GameAnimation.cpp Line: 8 - GameAnimation Constructor end\n" << std::endl;
 
 }
 
@@ -26,56 +26,72 @@ void GameAnimation::step() {
   
   mario.status = MARIO_STEP; 
   gameMasterPointer->updateScreen();
-  SDL_Delay(50);
-  backRect.x -= 50; 
+  SDL_Delay(1000);
+  backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
-  SDL_Delay(50);
+  SDL_Delay(1000);
   mario.status = MARIO_STAND; 
   gameMasterPointer->updateScreen();
 
 }
 
 void GameAnimation::jump() {
-  
+
   mario.status = MARIO_JUMP;
-  mario.marioRect.y -= 50;
+  mario.marioRect.y -= MARIO_HEIGHT / 2;
   gameMasterPointer->updateScreen();
-  SDL_Delay(100);
-  mario.marioRect.y -= 50;
-  backRect.x -= 50;
+  SDL_Delay(250);
+  mario.marioRect.y -= MARIO_HEIGHT / 2;
+  backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
-  SDL_Delay(100);
-  mario.marioRect.y += 50;
-  backRect.x -= 50;
+  SDL_Delay(250);
+  mario.marioRect.y += MARIO_HEIGHT / 2;
+  backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
-  SDL_Delay(100);
-  mario.marioRect.y += 50;
+  SDL_Delay(250);
+  mario.marioRect.y += MARIO_HEIGHT / 2;
   mario.status = MARIO_STAND;
   gameMasterPointer->updateScreen();
-  SDL_Delay(100);
+  SDL_Delay(250);
 
 }
 
 void GameAnimation::updateScreen(SDL_Surface* screen)
 {
-    	SDL_BlitSurface( background, NULL, screen, &backRect);
-	mario.show(screen);
+  tempRect.x = backRect.x + background->w;
+  tempRect.y = backRect.y;
+  tempRect.w = background->w;
+  tempRect.h = background->h;
+
+  //If the background has gone too far                                       
+  if( backRect.x <= -background->w )
+    {
+      //Reset the offset
+      backRect.x = 0;
+    }
+
+  SDL_BlitSurface( background, NULL, screen, &backRect);
+  SDL_BlitSurface( background, NULL, screen, &tempRect);
+  mario.show(screen);
 }
 
 
 void GameAnimation::kick() {
-
-	mario.status = MARIO_KICK;
-	gameMasterPointer->updateScreen();
-	SDL_Delay(100);
-	mario.status = MARIO_STAND; 
-	gameMasterPointer->updateScreen();
-
+  mario.status = MARIO_KICK;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(500);
+  mario.status = MARIO_STAND; 
+  gameMasterPointer->updateScreen();
+  
 }
 
 void GameAnimation::turn() {
-	std::cout << "ERROR: Still need to create the sprite sheet for reversed orientation of character" << std::endl;
-  #warning Still need to create the sprite sheet and stuff for reversed orientation of character
+  mario.status = MARIO_TURN;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(500);
+  mario.status = MARIO_STAND;
+  gameMasterPointer->updateScreen();
+
 }
 
 void GameAnimation::cleanUp()
