@@ -25,12 +25,12 @@
     #define TOKEN_LIB_H 150
     #define TOKEN_LIB_START_X 640-TOKEN_LIB_W
     
-    #define TOKEN_STACK_W 89
-    #define TOKEN_STACK_H 58
+    #define RUN_BUTTON__W 89
+    #define RUN_BUTTON_H 58
 
     // dimensions of Mario
     #define MARIO_WIDTH 184
-    #define MARIO_HEIGHT 200
+    #define MARIO_HEIGHT 123
 
     // Mario action statuses
     #define MARIO_STAND 0
