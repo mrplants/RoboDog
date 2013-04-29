@@ -9,11 +9,12 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
   
   
   background = loadImage("NYC.jpg");
-  backRect.x = 0;
+  backRect.x = 299;
   backRect.y = 0;
   backRect.w = background->w;
   backRect.h = background->h;
   gameMasterPointer = theGameMaster;
+  std::cout << "GAME ANIMATION BACKGROUND RECT" << backRect.x << std::endl;
 
   // clip the sprite sheet
   mario.set_clips();
@@ -27,7 +28,7 @@ void GameAnimation::step() {
   mario.status = MARIO_STEP; 
   gameMasterPointer->updateScreen();
   SDL_Delay(1000);
-  backRect.x -= MARIO_WIDTH;
+  backRect.x -= 500;
   gameMasterPointer->updateScreen();
   SDL_Delay(1000);
   mario.status = MARIO_STAND; 
@@ -63,13 +64,14 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
   tempRect.w = background->w;
   tempRect.h = background->h;
 
+  /*
   //If the background has gone too far                                       
   if( backRect.x <= -background->w )
     {
       //Reset the offset
       backRect.x = 0;
     }
-
+  */
   SDL_BlitSurface( background, NULL, screen, &backRect);
   SDL_BlitSurface( background, NULL, screen, &tempRect);
   mario.show(screen);
