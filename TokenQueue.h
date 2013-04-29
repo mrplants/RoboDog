@@ -118,6 +118,9 @@ public:
 	void translateActiveToken(int, int);
 	//moves a token a relative amount, generally called when being dragged by the mouse
 	
+	void translateToken(CodeToken*, int, int);
+	//moves a token a relative amount, generally called when being dragged by the mouse
+	
 	void snapActiveToken();
 	//snaps the active token into place in the token pane and releases it
 	
@@ -158,7 +161,7 @@ private:
 	void *runTokenInInterpretter(threadTokenDataStruct);
 	*/
 	
-	CodeToken *activeToken;
+	CodeToken *activeTokenPtr;
 	
 };
 

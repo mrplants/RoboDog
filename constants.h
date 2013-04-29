@@ -20,7 +20,6 @@
     #define TOKENS_X (TOKEN_PANE_W / 2 - TOKEN_W / 2) //all tokens will be lined up in the middle of the pane
     
     #define TOKEN_SPACING 3 //pixels between tokens
-    #define TOKEN_HEIGHT 50 //no token image can be taller than this
     
     #define TOKEN_LIB_PERCENT_W (1-TOKEN_PANE_PERCENT_W)
     #define TOKEN_LIB_W 464
@@ -44,5 +43,6 @@
         
     #define TOKEN_STACK_W ((SCREEN_WIDTH - TOKEN_PANE_W) / 5)
     #define TOKEN_STACK_H (60)
+    #define TOKEN_STACK_Y (371)
 
 #endif //_CONSTANTS defined
