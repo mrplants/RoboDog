@@ -15,7 +15,6 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
   backRect.h = background->h;
   gameMasterPointer = theGameMaster;
 
-  std::cout << "GAMEANIMATIONCONSTRUCTOR!!!" << std::endl;
   // clip the sprite sheet
   mario.set_clips();
 
@@ -38,23 +37,22 @@ void GameAnimation::step() {
 
 void GameAnimation::jump() {
 
-  SDL_Delay(100);
   mario.status = MARIO_JUMP;
   mario.marioRect.y -= MARIO_HEIGHT;
   gameMasterPointer->updateScreen();
-  SDL_Delay(100);
+  SDL_Delay(1000);
   mario.marioRect.y -= MARIO_HEIGHT;
   backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
-  SDL_Delay(100);
+  SDL_Delay(1000);
   mario.marioRect.y += MARIO_HEIGHT;
   backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
-  SDL_Delay(100);
+  SDL_Delay(1000);
   mario.marioRect.y += MARIO_HEIGHT;
   mario.status = MARIO_STAND;
   gameMasterPointer->updateScreen();
-  SDL_Delay(100);
+  SDL_Delay(1000);
 
 }
 
