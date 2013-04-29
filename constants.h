@@ -32,8 +32,8 @@
     #define RUN_BUTTON_H 58
 
     // dimensions of Mario
-    #define MARIO_WIDTH 184
-    #define MARIO_HEIGHT 123
+    #define MARIO_WIDTH 136
+    #define MARIO_HEIGHT 97
 
     // Mario action statuses
     #define MARIO_STAND 0
