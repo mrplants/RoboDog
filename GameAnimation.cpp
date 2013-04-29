@@ -36,23 +36,23 @@ void GameAnimation::step() {
 }
 
 void GameAnimation::jump() {
-  
+
   mario.status = MARIO_JUMP;
-  mario.marioRect.y -= MARIO_HEIGHT;
+  mario.marioRect.y -= MARIO_HEIGHT / 2;
   gameMasterPointer->updateScreen();
-  SDL_Delay(100);
-  mario.marioRect.y -= MARIO_HEIGHT;
+  SDL_Delay(1000);
+  mario.marioRect.y -= MARIO_HEIGHT / 2;
   backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
-  SDL_Delay(100);
-  mario.marioRect.y += MARIO_HEIGHT;
+  SDL_Delay(1000);
+  mario.marioRect.y += MARIO_HEIGHT / 2;
   backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
-  SDL_Delay(100);
-  mario.marioRect.y += MARIO_HEIGHT;
+  SDL_Delay(1000);
+  mario.marioRect.y += MARIO_HEIGHT / 2;
   mario.status = MARIO_STAND;
   gameMasterPointer->updateScreen();
-  SDL_Delay(100);
+  SDL_Delay(1000);
 
 }
 
@@ -64,7 +64,6 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
 
 
 void GameAnimation::kick() {
-  
   mario.status = MARIO_KICK;
   gameMasterPointer->updateScreen();
   SDL_Delay(500);
@@ -74,8 +73,12 @@ void GameAnimation::kick() {
 }
 
 void GameAnimation::turn() {
-  std::cout << "ERROR: Still need to create the sprite sheet for reversed orientation of character" << std::endl;
-#warning Still need to create the sprite sheet and stuff for reversed orientation of character
+  mario.status = MARIO_TURN;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(500);
+  mario.status = MARIO_STAND;
+  gameMasterPointer->updateScreen();
+
 }
 
 void GameAnimation::cleanUp()
