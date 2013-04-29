@@ -7,7 +7,7 @@
  *
  * The visual component of a token the user puts into their code- specifically one that
  * corresponds to a loop or if statement
- * NOTE: This class will represent two different visual components (for and while loop)
+ * NOTE: This class can represent two different visual components (for and while loop)
  */
 
 #ifndef SDL_LOOPTOKEN

@@ -11,7 +11,6 @@
 
 GameMaster::GameMaster() : SDL_Program()//, gameWorld(this) 
 {
-
     std::cout << "Debug GameMaster.cpp Line: 8 - GameMaster Constructor start\n" << std::endl;
 
     initializeSDL(); //sets up SDL systems, screen, and background
@@ -27,7 +26,6 @@ GameMaster::GameMaster() : SDL_Program()//, gameWorld(this)
     tokenPane.w = SCREEN_WIDTH * TOKEN_PANE_PERCENT_W;
 
     std::cout << "Debug GameMaster.cpp Line: 8 - GameMaster Constructor end\n" << std::endl;
-
 }
 
 GameMaster::~GameMaster()
@@ -105,7 +103,7 @@ bool GameMaster::checkMousePositionOnPress(int x, int y)
 		  //the token the mouse was over is now the active token and can be dragged
 		  return true;
 		  
-	} else if (x > 171 && x < 255 && y > 287 && y < 327 /*user presses the play button*/) {
+	} else if (x > 171 && x < 255 && y > 287 && y < 327) { //user presses the play button
           // This is where it goes down...
 		  std::cout << "Run!" << std::endl;
 		  compileUserCode();
@@ -118,14 +116,12 @@ bool GameMaster::checkMousePositionOnPress(int x, int y)
 //      CompileUserCode() Function. 
 //-----------------------------------------------------------------------------
 
-void GameMaster::compileUserCode() {
-
+void GameMaster::compileUserCode() 
+{
     cout << "In the compileUserCodeFunction" << endl;
     interpreter.parse(queueOfTokens.getInterpreterVector(), &gameWorld);
 
 }
-
-
 
 
 //-----------------------------------------------------------------------------
@@ -181,16 +177,19 @@ SDL_Rect applySurface(int x, int y, SDL_Surface *source, SDL_Rect offset, SDL_Su
 }*/
 
 //checks if mouse is in the lefthand pane that tokens can be dropped in 
-bool GameMaster::mouseInTokenPane(int x, int y) {
- if (x > tokenPane.x && y > tokenPane.y && x <= (tokenPane.x + tokenPane.w) && y <= (tokenPane.y + tokenPane.h)) {
-    return true;
- } else {
-   return false;
- }
+bool GameMaster::mouseInTokenPane(int x, int y) 
+{
+	if (x > tokenPane.x && y > tokenPane.y && x <= (tokenPane.x + tokenPane.w) && y <= (tokenPane.y + tokenPane.h)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
+//blits all the visual elements in this order: GameAnimation's background, Mario, the UI, any tokens that have been dragged out
 void GameMaster::updateScreen() 
 {
+
     gameWorld.updateScreen(screen);
     //Re-applies the background
     //SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) ); //fills screen with white
@@ -201,29 +200,28 @@ void GameMaster::updateScreen()
     queueOfTokens.updateScreen(screen);
     //Call all update screen methods in game and token queue
     
-    //SDL_Flip must be called for images that have been applied to the screen to show up
-    if (SDL_Flip(screen) == -1) std::cout << "ERR: Updating screen failed" << std::endl;
-    return;
+	//SDL_Flip must be called for images that have been applied to the screen to show up
+	if (SDL_Flip(screen) == -1) std::cout << "ERR: Updating screen failed" << std::endl;
+	return;
 }
 
 //Frees all of GameMaster's surfaces, and calls the clean up method of its composed classes
 void GameMaster::cleanUp()
 {
-    SDL_FreeSurface(screen);
-    SDL_FreeSurface(background);
+	//Call other class' cleanUp methods
+	SDL_FreeSurface(screen);
+	SDL_FreeSurface(background);
     
-    //**Call other class' cleanUp method here**
+	//Quit SDL
+	SDL_Quit();
     
-    //Quit SDL
-    SDL_Quit();
+	//Close a font that was used
+	//TTF_CloseFont( font );
     
-    //Close a font that was used
-    //TTF_CloseFont( font );
+	//Quit SDL_ttf (deals with font)
+	TTF_Quit();
     
-    //Quit SDL_ttf (deals with font)
-    TTF_Quit();
-    
-    return;
+	return;
 }
 
 //-----------------------------------------------------------------------------
