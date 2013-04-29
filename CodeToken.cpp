@@ -11,6 +11,7 @@
 CodeToken::CodeToken(std::string commandID)
 {
 	std::cout << "Debug CodeToken.cpp Line: 13 - CodeToken Constructor start\n" << std::endl;
+	
 	_commandID = commandID;
 	if (!commandID.compare("open_loop") || !commandID.compare("close_loop"))
 	{
@@ -26,7 +27,7 @@ CodeToken::CodeToken(std::string commandID)
 		visualToken = tempToken;
 	}
 
-		std::cout << "Debug CodeToken.cpp Line: 13 - CodeToken Constructor end\n" << std::endl;
+	std::cout << "Debug CodeToken.cpp Line: 13 - CodeToken Constructor end\n" << std::endl;
 
 }//the constructor, initializes with an empty identifier and position on screen
 

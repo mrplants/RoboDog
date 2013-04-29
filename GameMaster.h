@@ -39,6 +39,7 @@ public:
     ~GameMaster();
     
     void play(); //this starts the master game
+    
     //sets up the screen and the background, the last parameter is for the title of the window
     bool initializeSDL(int = SCREEN_WIDTH, int = SCREEN_HEIGHT, int = SCREEN_BPP, std::string = "Robodog");
 
@@ -55,7 +56,6 @@ private:
     //SDL_Rect applySurface(int, int, SDL_Surface *, SDL_Rect, SDL_Surface *, SDL_Rect *); //blits image to destination at (x, y)
     bool checkMousePositionOnPress(int, int);
     bool mouseInTokenPane(int, int);
-    //bool mouseInTokenLibrary(int, int);
     virtual void cleanUp(); //implemented in this class
     
     //------------- Snap Region Data Members/Methods -------------

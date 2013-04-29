@@ -108,6 +108,8 @@ public:
 	// the getter for John's interpreter metadata
 
   	std::vector<std::vector<int> > getInterpreterVector();
+	
+	void printQueue();
 
   
 #pragma mark -
@@ -119,9 +121,12 @@ public:
 	void snapActiveToken();
 	//snaps the active token into place in the token pane and releases it
 	
-	void shiftTokens(int);
-	//moves all tokens below the one inserted by one token's space
-	
+	void shiftTokensUp(int);
+	//moves all tokens below the one inserted by one token's space up
+
+	void shiftTokensDown(int);
+	//moves all tokens below the one inserted by one token's space down
+
 	void releaseActiveToken();
 	//makes the token that is currently active no longer
 	
