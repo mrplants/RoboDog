@@ -337,8 +337,8 @@ void TokenQueue::snapActiveToken()
 	
 	//places the newly dropped token on the screen
 	//Note: all tokens have the same x coordinate
-	std::cout << "Debug snapActiveToken Line 328: token placed at " << TOKENS_X << ", " << TOKENS_START_Y + i*(TOKEN_HEIGHT+TOKEN_SPACING) << std::endl;
-	_tokenDeque[i].visualToken.setRect(TOKENS_X, TOKENS_START_Y + i*(TOKEN_HEIGHT+TOKEN_SPACING));
+	std::cout << "Debug snapActiveToken Line 328: token placed at " << TOKENS_X << ", " << TOKENS_START_Y + i*(TOKEN_H/*EIGHT*/+TOKEN_SPACING) << std::endl;
+	_tokenDeque[i].visualToken.setRect(TOKENS_X, TOKENS_START_Y + i*(TOKEN_H/*EIGHT*/+TOKEN_SPACING));
 	SDL_Rect tempRect = _tokenDeque[i].visualToken.getRect();
 	std::cout << "Debug snapActiveToken Line 330: token placed at " << tempRect.x << ", " << tempRect.y << std::endl;
 
@@ -353,8 +353,8 @@ void TokenQueue::snapActiveToken()
 		
 		//update close loop's rect as well
 		i++;
-		std::cout << "Debug snapActiveToken Line 341: close loop placed at " << TOKENS_X << ", " << TOKENS_START_Y + i*(TOKEN_HEIGHT+TOKEN_SPACING) << std::endl;
-		_tokenDeque[i].visualToken.setRect(TOKENS_X, TOKENS_START_Y + i*(TOKEN_HEIGHT+TOKEN_SPACING));
+		std::cout << "Debug snapActiveToken Line 341: close loop placed at " << TOKENS_X << ", " << TOKENS_START_Y + i*(TOKEN_H/*EIGHT*/+TOKEN_SPACING) << std::endl;
+		_tokenDeque[i].visualToken.setRect(TOKENS_X, TOKENS_START_Y + i*(TOKEN_H/*EIGHT*/+TOKEN_SPACING));
 	}
 
 	printQueue();
@@ -371,7 +371,7 @@ void TokenQueue::shiftTokensDown(int index)
 { 
   for (; index < _tokenDeque.size(); index++) {
     activeToken = &(_tokenDeque.at(index));
-    translateActiveToken(0, TOKEN_HEIGHT+TOKEN_SPACING);
+    translateActiveToken(0, TOKEN_H/*EIGHT*/+TOKEN_SPACING);
     std::cout << "Debug TokenQueue, shiftTokensDown - translating down token number: " << index << std::endl;
   }
   
@@ -384,7 +384,7 @@ void TokenQueue::shiftTokensUp(int index)
 {
   for (; index < _tokenDeque.size(); index++) {
     activeToken = &(_tokenDeque.at(index));
-    translateActiveToken(0, -TOKEN_HEIGHT-TOKEN_SPACING);
+    translateActiveToken(0, -TOKEN_H/*EIGHT*/-TOKEN_SPACING);
     std::cout << "Debug TokenQueue, shiftTokensUp - translating up token number: " << index << std::endl;
   }
   
