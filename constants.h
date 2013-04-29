@@ -25,7 +25,7 @@
     #define TOKEN_LIB_H 150
     #define TOKEN_LIB_START_X 640-TOKEN_LIB_W
     
-    #define RUN_BUTTON__W 89
+    #define RUN_BUTTON_W 89
     #define RUN_BUTTON_H 58
 
     // dimensions of Mario
