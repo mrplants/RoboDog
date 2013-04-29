@@ -193,10 +193,13 @@ void GameMaster::updateScreen()
     gameWorld.updateScreen(screen);
     //Re-applies the background
     //SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) ); //fills screen with white
+    
     SDL_Rect offset;
     offset.x = 0;
     offset.y = 0;
+    std::cout << "GAMEMASTER IS CHANGING TO 0" << std::endl;
     SDL_BlitSurface(background, NULL, screen, &offset);
+    
     queueOfTokens.updateScreen(screen);
     //Call all update screen methods in game and token queue
     

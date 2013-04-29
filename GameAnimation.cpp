@@ -8,8 +8,8 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
   std::cout << "Debug GameAnimation.cpp Line: 8 - GameAnimation Constructor start\n" << std::endl;
   
   
-  background = loadImage("NYC.jpg");
-  backRect.x = 299;
+  background = loadImage("Level1.jpg");
+  backRect.x = -299;
   backRect.y = 0;
   backRect.w = background->w;
   backRect.h = background->h;
@@ -59,22 +59,18 @@ void GameAnimation::jump() {
 
 void GameAnimation::updateScreen(SDL_Surface* screen)
 {
+  /* 
   tempRect.x = backRect.x + background->w;
   tempRect.y = backRect.y;
   tempRect.w = background->w;
   tempRect.h = background->h;
-
-  /*
-  //If the background has gone too far                                       
-  if( backRect.x <= -background->w )
-    {
-      //Reset the offset
-      backRect.x = 0;
-    }
   */
+  std::cout << "BEFORE" << backRect.x << std::endl;
   SDL_BlitSurface( background, NULL, screen, &backRect);
-  SDL_BlitSurface( background, NULL, screen, &tempRect);
+  std::cout << "AFTER" << backRect.x << std::endl;
+   //  SDL_BlitSurface( background, NULL, screen, &tempRect);
   mario.show(screen);
+
 }
 
 
