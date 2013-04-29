@@ -15,6 +15,9 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
   backRect.h = background->h;
   gameMasterPointer = theGameMaster;
 
+  // clip the sprite sheet
+  mario.set_clips();
+
     std::cout << "Debug GameAnimation.cpp Line: 8 - GameAnimation Constructor end\n" << std::endl;
 
 }
@@ -55,8 +58,8 @@ void GameAnimation::jump() {
 
 void GameAnimation::updateScreen(SDL_Surface* screen)
 {
+    	SDL_BlitSurface( background, NULL, screen, &backRect);
 	mario.show(screen);
-	SDL_BlitSurface( background, NULL, screen, &backRect);
 }
 
 

@@ -18,14 +18,13 @@ Mario::Mario(std::string imageURL) : SDL_Program()
   std::cout << "Debug Mario.cpp Line:16 - before loadImage(\"Mario.bmp\")\n" << std::endl;
 
   //Create the Mario surface
-  marioSurface = loadImage(imageURL);
-
+  marioSurface = loadImage("tokenImages/RobodogPositions.jpg");
   std::cout << "Debug Mario.cpp Line:22 - after loadImage(\"Mario.bmp\")\n" << std::endl;
 
   //Initialize movement variables
-  marioRect = createRect(marioSurface, 0, SCREEN_HEIGHT - MARIO_HEIGHT);
-
-      std::cout << "Debug Mario.cpp Line: 27 - Interpreter Mario end\n" << std::endl;
+    marioRect = createRect(marioSurface, SCREEN_WIDTH - TOKEN_LIB_W, SCREEN_HEIGHT - TOKEN_LIB_H - RUN_BUTTON_H - MARIO_HEIGHT);
+  
+  std::cout << "Debug Mario.cpp Line: 27 - Interpreter Mario end\n" << std::endl;
 
 }
 
@@ -64,7 +63,7 @@ void Mario::show(SDL_Surface *screen)
     {
       SDL_BlitSurface( marioSurface, &kickClip[ frame ], screen, &marioRect);
     }
-
+  
 }
 
 // define clip locations
@@ -75,29 +74,29 @@ void Mario::set_clips()
   standClip[ 0 ].y = 0;
   standClip[ 0 ].w = MARIO_WIDTH;
   standClip[ 0 ].h = MARIO_HEIGHT;
-
+  
   stepClips[ 0 ].x = 0;
-  stepClips[ 0 ].y = 0;
+  stepClips[ 0 ].y = MARIO_HEIGHT;
   stepClips[ 0 ].w = MARIO_WIDTH;
   stepClips[ 0 ].h = MARIO_HEIGHT * 2;
 
-  stepClips[ 1 ].x = 0;
-  stepClips[ 1 ].y = 0;
+  stepClips[ 1 ].x = MARIO_WIDTH;
+  stepClips[ 1 ].y = MARIO_HEIGHT;
   stepClips[ 1 ].w = MARIO_WIDTH * 2;
   stepClips[ 1 ].h = MARIO_HEIGHT * 2;
 
   jumpClip[ 0 ].x = 0;
-  jumpClip[ 0 ].y = 0;
+  jumpClip[ 0 ].y = MARIO_HEIGHT * 2;
   jumpClip[ 0 ].w = MARIO_WIDTH;
   jumpClip[ 0 ].h = MARIO_HEIGHT * 3;
 
   turnClip[ 0 ].x = 0;
-  turnClip[ 0 ].y = 0;
+  turnClip[ 0 ].y = MARIO_HEIGHT * 3;
   turnClip[ 0 ].w = MARIO_WIDTH;
   turnClip[ 0 ].h = MARIO_HEIGHT * 4;
 
   kickClip[ 0 ].x = 0;
-  kickClip[ 0 ].y = 0;
+  kickClip[ 0 ].y = MARIO_HEIGHT * 4;
   kickClip[ 0 ].w = MARIO_WIDTH;
   kickClip[ 0 ].h = MARIO_HEIGHT * 5;
 

@@ -152,7 +152,7 @@ bool GameMaster::initializeSDL(int width, int height, int bpp, std::string capti
     SDL_WM_SetCaption( caption.c_str(), NULL );
     
     //load background image
-    background = loadImage("tokenImages/RoboDogNewUI.jpg"); //method inherited from SDL_Program
+    background = loadImage("tokenImages/RoboDogNewUI.bmp"); //method inherited from SDL_Program
     if (background == NULL) std::cout << "ERR: Background could not be loaded\n" << std::endl;
     
     //If everything initialized fine
@@ -189,15 +189,16 @@ bool GameMaster::mouseInTokenPane(int x, int y)
 //blits all the visual elements in this order: GameAnimation's background, Mario, the UI, any tokens that have been dragged out
 void GameMaster::updateScreen() 
 {
-	//Call all update screen methods in game and token queue
-	gameWorld.updateScreen(screen);
-   
-	SDL_Rect offset;
-	offset.x = 0;
-	offset.y = 0;
-	SDL_BlitSurface(background, NULL, screen, &offset); //applies the UI (token library and token pane)
-	
-	queueOfTokens.updateScreen(screen);
+
+    gameWorld.updateScreen(screen);
+    //Re-applies the background
+    //SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) ); //fills screen with white
+    SDL_Rect offset;
+    offset.x = 0;
+    offset.y = 0;
+    SDL_BlitSurface(background, NULL, screen, &offset);
+    queueOfTokens.updateScreen(screen);
+    //Call all update screen methods in game and token queue
     
 	//SDL_Flip must be called for images that have been applied to the screen to show up
 	if (SDL_Flip(screen) == -1) std::cout << "ERR: Updating screen failed" << std::endl;
