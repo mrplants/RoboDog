@@ -26,10 +26,10 @@ void GameAnimation::step() {
   
   mario.status = MARIO_STEP; 
   gameMasterPointer->updateScreen();
-  SDL_Delay(250);
+  SDL_Delay(1000);
   backRect.x -= MARIO_WIDTH; 
   gameMasterPointer->updateScreen();
-  SDL_Delay(250);
+  SDL_Delay(1000);
   mario.status = MARIO_STAND; 
   gameMasterPointer->updateScreen();
 
@@ -40,26 +40,31 @@ void GameAnimation::jump() {
   mario.status = MARIO_JUMP;
   mario.marioRect.y -= MARIO_HEIGHT / 2;
   gameMasterPointer->updateScreen();
-  SDL_Delay(1000);
+  SDL_Delay(250);
   mario.marioRect.y -= MARIO_HEIGHT / 2;
   backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
-  std::cout << "BACKRECT X ISSSSSSSSSSSSSSSSSSSSSS " << backRect.x << std::endl;
-  SDL_Delay(1000);
+  SDL_Delay(250);
   mario.marioRect.y += MARIO_HEIGHT / 2;
   backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
-  std::cout << "BACKRECT X ISSSSSSSSSSSSSSSSSSSSSS " << backRect.x << std::endl;
-  SDL_Delay(1000);
+  SDL_Delay(250);
   mario.marioRect.y += MARIO_HEIGHT / 2;
   mario.status = MARIO_STAND;
   gameMasterPointer->updateScreen();
-  SDL_Delay(1000);
+  SDL_Delay(250);
 
 }
 
 void GameAnimation::updateScreen(SDL_Surface* screen)
 {
+  // if the background has gone too far
+  if( backRect.x <= -background->w )
+    {
+      //Reset the offset              
+      backRect.x = 0;
+    }
+
   SDL_BlitSurface( background, NULL, screen, &backRect);
   mario.show(screen);
 }
