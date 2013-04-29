@@ -38,18 +38,18 @@ void GameAnimation::step() {
 void GameAnimation::jump() {
 
   mario.status = MARIO_JUMP;
-  mario.marioRect.y -= MARIO_HEIGHT;
+  mario.marioRect.y -= MARIO_HEIGHT / 2;
   gameMasterPointer->updateScreen();
   SDL_Delay(1000);
-  mario.marioRect.y -= MARIO_HEIGHT;
+  mario.marioRect.y -= MARIO_HEIGHT / 2;
   backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
   SDL_Delay(1000);
-  mario.marioRect.y += MARIO_HEIGHT;
+  mario.marioRect.y += MARIO_HEIGHT / 2;
   backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
   SDL_Delay(1000);
-  mario.marioRect.y += MARIO_HEIGHT;
+  mario.marioRect.y += MARIO_HEIGHT / 2;
   mario.status = MARIO_STAND;
   gameMasterPointer->updateScreen();
   SDL_Delay(1000);
