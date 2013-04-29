@@ -44,10 +44,12 @@ void GameAnimation::jump() {
   mario.marioRect.y -= MARIO_HEIGHT / 2;
   backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
+  std::cout << "BACKRECT X ISSSSSSSSSSSSSSSSSSSSSS " << backRect.x << std::endl;
   SDL_Delay(1000);
   mario.marioRect.y += MARIO_HEIGHT / 2;
   backRect.x -= MARIO_WIDTH;
   gameMasterPointer->updateScreen();
+  std::cout << "BACKRECT X ISSSSSSSSSSSSSSSSSSSSSS " << backRect.x << std::endl;
   SDL_Delay(1000);
   mario.marioRect.y += MARIO_HEIGHT / 2;
   mario.status = MARIO_STAND;
