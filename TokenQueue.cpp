@@ -31,7 +31,7 @@ TokenQueue::TokenQueue()
 
   std::cout << "Debug TokenQueue.cpp Line: 32 - TokenQueue Constructor start\n" << std::endl;
 
-	activeToken = NULL;
+	activeTokenPtr = NULL;
 
   std::cout << "Debug TokenQueue.cpp Line: 37 - TokenQueue Constructor end\n" << std::endl;
 
@@ -132,8 +132,11 @@ bool TokenQueue::mouseOverToken(int x, int y)
 		if (_tokenDeque[i].visualToken.mouseOverImage(_tokenDeque[i].visualToken.getRect(), x, y))
 		{
 		    shiftTokensUp(i+1);
-		    addTokenToEnd(_tokenDeque[i]);
-		    activeToken = &(_tokenDeque.back());
+		    //addTokenToEnd(_tokenDeque[i]);
+		    //activeToken = &(_tokenDeque.back());
+		    activeTokenPtr = new CodeToken(_tokenDeque[i]);
+		    //activeToken = _tokenDeque[i];
+		    //activeTokenPtr = &activeToken;
 		    removeTokenAtIndex(i);
 		    std::cout << "Token made active in mouseOverToken" << std::endl;
 		    return true;
@@ -145,27 +148,27 @@ bool TokenQueue::mouseOverToken(int x, int y)
 	if (overTokenStack(x, y, 0)) {
 	  //instantiate loop token
 	  std::cout << "step token!" << std::endl;
-	  newToken("step", x, y);
+	  newToken("step",  TOKEN_LIB_START_X+(0)*TOKEN_STACK_W, TOKEN_STACK_Y);
 	  return true;
 	}else if (overTokenStack(x, y, 1)) {
 	  //instantiate step token
 	  std::cout << "turn token!" << std::endl;
-	  newToken("turn", x, y);
+	  newToken("turn",  TOKEN_LIB_START_X+(1)*TOKEN_STACK_W, TOKEN_STACK_Y);
 	  return true;
 	}else if (overTokenStack(x, y, 2)) {
 	  //instantiate jump token
 	  std::cout << "kick token!" << std::endl;
-	  newToken("kick", x, y);
+	  newToken("kick",  TOKEN_LIB_START_X+(2)*TOKEN_STACK_W, TOKEN_STACK_Y);
 	  return true;
 	}else if (overTokenStack(x, y, 3)) {
 	  //instantiate kick token
 	  std::cout << "jump token!" << std::endl;
-	  newToken("jump", x, y);
+	  newToken("jump",  TOKEN_LIB_START_X+(3)*TOKEN_STACK_W, TOKEN_STACK_Y);
 	  return true;
 	}else if (overTokenStack(x, y, 4)) {
 	  //instantiate turn token
 	  std::cout << "loop token!" << std::endl;
-	  newToken("open_loop", x, y);
+	  newToken("open_loop", TOKEN_LIB_START_X+(4)*TOKEN_STACK_W, TOKEN_STACK_Y);
 	  return true;
 	}
 	std::cout << "not over library or pane" << std::endl;
@@ -204,14 +207,13 @@ void TokenQueue::newToken(std::string commandID, int x, int y)
 		newToken._repeatNumber = 0;
 
 		//get a unique loop ID by parsing all the other loop tokens
-		int uniqueLoopID = -1;
+		int uniqueLoopID = 0;
 		for (int i = 0; i < _tokenDeque.size(); i++) {
 		  
 			if (!_tokenDeque[i]._commandID.compare("open_loop"))
 			  uniqueLoopID++; //oops, this unique ID is taken by some other loop;
 		}
 		
-		uniqueLoopID++; //so that we get a truly unique ID
 		newToken._uniqueLoopID = uniqueLoopID;
 	}
 
@@ -220,8 +222,10 @@ void TokenQueue::newToken(std::string commandID, int x, int y)
   #warning To do this, we must also have remove functions such that if you click on either an "open" or a "close", and pull it out, both are removed.
 
 
-	_tokenDeque.push_back(newToken); //put the token at the back of the deque in the activeToken spot
-	activeToken = &(_tokenDeque.back());
+	//_tokenDeque.push_back(newToken); //put the token at the back of the deque in the activeToken spot
+	//activeToken = &(_tokenDeque.back());
+	//activeToken = newToken;
+	activeTokenPtr = new CodeToken(newToken);
 	return;
 }
 
@@ -307,23 +311,19 @@ void TokenQueue::printQueue()
 
 void TokenQueue::translateActiveToken(int dx, int dy)
 {
-  //update the rect of the active surface 
-  SDL_Rect rect = (*activeToken).visualToken.getRect();
-  rect.x += dx;
-  rect.y += dy;
-  (*activeToken).visualToken.setRect(rect.x, rect.y);
-  
-  return;
+  if (activeTokenPtr)
+	translateToken(activeTokenPtr, dx, dy);
 }
 
 void TokenQueue::snapActiveToken()
 {
 	//finds the index of the new active token
 	std::deque<CodeToken>::iterator it = _tokenDeque.begin();
-	SDL_Rect activeTokenRect = (*activeToken).visualToken.getRect();
+	SDL_Rect activeTokenRect = (*activeTokenPtr).visualToken.getRect();
   
 	int i;
 	for (i = 0; it != _tokenDeque.end(); it++) {
+		std::cout << "Debug snapActiveToken Line 326: current i = " << i << std::endl;
 		SDL_Rect currentTokenRect = _tokenDeque[i].visualToken.getRect();
 		//when the token that was dropped is above the next token, its spot in the queue has been found
 		if (currentTokenRect.y > activeTokenRect.y) {
@@ -332,8 +332,9 @@ void TokenQueue::snapActiveToken()
 		}
 		i++;
 	}
-	--i;
-	_tokenDeque.insert(--it, *activeToken);
+	std::cout << "Debug snapActionToken Line 335: i AFTER LOOP = " << i << std::endl;
+	i;
+	_tokenDeque.insert(it, *activeTokenPtr);
 	
 	//places the newly dropped token on the screen
 	//Note: all tokens have the same x coordinate
@@ -344,17 +345,28 @@ void TokenQueue::snapActiveToken()
 
 
 	//if the token is a loop token, then we need to add a close loop underneath it
-	if (!(*activeToken)._commandID.compare("open_loop")) {
+	if (!(*activeTokenPtr)._commandID.compare("open_loop")) {
+	  
+	  	std::cout << "Debug snapActiveToken Line 330: HOLY SHIT A LOOP TOKEN GETTING PLACED? ARE YOU CRAZY? " << tempRect.x << ", " << tempRect.y << std::endl;
+	  	std::cout << "Debug snapActiveToken Line 330: close token inserted before index: " << i+1 << std::endl;
+
 		CodeToken closeLoopToken("close_loop");
-		closeLoopToken._uniqueLoopID = activeToken->_uniqueLoopID;
-		closeLoopToken._repeatNumber = activeToken->_repeatNumber;
-		it++;
-		_tokenDeque.insert(it, closeLoopToken);
+		closeLoopToken._uniqueLoopID = (*activeTokenPtr)._uniqueLoopID;
+		closeLoopToken._repeatNumber = (*activeTokenPtr)._repeatNumber;
+		closeLoopToken.visualToken.setRect(TOKENS_X, TOKENS_START_Y + (i+1)*(TOKEN_H/*EIGHT*/+TOKEN_SPACING));
 		
+		//add the close loop token to the deque directly after the open loop
+		if (it == _tokenDeque.end()) {
+			_tokenDeque.push_back(closeLoopToken);
+		}else{
+			it++;
+			_tokenDeque.insert(it, closeLoopToken);
+		}
+			
 		//update close loop's rect as well
-		i++;
+		//i++;
 		std::cout << "Debug snapActiveToken Line 341: close loop placed at " << TOKENS_X << ", " << TOKENS_START_Y + i*(TOKEN_H/*EIGHT*/+TOKEN_SPACING) << std::endl;
-		_tokenDeque[i].visualToken.setRect(TOKENS_X, TOKENS_START_Y + i*(TOKEN_H/*EIGHT*/+TOKEN_SPACING));
+		//_tokenDeque[i+1].visualToken.setRect(TOKENS_X, TOKENS_START_Y + i*(TOKEN_H/*EIGHT*/+TOKEN_SPACING));
 	}
 
 	printQueue();
@@ -364,14 +376,21 @@ void TokenQueue::snapActiveToken()
 	
 	//*make sure screen is updated at some point in game master after this happens
 	releaseActiveToken();
+	//activeTokenPtr = NULL;
 	return;
 }
+
+void TokenQueue::translateToken(CodeToken *tokenPtr, int dx, int dy)
+{
+  //this translates the token dx and dy
+  tokenPtr->visualToken.setRect(tokenPtr->visualToken.getRect().x + dx, tokenPtr->visualToken.getRect().y + dy);
+}
+
 
 void TokenQueue::shiftTokensDown(int index)
 { 
   for (; index < _tokenDeque.size(); index++) {
-    activeToken = &(_tokenDeque.at(index));
-    translateActiveToken(0, TOKEN_H/*EIGHT*/+TOKEN_SPACING);
+    translateToken(&(_tokenDeque.at(index)),0, TOKEN_H/*EIGHT*/+TOKEN_SPACING);
     std::cout << "Debug TokenQueue, shiftTokensDown - translating down token number: " << index << std::endl;
   }
   
@@ -383,9 +402,8 @@ void TokenQueue::shiftTokensDown(int index)
 void TokenQueue::shiftTokensUp(int index)
 {
   for (; index < _tokenDeque.size(); index++) {
-    activeToken = &(_tokenDeque.at(index));
-    translateActiveToken(0, -TOKEN_H/*EIGHT*/-TOKEN_SPACING);
-    std::cout << "Debug TokenQueue, shiftTokensUp - translating up token number: " << index << std::endl;
+    translateToken(&(_tokenDeque.at(index)),0, -TOKEN_H/*EIGHT*/-TOKEN_SPACING);
+    std::cout << "Debug TokenQueue, shiftTokensDown - translating down token number: " << index << std::endl;
   }
   
   printQueue();
@@ -395,11 +413,11 @@ void TokenQueue::shiftTokensUp(int index)
 
 void TokenQueue::releaseActiveToken() 
 {
-  if (activeToken) {
-    _tokenDeque.pop_back();
-    activeToken = NULL;
-  }
-  return;
+	if (activeTokenPtr) {
+	delete(activeTokenPtr);
+	activeTokenPtr = NULL;
+	}
+	return;
 }
 
 void TokenQueue::updateScreen(SDL_Surface *screen)
@@ -414,6 +432,9 @@ void TokenQueue::updateScreen(SDL_Surface *screen)
 
      SDL_BlitSurface( newSurface, NULL, screen, &newRect );
   }
+  
+    if (activeTokenPtr)   SDL_BlitSurface( (*activeTokenPtr).visualToken.getSurface(), NULL, screen,&( (*activeTokenPtr).visualToken.getRect() ));
+
   
   printQueue();
   
