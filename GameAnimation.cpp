@@ -27,7 +27,7 @@ void GameAnimation::step() {
   mario.status = MARIO_STEP; 
   gameMasterPointer->updateScreen();
   SDL_Delay(1000);
-  backRect.x -= MARIO_WIDTH; 
+  backRect.x -= MARIO_WIDTH / 2; 
   gameMasterPointer->updateScreen();
   SDL_Delay(1000);
   mario.status = MARIO_STAND; 
