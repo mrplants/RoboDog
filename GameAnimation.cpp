@@ -63,6 +63,13 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
   tempRect.w = background->w;
   tempRect.h = background->h;
 
+  //If the background has gone too far                                       
+  if( backRect.x <= -background->w )
+    {
+      //Reset the offset
+      backRect.x = 0;
+    }
+
   SDL_BlitSurface( background, NULL, screen, &backRect);
   SDL_BlitSurface( background, NULL, screen, &tempRect);
   mario.show(screen);
