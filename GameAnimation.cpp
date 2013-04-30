@@ -43,10 +43,8 @@ void GameAnimation::step() {
   
   mario.status = MARIO_STEP; 
   gameMasterPointer->updateScreen();
-  gameMasterPointer->updateScreen();
   SDL_Delay(125);
   scene++;
-  gameMasterPointer->updateScreen();
   gameMasterPointer->updateScreen();
   SDL_Delay(125);
   mario.status = MARIO_STAND; 
@@ -108,7 +106,7 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
   //  SDL_BlitSurface( background, NULL, screen, &tempRect);                   
   SDL_BlitSurface( background, &backClips[ scene ], screen, &backRect);    
   mario.show(screen);
-
+  std::cout << "SCENE IS NOW: " << scene << std::endl;
 }
 
 void GameAnimation::cleanUp()
