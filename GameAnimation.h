@@ -43,7 +43,6 @@ class GameAnimation : public SDL_Program {
 
   // current scene of background being shown
   int scene;
-  int maxNumberOfScenes;
 
   // congratulatory surface
   //SDL_Surface *congratulatory;

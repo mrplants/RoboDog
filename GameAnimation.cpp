@@ -38,15 +38,6 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
 // define background clip locations
 void GameAnimation::clip_background() {
 
-  
-  #warning ----------------------------------------------------------
-  #warning
-  #warning The scene needs to move the width of the dog,
-  #warning not some arbitrary amount hard coded in here.
-  #warning Fix if we have more levels. It should work for now, though.
-  #warning
-  #warning -----------------------------------------------------------
-  
   // clip the portions of the background
   for (int i = 0; i < (LEVEL_LENGTH / GAME_WORLD_W * 24); i++)
   {
@@ -57,7 +48,6 @@ void GameAnimation::clip_background() {
     backClips[ i ].w = GAME_WORLD_W;
     backClips[ i ].h = GAME_WORLD_H;
   }
-  maxNumberOfScenes = (LEVEL_LENGTH / GAME_WORLD_W * 8);
   
 }
 
