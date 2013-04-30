@@ -1,6 +1,7 @@
 #include "GameAnimation.h"
 #include "GameMaster.h"
 
+
 GameAnimation::GameAnimation() : SDL_Program() {}
 
 GameAnimation::~GameAnimation() {
@@ -36,6 +37,15 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
 // define background clip locations
 void GameAnimation::clip_background() {
 
+  
+  #warning ----------------------------------------------------------
+  #warning
+  #warning The scene needs to move the width of the dog,
+  #warning not some arbitrary amount hard coded in here.
+  #warning Fix if we have more levels. It should work for now, though.
+  #warning
+  #warning -----------------------------------------------------------
+  
   // clip the portions of the background
   for (int i = 0; i < (LEVEL_LENGTH / GAME_WORLD_W * 8); i++)
   {
@@ -46,6 +56,7 @@ void GameAnimation::clip_background() {
     tempRect.h = GAME_WORLD_H;
     backClips.push_back(tempRect);
   }
+  maxNumberOfScenes = (LEVEL_LENGTH / GAME_WORLD_W * 8);
   
 }
 
@@ -54,7 +65,7 @@ void GameAnimation::step() {
   mario.status = MARIO_STEP; 
   gameMasterPointer->updateScreen();
   SDL_Delay(125);
-  scene++;
+  if (scene < maxNumberOfScenes) scene++;
   gameMasterPointer->updateScreen();
   SDL_Delay(125);
   mario.status = MARIO_STAND; 
@@ -69,11 +80,11 @@ void GameAnimation::jump() {
   gameMasterPointer->updateScreen();
   SDL_Delay(250);
   mario.marioRect.y -= MARIO_HEIGHT / 2;
-  scene++;
+  if (scene < maxNumberOfScenes) scene++;
   gameMasterPointer->updateScreen();
   SDL_Delay(250);
   mario.marioRect.y += MARIO_HEIGHT / 2;
-  scene++;
+  if (scene < maxNumberOfScenes) scene++;
   gameMasterPointer->updateScreen();
   SDL_Delay(250);
   mario.marioRect.y += MARIO_HEIGHT / 2;
@@ -114,7 +125,7 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
   //  SDL_BlitSurface( background, NULL, screen, &backRect);
   // std::cout << "AFTER" << backRect.x << std::endl;                          
   //  SDL_BlitSurface( background, NULL, screen, &tempRect);                   
-  SDL_BlitSurface( background, &backClips[ scene ], screen, &backRect);    
+  SDL_BlitSurface( background, &(backClips[ scene ]), screen, &backRect);    
   mario.show(screen);
   std::cout << "SCENE IS NOW: " << scene << std::endl;
 }

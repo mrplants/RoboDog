@@ -218,6 +218,7 @@ void TokenQueue::newToken(std::string commandID, int x, int y)
 	}else { //this token IS a loop token
 		std::cout << "Debug TokenQueue.cpp newToken: This is a loop token\n" << std::endl;
 		newToken._repeatNumber = 1;
+		newToken.visualToken._repeatNumber = 1;
 
 		//get a unique loop ID by parsing all the other loop tokens
 		int uniqueLoopID = 0;
@@ -450,6 +451,12 @@ void TokenQueue::updateScreen(SDL_Surface *screen)
      newRect = _tokenDeque[i].visualToken.getRect();
 
      SDL_BlitSurface( newSurface, NULL, screen, &newRect );
+     if (!_tokenDeque[i]._commandID.compare("open_loop"))
+     {
+       newSurface = _tokenDeque[i].visualToken.getMessageSurface();
+       newRect = _tokenDeque[i].visualToken.messageSurfaceRect;
+       SDL_BlitSurface( newSurface, NULL, screen, &newRect );
+     }
   }
   
     if (activeTokenPtr)   SDL_BlitSurface( (*activeTokenPtr).visualToken.getSurface(), NULL, screen,&( (*activeTokenPtr).visualToken.getRect() ));

@@ -21,8 +21,46 @@ SDL_LoopToken::SDL_LoopToken(std::string ID) : SDL_Token(ID)
 		setSurface(loadImage("tokenImages/closeLoopToken.bmp")); //load the file for close_loop token element
 
     tokenRect = createRect(getSurface(), 0, 0); //WILL NOT WORK WITH CURRENT APPLY SURFACE
-		
+    
+    
+    //set up the fontColor
+    fontColor = { 255, 255, 0 };
+    theFont = TTF_OpenFont( "repeatNumberFont.ttf", 28 ); 	
 	std::cout << "Debug SDL_LoopToken.cpp Line: 15 - SDL_LoopToken Constructor end\n" << std::endl;
 
 }
 
+SDL_Surface * SDL_LoopToken::getMessageSurface()
+{
+  switch (_repeatNumber) {
+    case (0) :
+      tokenRepeatMessage = "0";
+      break;
+    case (1):
+      tokenRepeatMessage = "1";
+      break;
+    case (2):
+      tokenRepeatMessage = "2";
+      break;
+    case (3):
+      tokenRepeatMessage = "3";
+      break;
+    case (4):
+      tokenRepeatMessage = "4";
+      break;
+    case (5):
+      tokenRepeatMessage = "5";
+      break;
+    default :
+      tokenRepeatMessage = " ";
+      break;
+  }
+  
+  messageSurface = TTF_RenderText_Solid(theFont, tokenRepeatMessage.c_str(), fontColor);
+  messageSurfaceRect.w = messageSurface->w;
+  messageSurfaceRect.h = messageSurface->h;
+  messageSurfaceRect.x = getRect().w / 2 - messageSurface->w / 2;
+  messageSurfaceRect.y = getRect().h / 2 - messageSurface->h / 2;
+
+  return messageSurface;
+}

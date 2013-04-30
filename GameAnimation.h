@@ -43,9 +43,10 @@ class GameAnimation : public SDL_Program {
 
   // current scene of background being shown
   int scene;
+  int maxNumberOfScenes;
 
   // areas of background sheet
-  vector<SDL_Rect> backClips; 
+  std::vector< SDL_Rect > backClips; 
 
   // instance of Mario
   Mario mario;
