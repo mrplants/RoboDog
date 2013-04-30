@@ -27,8 +27,8 @@
     #define TOKEN_LIB_H 150 
     #define TOKEN_LIB_START_X (640-TOKEN_LIB_W)
  
-    #define GAME_WORLD_H 480-TOKEN_LIB_H
-    #define GAME_WORLD_W (9640-TOKEN_PANE_W)
+    #define GAME_WORLD_H 330
+    #define GAME_WORLD_W 464
 
     #define LEVEL_LENGTH 2784
    

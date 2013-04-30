@@ -44,8 +44,14 @@ class GameAnimation : public SDL_Program {
   // current scene of background being shown
   int scene;
 
+  // congratulatory surface
+  //SDL_Surface *congratulatory;
+
+  // loser surface
+  //SDL_Surface *loser;
+
   // areas of background sheet
-  vector<SDL_Rect> backClips; 
+  SDL_Rect backClips[ (LEVEL_LENGTH / GAME_WORLD_W * 6) ];
 
   // instance of Mario
   Mario mario;
