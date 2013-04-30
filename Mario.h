@@ -12,6 +12,7 @@ class Mario : public SDL_Program
 
   // initializes the variables                                                 
   Mario();
+  ~Mario();
 
   Mario(std::string);
 

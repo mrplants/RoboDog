@@ -13,6 +13,7 @@ class GameAnimation : public SDL_Program {
  public:
 
   GameAnimation();
+  ~GameAnimation();
 
   GameAnimation(GameMaster*);
 

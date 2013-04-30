@@ -8,6 +8,7 @@
  */
 
 #include "GameMaster.h"
+#include <unistd.h>
 
 GameMaster::GameMaster() : SDL_Program()//, gameWorld(this) 
 {
@@ -24,7 +25,7 @@ GameMaster::GameMaster() : SDL_Program()//, gameWorld(this)
     tokenPane.y = 0;
     tokenPane.h = SCREEN_HEIGHT * TOKEN_PANE_PERCENT_H;
     tokenPane.w = SCREEN_WIDTH * TOKEN_PANE_PERCENT_W;
-
+usleep(5000000);
     std::cout << "Debug GameMaster.cpp Line: 8 - GameMaster Constructor end\n" << std::endl;
 }
 
@@ -37,6 +38,8 @@ GameMaster::~GameMaster()
 //This starts the master game
 void GameMaster::play() 
 {
+  std::cout << "Debug GameMaster.cpp play() - beginning of play function" << std::endl;
+  
     SDL_Event event;
     bool quit = false;
     int dx, dy;

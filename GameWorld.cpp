@@ -7,6 +7,10 @@
 
 GameWorld::GameWorld(){}
 
+GameWorld::~GameWorld(){
+  std::cout << "GameWorld deconstructor" << std::endl;
+}
+
 
 GameWorld::GameWorld(GameMaster* gameMaster): gameAnimationScreen(gameMaster)
 {

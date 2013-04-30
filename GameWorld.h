@@ -25,6 +25,8 @@ class GameWorld
   
 public:
 	GameWorld();
+	
+	~GameWorld();
 
 	GameWorld(GameMaster* gameMaster);
 	

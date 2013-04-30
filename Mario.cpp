@@ -6,6 +6,11 @@
 // default constructor
 Mario::Mario() {}
 
+Mario::~Mario() {
+  //cleanUp();
+  std::cout << "Mario Deconstructor" << std::endl;
+}
+
 Mario::Mario(std::string imageURL) : SDL_Program()
 {
     std::cout << "Debug Mario.cpp Line: 9 - Mario Constructor start\n" << std::endl;

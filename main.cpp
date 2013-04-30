@@ -14,7 +14,7 @@ int main (int argc, char * args[])
 {
   //create an instance of the master game class
     GameMaster testGame;
-    
+    std::cout << "about to play in main" << std::endl;
   //tell the master game class instance to play
     testGame.play();
 
