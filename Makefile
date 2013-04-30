@@ -1,10 +1,5 @@
 make: main
 
-#Missing:
-#TokenQueue/Token classes
-#Interpreter (and its composed classes?)
-#GameWorld and its composed classes
-
 main: main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o SDL_LoopToken.o CodeToken.o Interpreter.o GameAnimation.o Mario.o GameStats.o GameWorld.o
 	g++ main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o CodeToken.o Interpreter.o GameAnimation.o GameWorld.o Mario.o GameStats.o SDL_LoopToken.o -o main -lSDL -lSDL_image -lSDL_ttf
     
@@ -45,4 +40,4 @@ Mario.o: Mario.cpp Mario.h
 	g++ -c Mario.cpp #-lSDL -lSDL_image
 
 clean:
-	rm -f *.o *.gch main
+	rm -f *.o *.gch main *~

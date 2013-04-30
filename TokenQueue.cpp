@@ -111,18 +111,23 @@ void TokenQueue::removeTokenAtIndex(int index)
     int uniqueLoopID = _tokenDeque[index]._uniqueLoopID;
 
     //delete the two (start and end) loop tokens with that ID number
-    for (int i = 0; i < _tokenDeque.size(); ++i)
+    for (int i = 0; i < _tokenDeque.size(); i++)
     {
       if (_tokenDeque[i]._uniqueLoopID == uniqueLoopID)
       {
          _tokenDeque.erase(_tokenDeque.begin() + i);
-	 i = 0;
+	 shiftTokensUp(i);
+	 i = -1;
       }
     }
 
 
   }
-  else _tokenDeque.erase(_tokenDeque.begin() + index);
+  else
+  {
+    _tokenDeque.erase(_tokenDeque.begin() + index);
+    shiftTokensUp(index);
+  }
 }
 //removes the token at the specified index and deletes it from memory if the token is a loop, it deletes both loop tokens
 
@@ -135,13 +140,10 @@ bool TokenQueue::mouseOverToken(int x, int y)
 	  std::cout << "Debug TokenDeque mouseOverToken: checking if over token at index: " << i << std::endl;
 		if (_tokenDeque[i].visualToken.mouseOverImage(_tokenDeque[i].visualToken.getRect(), x, y))
 		{
-		    shiftTokensUp(i+1);
-		    //addTokenToEnd(_tokenDeque[i]);
-		    //activeToken = &(_tokenDeque.back());
 		    activeTokenPtr = new CodeToken(_tokenDeque[i]);
-		    //activeToken = _tokenDeque[i];
-		    //activeTokenPtr = &activeToken;
+		    
 		    removeTokenAtIndex(i);
+		    
 		    if(!activeTokenPtr->_commandID.compare("close_loop"))
 		    {
 			CodeToken tempCodeToken("open_loop");
@@ -221,8 +223,9 @@ void TokenQueue::newToken(std::string commandID, int x, int y)
 		int uniqueLoopID = 0;
 		for (int i = 0; i < _tokenDeque.size(); i++) {
 		  
-			if (!_tokenDeque[i]._commandID.compare("open_loop"))
-			  uniqueLoopID++; //oops, this unique ID is taken by some other loop;
+			if (!_tokenDeque[i]._commandID.compare("open_loop") || !_tokenDeque[i]._commandID.compare("close_loop")) {
+			  while (uniqueLoopID == _tokenDeque[i]._uniqueLoopID) {uniqueLoopID++; i = -1;} //oops, this unique ID is taken by some other loop;
+			}
 		}
 		
 		newToken._uniqueLoopID = uniqueLoopID;
@@ -375,6 +378,8 @@ void TokenQueue::snapActiveToken()
 		}else{
 			it++;
 			_tokenDeque.insert(it, closeLoopToken);
+			shiftTokensDown(i+2);
+
 		}
 			
 		//update close loop's rect as well

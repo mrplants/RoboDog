@@ -6,6 +6,7 @@
 #include "Mario.h"
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
+#include <vector>
 
 class GameMaster;
 
@@ -44,7 +45,7 @@ class GameAnimation : public SDL_Program {
   int scene;
 
   // areas of background sheet
-  SDL_Rect backClips[ ]; 
+  vector<SDL_Rect> backClips; 
 
   // instance of Mario
   Mario mario;
