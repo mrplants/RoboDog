@@ -30,7 +30,7 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
 void GameAnimation::clip_background() {
 
   // clip the portions of the background
-  for (int i = 0; i < (LEVEL_LENGTH / GAME_WORLD_W * 8) - 1; i++) { 
+  for (int i = 0; i < (LEVEL_LENGTH / GAME_WORLD_W * 8); i++) { 
     backClips[ i ].x = i * (LEVEL_LENGTH / GAME_WORLD_W / 8);
     backClips[ i ].y = 0;
     backClips[ i ].w = GAME_WORLD_W;
