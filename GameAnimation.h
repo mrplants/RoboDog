@@ -45,8 +45,17 @@ class GameAnimation : public SDL_Program {
   int scene;
   int maxNumberOfScenes;
 
+  // congratulatory surface
+  //SDL_Surface *congratulatory;
+
+  // loser surface
+  //SDL_Surface *loser;
+
+  // whether or not the user killed enemy
+  bool killedEnemy;
+
   // areas of background sheet
-  std::vector< SDL_Rect > backClips; 
+  SDL_Rect backClips[ (LEVEL_LENGTH / GAME_WORLD_W * 6) ];
 
   // instance of Mario
   Mario mario;

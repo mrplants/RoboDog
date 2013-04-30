@@ -21,12 +21,13 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
   backRect.w = GAME_WORLD_W;
   backRect.h = GAME_WORLD_H;
   scene = 0;
+  //congratulatory = loadImage("winner.jpg");
+  //loser = loadImage("loser.jpg");
   gameMasterPointer = theGameMaster;
-  std::cout << "GAME ANIMATION BACKGROUND RECT" << backRect.x << std::endl;
-
+  
   // clip the sprite sheet
   mario.set_clips();
-
+  
   // clip the background 
   clip_background();
 
@@ -47,14 +48,14 @@ void GameAnimation::clip_background() {
   #warning -----------------------------------------------------------
   
   // clip the portions of the background
-  for (int i = 0; i < (LEVEL_LENGTH / GAME_WORLD_W * 8); i++)
+  for (int i = 0; i < (LEVEL_LENGTH / GAME_WORLD_W * 6); i++)
   {
-    SDL_Rect tempRect;
-    tempRect.x = i * (LEVEL_LENGTH / GAME_WORLD_W / 8);
-    tempRect.y = 0;
-    tempRect.w = GAME_WORLD_W;
-    tempRect.h = GAME_WORLD_H;
-    backClips.push_back(tempRect);
+    std::cout << "AMOUNT OF CLIPS: " << (LEVEL_LENGTH / GAME_WORLD_W * 6) << std::endl;
+    backClips[ i ].x = i * (LEVEL_LENGTH / (LEVEL_LENGTH / GAME_WORLD_W * 6));
+    std::cout<<"X IS: " << backClips[ i ].x << std::endl;
+    backClips[ i ].y = 0;
+    backClips[ i ].w = GAME_WORLD_W;
+    backClips[ i ].h = GAME_WORLD_H;
   }
   maxNumberOfScenes = (LEVEL_LENGTH / GAME_WORLD_W * 8);
   
@@ -64,10 +65,15 @@ void GameAnimation::step() {
   
   mario.status = MARIO_STEP; 
   gameMasterPointer->updateScreen();
+<<<<<<< HEAD
   SDL_Delay(125);
   if (scene < maxNumberOfScenes) scene++;
+=======
+  SDL_Delay(250);
+  scene++;
+>>>>>>> 084577a1bf8f1e571e99ae9e2097b3d0cb999387
   gameMasterPointer->updateScreen();
-  SDL_Delay(125);
+  SDL_Delay(250);
   mario.status = MARIO_STAND; 
   gameMasterPointer->updateScreen();
 
@@ -78,19 +84,19 @@ void GameAnimation::jump() {
   mario.status = MARIO_JUMP;
   mario.marioRect.y -= MARIO_HEIGHT / 2;
   gameMasterPointer->updateScreen();
-  SDL_Delay(250);
+  SDL_Delay(125);
   mario.marioRect.y -= MARIO_HEIGHT / 2;
   if (scene < maxNumberOfScenes) scene++;
   gameMasterPointer->updateScreen();
-  SDL_Delay(250);
+  SDL_Delay(125);
   mario.marioRect.y += MARIO_HEIGHT / 2;
   if (scene < maxNumberOfScenes) scene++;
   gameMasterPointer->updateScreen();
-  SDL_Delay(250);
+  SDL_Delay(125);
   mario.marioRect.y += MARIO_HEIGHT / 2;
   mario.status = MARIO_STAND;
   gameMasterPointer->updateScreen();
-  SDL_Delay(250);
+  SDL_Delay(125);
 
 }
 
@@ -125,9 +131,24 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
   //  SDL_BlitSurface( background, NULL, screen, &backRect);
   // std::cout << "AFTER" << backRect.x << std::endl;                          
   //  SDL_BlitSurface( background, NULL, screen, &tempRect);                   
-  SDL_BlitSurface( background, &(backClips[ scene ]), screen, &backRect);    
-  mario.show(screen);
+  /*
+  if (scene == 5 && mario.marioRect.x == 176) {
+    SDL_BlitSurface( loser, NULL, screen, &backRect);
+  }
+  else if (scene == 13 && mario.marioRect.x == 176) {
+    SDL_BlitSurface( loser, NULL, screen, &backRect);
+  }
+  else if (scene >= 34 ) {
+    SDL_BlitSurface( congratulatory, NULL, screen, &backRect);  
+  }  
+  else {
+  */
+    SDL_BlitSurface( background, &backClips[ scene ], screen, &backRect);    
+    mario.show(screen);
+    // }
   std::cout << "SCENE IS NOW: " << scene << std::endl;
+  std::cout << "MARIO'S X IS: " << mario.marioRect.x << std::endl;
+  std::cout << "MARIO'S STATUS IS: " << mario.status << std::endl;
 }
 
 void GameAnimation::cleanUp()
