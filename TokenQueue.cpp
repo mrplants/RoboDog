@@ -142,6 +142,14 @@ bool TokenQueue::mouseOverToken(int x, int y)
 		    //activeToken = _tokenDeque[i];
 		    //activeTokenPtr = &activeToken;
 		    removeTokenAtIndex(i);
+		    if(!activeTokenPtr->_commandID.compare("close_loop"))
+		    {
+			CodeToken tempCodeToken("open_loop");
+			tempCodeToken._uniqueLoopID = activeTokenPtr->_uniqueLoopID;
+			tempCodeToken._repeatNumber = activeTokenPtr->_repeatNumber;
+			tempCodeToken.visualToken.tokenRect = activeTokenPtr->visualToken.tokenRect;
+			activeTokenPtr = new CodeToken(tempCodeToken);
+		    }
 		    std::cout << "Token made active in mouseOverToken" << std::endl;
 		    return true;
 		}
@@ -354,12 +362,12 @@ void TokenQueue::snapActiveToken()
 	if (!(*activeTokenPtr)._commandID.compare("open_loop")) {
 	  
 	  	std::cout << "Debug snapActiveToken Line 330: HOLY SHIT A LOOP TOKEN GETTING PLACED? ARE YOU CRAZY? " << tempRect.x << ", " << tempRect.y << std::endl;
-	  	std::cout << "Debug snapActiveToken Line 330: close token inserted before index: " << i+1 << std::endl;
+	  	std::cout << "Debug snapActiveToken Line 330: close token inserted before index: " << i << std::endl;
 
 		CodeToken closeLoopToken("close_loop");
 		closeLoopToken._uniqueLoopID = (*activeTokenPtr)._uniqueLoopID;
 		closeLoopToken._repeatNumber = (*activeTokenPtr)._repeatNumber;
-		closeLoopToken.visualToken.setRect(TOKENS_X, TOKENS_START_Y + (i+1)*(TOKEN_H/*EIGHT*/+TOKEN_SPACING));
+		closeLoopToken.visualToken.setRect(TOKENS_X, TOKENS_START_Y + (i)*(TOKEN_H/*EIGHT*/+TOKEN_SPACING));
 		
 		//add the close loop token to the deque directly after the open loop
 		if (it == _tokenDeque.end()) {
