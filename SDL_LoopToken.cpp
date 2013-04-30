@@ -20,6 +20,8 @@ SDL_LoopToken::SDL_LoopToken(std::string ID) : SDL_Token(ID)
 	if (!ID.compare("close_loop"))
 		setSurface(loadImage("tokenImages/closeLoopToken.bmp")); //load the file for close_loop token element
 
+    //tokenRect = createRect(getSurface(), 0, 0); //WILL NOT WORK WITH CURRENT APPLY SURFACE
+		
 	std::cout << "Debug SDL_LoopToken.cpp Line: 15 - SDL_LoopToken Constructor end\n" << std::endl;
 
 }

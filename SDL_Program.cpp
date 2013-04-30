@@ -89,6 +89,7 @@ SDL_Rect SDL_Program::createRect(SDL_Surface * image, int startX, int startY) {
 //checks if the mouse is located within the perimeter of the image (whose associated rect is passed in)
 
 bool SDL_Program::mouseOverImage(SDL_Rect imageRect, int x, int y) {
+  std::cout << "Debug SDL_Program.cpp MouseOverImage: checking if mouse: " << x << ", " << y << " is over imageRect: " << imageRect.x << ", " << imageRect.y << " | " << imageRect.h << "x" << imageRect.w << std::endl;
     if (x > imageRect.x && x < (imageRect.x + imageRect.w) && y > imageRect.y && y < (imageRect.y + imageRect.h)) {
         return true;
     }else{

@@ -114,7 +114,10 @@ void TokenQueue::removeTokenAtIndex(int index)
     for (int i = 0; i < _tokenDeque.size(); ++i)
     {
       if (_tokenDeque[i]._uniqueLoopID == uniqueLoopID)
-          _tokenDeque.erase(_tokenDeque.begin() + i);
+      {
+         _tokenDeque.erase(_tokenDeque.begin() + i);
+	 i = 0;
+      }
     }
 
 
@@ -129,6 +132,7 @@ bool TokenQueue::mouseOverToken(int x, int y)
 	//iterate through all existing tokens to see if the mouse was clicked on one
 	//make that token active if so
 	for (int i=0; i < _tokenDeque.size(); i++) {
+	  std::cout << "Debug TokenDeque mouseOverToken: checking if over token at index: " << i << std::endl;
 		if (_tokenDeque[i].visualToken.mouseOverImage(_tokenDeque[i].visualToken.getRect(), x, y))
 		{
 		    shiftTokensUp(i+1);
@@ -188,7 +192,6 @@ bool TokenQueue::overTokenStack(int x, int y, int i)
 
 void TokenQueue::newToken(std::string commandID, int x, int y)
 {
-  #warning More specifics needed when making a new token since there are different types - FIXED, whoever put this warning, check out the fix and remove the warning if it looks good
 	std::cout << "Debug TokenQueue.cpp newToken: before instatiating a new Token\n" << std::endl;
 
 	CodeToken newToken(commandID);
@@ -215,6 +218,9 @@ void TokenQueue::newToken(std::string commandID, int x, int y)
 		}
 		
 		newToken._uniqueLoopID = uniqueLoopID;
+		
+		std::cout << "Debug TokenQueue.cpp newToken: new LOOP TOKEN with ID number: " << uniqueLoopID << std::endl;
+
 	}
 
   #warning Only the open_loop token is pushed with creation.

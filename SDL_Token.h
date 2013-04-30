@@ -30,10 +30,10 @@ public:
     void setSurface(SDL_Surface*);
     
     virtual void cleanUp();
-    
+        SDL_Rect tokenRect;
+
 private:
     SDL_Surface *tokenSurface;
-    SDL_Rect tokenRect;
     
 };
 
