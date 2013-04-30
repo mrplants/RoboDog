@@ -38,10 +38,10 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
 void GameAnimation::clip_background() {
 
   // clip the portions of the background
-  for (int i = 0; i < (LEVEL_LENGTH / GAME_WORLD_W * 6); i++)
+  for (int i = 0; i < (LEVEL_LENGTH / GAME_WORLD_W * 24); i++)
   {
-    std::cout << "AMOUNT OF CLIPS: " << (LEVEL_LENGTH / GAME_WORLD_W * 6) << std::endl;
-    backClips[ i ].x = i * (LEVEL_LENGTH / (LEVEL_LENGTH / GAME_WORLD_W * 6));
+    std::cout << "AMOUNT OF CLIPS: " << (LEVEL_LENGTH / GAME_WORLD_W * 24) << std::endl;
+    backClips[ i ].x = i * (LEVEL_LENGTH / (LEVEL_LENGTH / GAME_WORLD_W * 24));
     std::cout<<"X IS: " << backClips[ i ].x << std::endl;
     backClips[ i ].y = 0;
     backClips[ i ].w = GAME_WORLD_W;
@@ -51,36 +51,88 @@ void GameAnimation::clip_background() {
 }
 
 void GameAnimation::step() {
-  
   mario.status = MARIO_STEP; 
   gameMasterPointer->updateScreen();
-  SDL_Delay(250);
+  SDL_Delay(125);
   scene++;
   gameMasterPointer->updateScreen();
-  SDL_Delay(250);
-  mario.status = MARIO_STAND; 
+  SDL_Delay(125);
+  scene++;
   gameMasterPointer->updateScreen();
-
+  SDL_Delay(125);
+  scene++;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(125);
+  scene++;
+  mario.status = MARIO_STAND;
+  gameMasterPointer->updateScreen();
+ 
 }
 
 void GameAnimation::jump() {
 
   mario.status = MARIO_JUMP;
-  mario.marioRect.y -= MARIO_HEIGHT / 2;
+
+  mario.marioRect.y -= MARIO_HEIGHT / 8;
   gameMasterPointer->updateScreen();
-  SDL_Delay(125);
-  mario.marioRect.y -= MARIO_HEIGHT / 2;
+  SDL_Delay(5);
+  mario.marioRect.y -= MARIO_HEIGHT / 8;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(10);
+  mario.marioRect.y -= MARIO_HEIGHT / 8;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(15);
+  mario.marioRect.y -= MARIO_HEIGHT / 8;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(20);
+
+  mario.marioRect.y -= MARIO_HEIGHT / 8;
   scene++;
   gameMasterPointer->updateScreen();
-  SDL_Delay(125);
-  mario.marioRect.y += MARIO_HEIGHT / 2;
+  SDL_Delay(30);
+  mario.marioRect.y -= MARIO_HEIGHT / 8;
   scene++;
   gameMasterPointer->updateScreen();
-  SDL_Delay(125);
-  mario.marioRect.y += MARIO_HEIGHT / 2;
+  SDL_Delay(50);
+  mario.marioRect.y -= MARIO_HEIGHT / 8;
+  scene++;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(55);
+  mario.marioRect.y -= MARIO_HEIGHT / 8;
+  scene++;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(65);
+
+  mario.marioRect.y += MARIO_HEIGHT / 8;
+  scene++;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(65);
+  mario.marioRect.y += MARIO_HEIGHT / 8;
+  scene++;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(55);
+  mario.marioRect.y += MARIO_HEIGHT / 8;
+  scene++;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(50);
+  mario.marioRect.y += MARIO_HEIGHT / 8;
+  scene++;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(30);
+
+  mario.marioRect.y += MARIO_HEIGHT / 8;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(20);
+  mario.marioRect.y += MARIO_HEIGHT / 8;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(15);
+  mario.marioRect.y += MARIO_HEIGHT / 8;
+  gameMasterPointer->updateScreen();
+  SDL_Delay(10);
+  mario.marioRect.y += MARIO_HEIGHT / 8;
   mario.status = MARIO_STAND;
   gameMasterPointer->updateScreen();
-  SDL_Delay(125);
+  SDL_Delay(5);
 
 }
 
@@ -116,13 +168,13 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
   // std::cout << "AFTER" << backRect.x << std::endl;                          
   //  SDL_BlitSurface( background, NULL, screen, &tempRect);                   
   /*
-  if (scene == 5 && mario.marioRect.x == 176) {
+  if (scene == 20 && mario.marioRect.x == 176) {
     SDL_BlitSurface( loser, NULL, screen, &backRect);
   }
-  else if (scene == 13 && mario.marioRect.x == 176) {
+  else if (scene == 52 && mario.marioRect.x == 176) {
     SDL_BlitSurface( loser, NULL, screen, &backRect);
   }
-  else if (scene >= 34 ) {
+  else if (scene >= 116 ) {
     SDL_BlitSurface( congratulatory, NULL, screen, &backRect);  
   }  
   else {

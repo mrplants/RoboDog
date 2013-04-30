@@ -54,7 +54,7 @@ class GameAnimation : public SDL_Program {
   bool killedEnemy;
 
   // areas of background sheet
-  SDL_Rect backClips[ (LEVEL_LENGTH / GAME_WORLD_W * 6) ];
+  SDL_Rect backClips[ (LEVEL_LENGTH / GAME_WORLD_W * 24) ];
 
   // instance of Mario
   Mario mario;
