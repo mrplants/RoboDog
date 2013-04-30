@@ -50,6 +50,9 @@ class GameAnimation : public SDL_Program {
   // loser surface
   //SDL_Surface *loser;
 
+  // whether or not the user killed enemy
+  bool killedEnemy;
+
   // areas of background sheet
   SDL_Rect backClips[ (LEVEL_LENGTH / GAME_WORLD_W * 6) ];
 
