@@ -200,7 +200,6 @@ void GameMaster::updateScreen()
     SDL_Rect offset;
     offset.x = 0;
     offset.y = 0;
-    std::cout << "GAMEMASTER IS CHANGING TO 0" << std::endl;
     SDL_BlitSurface(background, NULL, screen, &offset);
     
     queueOfTokens.updateScreen(screen);
