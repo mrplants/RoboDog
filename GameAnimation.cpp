@@ -20,7 +20,7 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
   backRect.y = 0;
   backRect.w = GAME_WORLD_W;
   backRect.h = GAME_WORLD_H;
-  scene = 96;
+  scene = 0;
 
   congratulatory = loadImage("WinnerScreen.jpg");
 
@@ -199,7 +199,7 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
   // otherwise, show Mario and the appropriate scene of the background
   else {
     SDL_BlitSurface( background, &backClips[ scene ], screen, &backRect);    
-    if (scene == 100) {
+    if (scene >= 100) {
       // check if Mario has killed the enemy
       didKill();
       // if Mario has not kicked the enemy at least once, display the enemy
