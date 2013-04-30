@@ -21,8 +21,8 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
   backRect.w = GAME_WORLD_W;
   backRect.h = GAME_WORLD_H;
   scene = 0;
-  //congratulatory = loadImage("winner.jpg");
-  //loser = loadImage("loser.jpg");
+  congratulatory = loadImage("WinnerScreen.jpg");
+  loser = loadImage("LoserScreen.jpg");
   gameMasterPointer = theGameMaster;
   
   // clip the sprite sheet
@@ -52,6 +52,7 @@ void GameAnimation::clip_background() {
 }
 
 void GameAnimation::step() {
+
   mario.status = MARIO_STEP; 
   gameMasterPointer->updateScreen();
   SDL_Delay(125);
@@ -138,6 +139,7 @@ void GameAnimation::jump() {
 }
 
 void GameAnimation::kick() {
+
   mario.status = MARIO_KICK;
   gameMasterPointer->updateScreen();
   SDL_Delay(500);
@@ -147,6 +149,7 @@ void GameAnimation::kick() {
 }
 
 void GameAnimation::turn() {
+
   mario.status = MARIO_TURN;
   gameMasterPointer->updateScreen();
   SDL_Delay(500);
@@ -157,39 +160,31 @@ void GameAnimation::turn() {
 
 void GameAnimation::updateScreen(SDL_Surface* screen)
 {
-  /*                                                                         
-  tempRect.x = backRect.x + background->w;                                    
-  tempRect.y = backRect.y;                                                    
-  tempRect.w = background->w;                                                 
-  tempRect.h = background->h;                                                  
-  */
 
-  //  std::cout << "BEFORE" << backRect.x << std::endl;                        
-  //  SDL_BlitSurface( background, NULL, screen, &backRect);
-  // std::cout << "AFTER" << backRect.x << std::endl;                          
-  //  SDL_BlitSurface( background, NULL, screen, &tempRect);                   
-  /*
-  if (scene == 20 && mario.marioRect.x == 176) {
+  if (scene == 20 && mario.status == MARIO_STAND) {
     SDL_BlitSurface( loser, NULL, screen, &backRect);
   }
-  else if (scene == 52 && mario.marioRect.x == 176) {
+  else if (scene == 52 && mario.status == MARIO_STAND) {
     SDL_BlitSurface( loser, NULL, screen, &backRect);
   }
   else if (scene >= 116 ) {
     SDL_BlitSurface( congratulatory, NULL, screen, &backRect);  
   }  
   else {
-  */
     SDL_BlitSurface( background, &backClips[ scene ], screen, &backRect);    
     mario.show(screen);
-    // }
+  }
+
   std::cout << "SCENE IS NOW: " << scene << std::endl;
   std::cout << "MARIO'S X IS: " << mario.marioRect.x << std::endl;
   std::cout << "MARIO'S STATUS IS: " << mario.status << std::endl;
+
 }
 
 void GameAnimation::cleanUp()
 {
+
   mario.cleanUp();
   SDL_FreeSurface(background);
+
 }

@@ -45,10 +45,10 @@ class GameAnimation : public SDL_Program {
   int scene;
 
   // congratulatory surface
-  //SDL_Surface *congratulatory;
+  SDL_Surface *congratulatory;
 
   // loser surface
-  //SDL_Surface *loser;
+  SDL_Surface *loser;
 
   // whether or not the user killed enemy
   bool killedEnemy;
