@@ -14,6 +14,7 @@ SDL_Token::SDL_Token(std::string ID) : SDL_Program() {
     //could put in switch statement to create token corresponding to whatever identifier was passed in
     //or we could allow the token to be customized to whatever type we need by passing in everything
     //(correct image etc.)
+    tokenSurface = NULL;
     
     if (!ID.compare("step"))
         tokenSurface = loadImage("tokenImages/stepToken.bmp"); //load the file for step token element
@@ -24,7 +25,10 @@ SDL_Token::SDL_Token(std::string ID) : SDL_Program() {
     if (!ID.compare("turn"))
         tokenSurface = loadImage("tokenImages/turnToken.bmp"); //load the file for turn token element
 
-    tokenRect = createRect(tokenSurface, 0, 0); //WILL NOT WORK WITH CURRENT APPLY SURFACE
+    std::cout << "Debug SDL_Token.cpp constructor - after creating a surface for the token\n" << std::endl;
+
+	
+   if (tokenSurface) tokenRect = createRect(tokenSurface, 0, 0); //WILL NOT WORK WITH CURRENT APPLY SURFACE
 
   std::cout << "Debug SDL_Token.cpp Line: 29 - SDL_Token Constructor end\n" << std::endl;
 

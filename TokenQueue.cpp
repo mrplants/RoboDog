@@ -207,7 +207,7 @@ void TokenQueue::newToken(std::string commandID, int x, int y)
 	
 	}else { //this token IS a loop token
 		std::cout << "Debug TokenQueue.cpp newToken: This is a loop token\n" << std::endl;
-		newToken._repeatNumber = 0;
+		newToken._repeatNumber = 1;
 
 		//get a unique loop ID by parsing all the other loop tokens
 		int uniqueLoopID = 0;
@@ -274,10 +274,10 @@ std::vector<std::vector<int> > TokenQueue::getInterpreterVector()
       tokenVectorOfIdentifiers.push_back(6);
 
     //store the loop identifier
-    tokenVectorOfIdentifiers.push_back(_tokenDeque[i]._uniqueLoopID);
+    tokenVectorOfIdentifiers.push_back(_tokenDeque[i]._repeatNumber);
 
     //store the number of repeats in the loop
-    tokenVectorOfIdentifiers.push_back(_tokenDeque[i]._repeatNumber);
+    tokenVectorOfIdentifiers.push_back(_tokenDeque[i]._uniqueLoopID);
 
     //store the tokens identifiers to the vector<vector<int> >
     returnVector.push_back(tokenVectorOfIdentifiers);
