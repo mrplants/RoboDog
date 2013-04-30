@@ -25,9 +25,6 @@ class GameAnimation : public SDL_Program {
   void turn();
   void kick();
 
-  // define clip locations for the background image
-  void clip_background();
-
   // clean up function
   virtual void cleanUp();
   
