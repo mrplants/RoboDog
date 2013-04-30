@@ -14,11 +14,17 @@
 #define SDL_LOOPTOKEN
 
 //Base class
+#include <string>
 #include "SDL_Token.h" //includes all SDL frameworks, iostream, etc. needed
 
 class SDL_LoopToken : public SDL_Token {
 public:
     SDL_LoopToken(std::string); //parameters are ID ("if" or "loop") and subID for the action
+    
+      
+      void addOneToRepeatNumber();
+      
+  	SDL_Surface *getMessageSurface();
 
     // SDL_Rect getInnerSnapRegion(); //returns the snap region inside the loop where a conditional or action should snap
 
@@ -28,6 +34,13 @@ public:
     // void processKeyPressEvent(char); //ONLY CALL IF inputBoxClicked is true
         
 private:
+  
+  SDL_Surface * messageSurface;
+  std::string tokenRepeatMessage;
+  SDL_Color fontColor;
+  TTF_Font* theFont;
+  
+  
     //methods to set up inner snap region
     // void setUpInnerSnapRegion(int, int, SDL_Surface *); //sets the the
     // void applyInnerSnapRegion(SDL_Surface *); //adds a visual representation of the snap region to the interface

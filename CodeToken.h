@@ -21,7 +21,7 @@ class CodeToken
 	~CodeToken(); //the deconstructor
 	
 	//ViewPosition positionOnScreen; //The token's center position with respect to the view that it is in. It is public solely so that the user can invoke the special transformation methods upon it
-	
+
 	SDL_Token visualToken;
 	
 	std::string _commandID; //this is the token's command identifier
