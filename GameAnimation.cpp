@@ -65,10 +65,13 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
   tempRect.w = background->w;
   tempRect.h = background->h;
   */
+
   std::cout << "BEFORE" << backRect.x << std::endl;
   SDL_BlitSurface( background, NULL, screen, &backRect);
   std::cout << "AFTER" << backRect.x << std::endl;
-   //  SDL_BlitSurface( background, NULL, screen, &tempRect);
+  
+  //  SDL_BlitSurface( background, NULL, screen, &tempRect);
+  // SDL_BlitSurface( background, &backClips[ scene ], screen, &backRect);
   mario.show(screen);
 
 }

@@ -21,13 +21,20 @@ class GameAnimation : public SDL_Program {
   void turn();
   void kick();
 
-  void cleanUp();
+  // define clip locations for the background image
+  // void clip_background();
+
+  // clean up function
+  virtual void cleanUp();
+  
   void updateScreen(SDL_Surface*);
   
- private:
   SDL_Surface *background;
   SDL_Rect backRect;
   SDL_Rect tempRect;
+  
+ private:
+
   Mario mario;
   GameMaster *gameMasterPointer;
 
