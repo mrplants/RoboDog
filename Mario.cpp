@@ -10,7 +10,6 @@ Mario::Mario(std::string imageURL) : SDL_Program()
 {
     std::cout << "Debug Mario.cpp Line: 9 - Mario Constructor start\n" << std::endl;
 
-
   //Initialize animation variables
   status = MARIO_STAND;
   frame = 0;
