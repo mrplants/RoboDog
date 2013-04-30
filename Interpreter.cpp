@@ -136,10 +136,14 @@ void Interpreter::parse( vector<vector<int> > program, GameWorld *world_pointer 
                 
                 // While the program instruction code isn't a closing tag with the same IDnum as the
                 // opening tag, increase the count of how many instructions are inside the "loop"
-                while ( (program[j][0] == 6 && program[j][2] == program[i][2]) && j < program.size()) {
+                // while ( (program[j][0] == 6 && program[j][2] == program[i][2]) && j < program.size()) {
+                //     j++;
+                // }
+                
+                while( program[j][0] != 6 || program[j][2] != program[i][2]) {
                     j++;
                 }
-                
+
                 if (j == program.size()) //this means there isn't an end loop in the program
 		{
 		  cout << "Interpreter.cpp, method: void parse() - NO END LOOP FOUND IN INTERPRETER! PROGRAM FAILS" << endl;
