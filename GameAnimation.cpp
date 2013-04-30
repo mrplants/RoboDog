@@ -54,10 +54,10 @@ void GameAnimation::step() {
   
   mario.status = MARIO_STEP; 
   gameMasterPointer->updateScreen();
-  SDL_Delay(125);
+  SDL_Delay(250);
   scene++;
   gameMasterPointer->updateScreen();
-  SDL_Delay(125);
+  SDL_Delay(250);
   mario.status = MARIO_STAND; 
   gameMasterPointer->updateScreen();
 
@@ -68,19 +68,19 @@ void GameAnimation::jump() {
   mario.status = MARIO_JUMP;
   mario.marioRect.y -= MARIO_HEIGHT / 2;
   gameMasterPointer->updateScreen();
-  SDL_Delay(250);
+  SDL_Delay(125);
   mario.marioRect.y -= MARIO_HEIGHT / 2;
   scene++;
   gameMasterPointer->updateScreen();
-  SDL_Delay(250);
+  SDL_Delay(125);
   mario.marioRect.y += MARIO_HEIGHT / 2;
   scene++;
   gameMasterPointer->updateScreen();
-  SDL_Delay(250);
+  SDL_Delay(125);
   mario.marioRect.y += MARIO_HEIGHT / 2;
   mario.status = MARIO_STAND;
   gameMasterPointer->updateScreen();
-  SDL_Delay(250);
+  SDL_Delay(125);
 
 }
 
@@ -119,7 +119,7 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
   if (scene == 5 && mario.marioRect.x == 176) {
     SDL_BlitSurface( loser, NULL, screen, &backRect);
   }
-  else if (scene == 12 && mario.marioRect.x == 176) {
+  else if (scene == 13 && mario.marioRect.x == 176) {
     SDL_BlitSurface( loser, NULL, screen, &backRect);
   }
   else if (scene >= 34 ) {
