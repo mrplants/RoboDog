@@ -1,94 +1,37 @@
-//
-//  TokenQueue.cpp
-//  Coding Game
-//
-//  Created by Sean Fitzgerald on 3/26/13.
-//  Copyright (c) 2013 ND. All rights reserved.
-//
+/*
+  TokenQueue.cpp
+  Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
+
+  Final Project CSE 20212 Spring 2013
+  
+  Allows for easy access to ordering tokens in the UI
+  As tokens are added to the token-train, their pointers are inserted or added into the deque
+  When the code is ready to be interpretted and run, this queue is dispatched to the interpreter and executed
+    
+  Composed classes:
+    CodeToken - the individual token component
+  */
 
 #include "TokenQueue.h"
 
 #pragma mark -
-#pragma mark private
-/*
-void TokenQueue::dispatchTokensToInterpreterInThread(std::deque<CodeToken>, pthread_t)
-{
-	//check if there's a thread already. If there isn't, then create one and dispatch the tokenDeque to it with an interpreter function call. If there is, then do nothing. There shouldn't be two interpreter programs running concutively. If we think there should, then we can implement that here later
-}
-
-void *TokenQueue::runTokenInInterpretter(threadTokenDataStruct)
-//THIS MUST ONLY BE CALLED FROM A SEPARATE THREAD!!!!!!
-{
-	//threading data...
-	return NULL;
-}
-*/
-#pragma mark -
 #pragma Destructor and Constructor
 
+//constructor
 TokenQueue::TokenQueue()
 {
-
-  std::cout << "Debug TokenQueue.cpp Line: 32 - TokenQueue Constructor start\n" << std::endl;
-
+	std::cout << "Debug TokenQueue.cpp Line: 32 - TokenQueue Constructor start\n" << std::endl;
 	activeTokenPtr = NULL;
-
-  std::cout << "Debug TokenQueue.cpp Line: 37 - TokenQueue Constructor end\n" << std::endl;
-
+	std::cout << "Debug TokenQueue.cpp Line: 37 - TokenQueue Constructor end\n" << std::endl;
 }
-//constructor
 
-TokenQueue::~TokenQueue()
-{
-	
-	pthread_exit(NULL);
-	
-}
-//destructor. Deletes all tokens from memory
+//destructor
+TokenQueue::~TokenQueue() {}
 
-#pragma mark -
-#pragma mark Methods About Dispatching Code
-
-/*
-void TokenQueue::dispatchTokenQueueToInterpreter()
-{
-	//I need to work with John and the interpreter team
-}
-//this calls the tokenQueue to start dispatching
-//NB: IF THE PROGRAM WAS DISPATCHED AND PAUSED, IT WILL NOT GO TO THE BEGINNING UNLESS REWOUND. IT WILL CONTINUE FROM THE LAST TOKEN DISPATCHED.
-
-void TokenQueue::pauseDispatching()
-{
-	//I need to work with John and the interpreter code
-}
-//temporarily pauses the dispatching of the program to the interpreter
-void TokenQueue::rewind()
-{
-	_interpreterProcessingIndex = 0;
-}
-//rewind the tokenQueue so that the next call of dispatchQueueToInterpreter() will start dispatching from the first token
-
-void TokenQueue::unDispatchTokenQueueFromInterpreter()
-{
-	//I need to work with John and the interpreter code
-}
-//starts pulling tokens back through the interpreter to undo what they have done. Maybe an extra feature. Very cool to have...
-
-void TokenQueue::setWaitTime(int waitTime)
-{
-	_waitTime = waitTime;
-}
-//sets the time between token dispatches to the interpretter
-
-int TokenQueue::getWaitTime()
-{
-	return _waitTime;
-}
-//gets the time between token dispatches to the interpretter
-*/
 #pragma mark -
 #pragma mark Methods About Changing the Queue
 
+//adds a token to the end of the tokenQueue
 void TokenQueue::addTokenToEnd(CodeToken newToken)
 {
 	if (!newToken._commandID.compare("close_loop")) {
@@ -101,61 +44,52 @@ void TokenQueue::addTokenToEnd(CodeToken newToken)
 	  _tokenDeque.push_back(newToken);
 	}
 }
-//adds a token to the end of the tokenQueue
  
+//removes the token at the specified index and deletes it from memory if the token is a loop, it deletes both loop tokens
 void TokenQueue::removeTokenAtIndex(int index)
 {
-  if (!_tokenDeque[index]._commandID.compare("open_loop") || !_tokenDeque[index]._commandID.compare("close_loop"))
-  {
-    //save the loop ID number so that you can take out all the blocks with that ID number
-    int uniqueLoopID = _tokenDeque[index]._uniqueLoopID;
+	if (!_tokenDeque[index]._commandID.compare("open_loop") || !_tokenDeque[index]._commandID.compare("close_loop")) {
+		//save the loop ID number so that you can take out all the blocks with that ID number
+		int uniqueLoopID = _tokenDeque[index]._uniqueLoopID;
 
-    //delete the two (start and end) loop tokens with that ID number
-    for (int i = 0; i < _tokenDeque.size(); i++)
-    {
-      if (_tokenDeque[i]._uniqueLoopID == uniqueLoopID)
-      {
-         _tokenDeque.erase(_tokenDeque.begin() + i);
-	 shiftTokensUp(i);
-	 i = -1;
-      }
-    }
-
-
-  }
-  else
-  {
-    _tokenDeque.erase(_tokenDeque.begin() + index);
-    shiftTokensUp(index);
-  }
+		//delete the two (start and end) loop tokens with that ID number
+		for (int i = 0; i < _tokenDeque.size(); i++) {
+		  
+			if (_tokenDeque[i]._uniqueLoopID == uniqueLoopID) {
+				_tokenDeque.erase(_tokenDeque.begin() + i);
+				shiftTokensUp(i);
+				i = -1;
+			}
+		}
+	}else{
+		_tokenDeque.erase(_tokenDeque.begin() + index);
+		shiftTokensUp(index);
+	}
 }
-//removes the token at the specified index and deletes it from memory if the token is a loop, it deletes both loop tokens
 
+//NOT USING NAMESPACE - helper function only
 bool pointIsInNumberRect(int x, int y, int rectX, int rectY)
 {
   if (x > (rectX + 73) && x < (rectX + 93) && y > (rectY + 12) && y < (rectY + 26)) return true;
   return false;
 }
 
+//checks if the mouse was clicked over an existing token or one in the library
 bool TokenQueue::mouseOverToken(int x, int y)
 {
-	std::cout << "in mouseOverToken" << std::endl;
 	//iterate through all existing tokens to see if the mouse was clicked on one
 	//make that token active if so
 	for (int i=0; i < _tokenDeque.size(); i++) {
-	  std::cout << "Debug TokenDeque mouseOverToken: checking if over token at index: " << i << std::endl;
-		if (_tokenDeque[i].visualToken.mouseOverImage(_tokenDeque[i].visualToken.getRect(), x, y))
-		{
-		    if (!_tokenDeque[i]._commandID.compare("open_loop"))
-		    {
-			if (pointIsInNumberRect(x, y, _tokenDeque[i].visualToken.getRect().x, _tokenDeque[i].visualToken.getRect().y))
-			{
-				if (_tokenDeque[i]._repeatNumber <= 5)
-				{
+	  
+		if (_tokenDeque[i].visualToken.mouseOverImage(_tokenDeque[i].visualToken.getRect(), x, y)) {
+		  
+		    if (!_tokenDeque[i]._commandID.compare("open_loop")) {
+			if (pointIsInNumberRect(x, y, _tokenDeque[i].visualToken.getRect().x, _tokenDeque[i].visualToken.getRect().y)) {
+				
+				if (_tokenDeque[i]._repeatNumber <= 5) {
 					_tokenDeque[i]._repeatNumber++;
 					_tokenDeque[i].visualToken._repeatNumber++;
-				} else 
-				{
+				}else{
 					_tokenDeque[i]._repeatNumber = 1;
 					_tokenDeque[i].visualToken._repeatNumber = 1;
 				}
@@ -163,57 +97,55 @@ bool TokenQueue::mouseOverToken(int x, int y)
 				return false;
 			}
 		    }
-		  
 		    activeTokenPtr = new CodeToken(_tokenDeque[i]);
 		    
 		    removeTokenAtIndex(i);
 		    
-		    if(!activeTokenPtr->_commandID.compare("close_loop"))
-		    {
+		    if(!activeTokenPtr->_commandID.compare("close_loop")) {
+			
 			CodeToken tempCodeToken("open_loop");
 			tempCodeToken._uniqueLoopID = activeTokenPtr->_uniqueLoopID;
 			tempCodeToken._repeatNumber = activeTokenPtr->_repeatNumber;
 			tempCodeToken.visualToken.tokenRect = activeTokenPtr->visualToken.tokenRect;
 			activeTokenPtr = new CodeToken(tempCodeToken);
 		    }
-		    std::cout << "Token made active in mouseOverToken" << std::endl;
 		    return true;
 		}
+		
 	}
   
 	//if none was made active, check if the mouse clicked in the library
 	//potentially make a new token if so
 	if (overTokenStack(x, y, 0)) {
 	  //instantiate loop token
-	  std::cout << "step token!" << std::endl;
 	  newToken("step",  TOKEN_LIB_START_X+(0)*TOKEN_STACK_W, TOKEN_STACK_Y);
 	  return true;
+	  
 	}else if (overTokenStack(x, y, 1)) {
 	  //instantiate step token
-	  std::cout << "turn token!" << std::endl;
 	  newToken("turn",  TOKEN_LIB_START_X+(1)*TOKEN_STACK_W, TOKEN_STACK_Y);
 	  return true;
+	  
 	}else if (overTokenStack(x, y, 2)) {
 	  //instantiate jump token
-	  std::cout << "kick token!" << std::endl;
 	  newToken("kick",  TOKEN_LIB_START_X+(2)*TOKEN_STACK_W, TOKEN_STACK_Y);
 	  return true;
+	  
 	}else if (overTokenStack(x, y, 3)) {
 	  //instantiate kick token
-	  std::cout << "jump token!" << std::endl;
 	  newToken("jump",  TOKEN_LIB_START_X+(3)*TOKEN_STACK_W, TOKEN_STACK_Y);
 	  return true;
+	  
 	}else if (overTokenStack(x, y, 4)) {
 	  //instantiate turn token
-	  std::cout << "loop token!" << std::endl;
 	  newToken("open_loop", TOKEN_LIB_START_X+(4)*TOKEN_STACK_W, TOKEN_STACK_Y);
 	  return true;
 	}
-	std::cout << "not over library or pane" << std::endl;
-  return false;
+	
+	return false;
 }
-//checks if the mouse was clicked over an existing token or one in the library
 
+//checks if the mouse is over one of the stacks of tokens
 bool TokenQueue::overTokenStack(int x, int y, int i) 
 {
 	if (x > TOKEN_LIB_START_X+i*TOKEN_STACK_W && x < TOKEN_LIB_START_X+(i+1)*TOKEN_STACK_W) {
@@ -224,12 +156,10 @@ bool TokenQueue::overTokenStack(int x, int y, int i)
 	return false; 
 }
 
+//instantiates a new token based on where the user clicked
 void TokenQueue::newToken(std::string commandID, int x, int y)
 {
-	std::cout << "Debug TokenQueue.cpp newToken: before instatiating a new Token\n" << std::endl;
-
 	CodeToken newToken(commandID);
-	    std::cout << "Debug TokenQueue.cpp newToken: after instantiating a new token\n" << std::endl;
 
 	newToken.visualToken.setRect(x, y);
 	newToken._commandID = commandID;
@@ -240,7 +170,6 @@ void TokenQueue::newToken(std::string commandID, int x, int y)
 		newToken._uniqueLoopID = -1;
 	
 	}else { //this token IS a loop token
-		std::cout << "Debug TokenQueue.cpp newToken: This is a loop token\n" << std::endl;
 		newToken._repeatNumber = 1;
 		newToken.visualToken._repeatNumber = 1;
 
@@ -249,24 +178,12 @@ void TokenQueue::newToken(std::string commandID, int x, int y)
 		for (int i = 0; i < _tokenDeque.size(); i++) {
 		  
 			if (!_tokenDeque[i]._commandID.compare("open_loop") || !_tokenDeque[i]._commandID.compare("close_loop")) {
-			  while (uniqueLoopID == _tokenDeque[i]._uniqueLoopID) {uniqueLoopID++; i = -1;} //oops, this unique ID is taken by some other loop;
+			  while (uniqueLoopID == _tokenDeque[i]._uniqueLoopID) {uniqueLoopID++; i = -1;} //oops, this unique ID is taken by some other loop
 			}
 		}
-		
 		newToken._uniqueLoopID = uniqueLoopID;
 		
-		std::cout << "Debug TokenQueue.cpp newToken: new LOOP TOKEN with ID number: " << uniqueLoopID << std::endl;
-
 	}
-
-  #warning Only the open_loop token is pushed with creation.
-  #warning When the mouse is released and open_loop is added to the deque, close_loop is added below it.
-  #warning To do this, we must also have remove functions such that if you click on either an "open" or a "close", and pull it out, both are removed.
-
-
-	//_tokenDeque.push_back(newToken); //put the token at the back of the deque in the activeToken spot
-	//activeToken = &(_tokenDeque.back());
-	//activeToken = newToken;
 	activeTokenPtr = new CodeToken(newToken);
 	return;
 }
@@ -274,19 +191,7 @@ void TokenQueue::newToken(std::string commandID, int x, int y)
 #pragma mark -
 #pragma mark Methods About Accessing the Queue
 
-std::vector<std::vector<int> > TokenQueue::getInterpreterVector()
-{
-  // the vector with the interpreters commands
-  std::vector<std::vector<int> > returnVector;
-
-  // loops throught he tokens and adds their identifiers to the vector
-  for(int i = 0; i < _tokenDeque.size(); i++)
-  {
-    std::vector<int> tokenVectorOfIdentifiers;
-
 //------------These are the token identifiers. If you use other identifiers, it wont work.-------------- 
-#warning Maybe we should #define these token identifiers somewhere?
-
 //1 - "step"
 //2 - "jump"
 //3 - "turn"
@@ -295,51 +200,66 @@ std::vector<std::vector<int> > TokenQueue::getInterpreterVector()
 //6 - "close_loop"
 //------------------------------------------------------------------------------------------------------
 
-    //store the command ID of the token
-    if (!_tokenDeque[i]._commandID.compare("step"))
-      tokenVectorOfIdentifiers.push_back(1);
-    else if (!_tokenDeque[i]._commandID.compare("jump"))
-      tokenVectorOfIdentifiers.push_back(2);
-    else if (!_tokenDeque[i]._commandID.compare("turn"))
-      tokenVectorOfIdentifiers.push_back(3);
-    else if (!_tokenDeque[i]._commandID.compare("kick"))
-      tokenVectorOfIdentifiers.push_back(4);
-    else if (!_tokenDeque[i]._commandID.compare("open_loop"))
-      tokenVectorOfIdentifiers.push_back(5);
-    else if (!_tokenDeque[i]._commandID.compare("close_loop"))
-      tokenVectorOfIdentifiers.push_back(6);
+//makes the 2D vector that will be passed to the interpreter out of the deque of tokens
+std::vector<std::vector<int> > TokenQueue::getInterpreterVector()
+{
+	// the vector with the interpreters commands
+	std::vector<std::vector<int> > returnVector;
 
-    //store the loop identifier
-    tokenVectorOfIdentifiers.push_back(_tokenDeque[i]._repeatNumber);
+	// loops throught he tokens and adds their identifiers to the vector
+	for(int i = 0; i < _tokenDeque.size(); i++) {
+		std::vector<int> tokenVectorOfIdentifiers;
 
-    //store the number of repeats in the loop
-    tokenVectorOfIdentifiers.push_back(_tokenDeque[i]._uniqueLoopID);
-
-    //store the tokens identifiers to the vector<vector<int> >
-    returnVector.push_back(tokenVectorOfIdentifiers);
+		//store the command ID of the token
+		if (!_tokenDeque[i]._commandID.compare("step"))
+			tokenVectorOfIdentifiers.push_back(1);
     
-    std::cout << "Debug TokenDeque.cpp, getInterpreterVector - token number: " << i << "has commandID: " << returnVector[i][0] << std::endl;
+		else if (!_tokenDeque[i]._commandID.compare("jump"))
+			tokenVectorOfIdentifiers.push_back(2);
     
-  }
-  return returnVector;
+		else if (!_tokenDeque[i]._commandID.compare("turn"))
+			tokenVectorOfIdentifiers.push_back(3);
+    
+		else if (!_tokenDeque[i]._commandID.compare("kick"))
+			tokenVectorOfIdentifiers.push_back(4);
+    
+		else if (!_tokenDeque[i]._commandID.compare("open_loop"))
+			tokenVectorOfIdentifiers.push_back(5);
+    
+		else if (!_tokenDeque[i]._commandID.compare("close_loop"))
+			tokenVectorOfIdentifiers.push_back(6);
+
+		//store the loop identifier
+		tokenVectorOfIdentifiers.push_back(_tokenDeque[i]._repeatNumber);
+
+		//store the number of repeats in the loop
+		tokenVectorOfIdentifiers.push_back(_tokenDeque[i]._uniqueLoopID);
+
+		//store the tokens identifiers to the vector<vector<int> >
+		returnVector.push_back(tokenVectorOfIdentifiers);    
+	}
+	return returnVector;
 }
 
+//returns a reference to the token at the specified index
 CodeToken TokenQueue::getTokenAtIndex(int index)
 {
 	return _tokenDeque.at(index);
 }
-//returns a reference to the token at the specified index
 
+//returns a reference to the token at the specified index
 CodeToken TokenQueue::operator[](int index)
 {
 	return _tokenDeque.at(index);
 }
 
+//returns a constant reference to the token at the specified index
 const CodeToken TokenQueue::TokenQueue::operator[](int index) const
 {
 	return _tokenDeque.at(index);
 }
 
+//prints out the commandID and x and y coordinate of every token in the deque
 void TokenQueue::printQueue()
 {
 	for (int i=0; i < _tokenDeque.size(); i++) {
@@ -351,12 +271,14 @@ void TokenQueue::printQueue()
 #pragma mark -
 #pragma mark Methods About Manipulating Tokens on the Screen
 
+//if there is an active token, its rect is moved by the relative positions passed in
 void TokenQueue::translateActiveToken(int dx, int dy)
 {
-  if (activeTokenPtr)
-	translateToken(activeTokenPtr, dx, dy);
+	if (activeTokenPtr)
+		translateToken(activeTokenPtr, dx, dy);
 }
 
+//places the active token in the token pane aligned with the other tokens and shifts those around it appropriately
 void TokenQueue::snapActiveToken()
 {
 	//finds the index of the new active token
@@ -365,32 +287,25 @@ void TokenQueue::snapActiveToken()
   
 	int i;
 	for (i = 0; it != _tokenDeque.end(); it++) {
-		std::cout << "Debug snapActiveToken Line 326: current i = " << i << std::endl;
 		SDL_Rect currentTokenRect = _tokenDeque[i].visualToken.getRect();
 		//when the token that was dropped is above the next token, its spot in the queue has been found
 		if (currentTokenRect.y > activeTokenRect.y) {
-			std::cout << "Debug snapActiveToken Line 317: active token goes above " << currentTokenRect.y << std::endl;
 			break;
 		}
 		i++;
 	}
-	std::cout << "Debug snapActionToken Line 335: i AFTER LOOP = " << i << std::endl;
-	i;
 	_tokenDeque.insert(it, *activeTokenPtr);
 	
 	//places the newly dropped token on the screen
 	//Note: all tokens have the same x coordinate
-	std::cout << "Debug snapActiveToken Line 328: token placed at " << TOKENS_X << ", " << TOKENS_START_Y + i*(TOKEN_H/*EIGHT*/+TOKEN_SPACING) << std::endl;
 	_tokenDeque[i].visualToken.setRect(TOKENS_X, TOKENS_START_Y + i*(TOKEN_H/*EIGHT*/+TOKEN_SPACING));
 	SDL_Rect tempRect = _tokenDeque[i].visualToken.getRect();
-	std::cout << "Debug snapActiveToken Line 330: token placed at " << tempRect.x << ", " << tempRect.y << std::endl;
 
 
 	//if the token is a loop token, then we need to add a close loop underneath it
 	if (!(*activeTokenPtr)._commandID.compare("open_loop")) {
 	  
-	  	std::cout << "Debug snapActiveToken Line 330: HOLY SHIT A LOOP TOKEN GETTING PLACED? ARE YOU CRAZY? " << tempRect.x << ", " << tempRect.y << std::endl;
-	  	std::cout << "Debug snapActiveToken Line 330: close token inserted before index: " << i << std::endl;
+		std::cout << "Debug snapActiveToken Line 330: HOLY SHIT A LOOP TOKEN GETTING PLACED? ARE YOU CRAZY? " << tempRect.x << ", " << tempRect.y << std::endl;
 
 		CodeToken closeLoopToken("close_loop");
 		closeLoopToken._uniqueLoopID = (*activeTokenPtr)._uniqueLoopID;
@@ -404,13 +319,7 @@ void TokenQueue::snapActiveToken()
 			it++;
 			_tokenDeque.insert(it, closeLoopToken);
 			shiftTokensDown(i+2);
-
 		}
-			
-		//update close loop's rect as well
-		//i++;
-		std::cout << "Debug snapActiveToken Line 341: close loop placed at " << TOKENS_X << ", " << TOKENS_START_Y + i*(TOKEN_H/*EIGHT*/+TOKEN_SPACING) << std::endl;
-		//_tokenDeque[i+1].visualToken.setRect(TOKENS_X, TOKENS_START_Y + i*(TOKEN_H/*EIGHT*/+TOKEN_SPACING));
 	}
 
 	printQueue();
@@ -418,90 +327,80 @@ void TokenQueue::snapActiveToken()
 	//each token below the newly placed token must be shifted down on the screen
 	shiftTokensDown(i+1);
 	
-	//*make sure screen is updated at some point in game master after this happens
 	releaseActiveToken();
-	//activeTokenPtr = NULL;
 	return;
 }
 
 void TokenQueue::translateToken(CodeToken *tokenPtr, int dx, int dy)
 {
-  //this translates the token dx and dy
-  tokenPtr->visualToken.setRect(tokenPtr->visualToken.getRect().x + dx, tokenPtr->visualToken.getRect().y + dy);
+	//this translates the token dx and dy
+	tokenPtr->visualToken.setRect(tokenPtr->visualToken.getRect().x + dx, tokenPtr->visualToken.getRect().y + dy);
 }
 
-
+//moves all tokens in the queue below a certain index down
 void TokenQueue::shiftTokensDown(int index)
 { 
-  for (; index < _tokenDeque.size(); index++) {
-    translateToken(&(_tokenDeque.at(index)),0, TOKEN_H/*EIGHT*/+TOKEN_SPACING);
-    std::cout << "Debug TokenQueue, shiftTokensDown - translating down token number: " << index << std::endl;
-  }
+	for (; index < _tokenDeque.size(); index++) {
+		translateToken(&(_tokenDeque.at(index)),0, TOKEN_H+TOKEN_SPACING);
+	}
   
-  printQueue();
+	printQueue();
   
- return; 
+	return; 
 }
 
+//moves all the tokens in the queue above a certain index up
 void TokenQueue::shiftTokensUp(int index)
 {
-  for (; index < _tokenDeque.size(); index++) {
-    translateToken(&(_tokenDeque.at(index)),0, -TOKEN_H/*EIGHT*/-TOKEN_SPACING);
-    std::cout << "Debug TokenQueue, shiftTokensDown - translating down token number: " << index << std::endl;
-  }
+	for (; index < _tokenDeque.size(); index++) {
+		translateToken(&(_tokenDeque.at(index)),0, -TOKEN_H-TOKEN_SPACING);
+	}
   
-  printQueue();
+	printQueue();
   
- return; 
+	return; 
 }
 
 void TokenQueue::releaseActiveToken() 
 {
 	if (activeTokenPtr) {
-	delete(activeTokenPtr);
-	activeTokenPtr = NULL;
+		delete(activeTokenPtr);
+		activeTokenPtr = NULL;
 	}
 	return;
 }
 
+//re-applies all of the tokens in the queue to the screen
 void TokenQueue::updateScreen(SDL_Surface *screen)
 {
-  
-  std::cout << "Debug TokenQueue.cpp updateScreen - started update screen method" << std::endl;
- //put all tokens on screen by going through the queue
- SDL_Surface *newSurface;
- SDL_Rect newRect;
+	//put all tokens on screen by going through the queue
+	SDL_Surface *newSurface;
+	SDL_Rect newRect;
  
- for (int i=0; i < _tokenDeque.size(); i++) {
-     newSurface = _tokenDeque[i].visualToken.getSurface();
-     newRect = _tokenDeque[i].visualToken.getRect();
-
-     SDL_BlitSurface( newSurface, NULL, screen, &newRect );
-     if (!_tokenDeque[i]._commandID.compare("open_loop"))
-     {
-       newSurface = _tokenDeque[i].visualToken.getNumberSurface();
-       newRect = _tokenDeque[i].visualToken.getRect();
-       SDL_BlitSurface( newSurface, NULL, screen, &newRect );
-     }
-  }
+	for (int i=0; i < _tokenDeque.size(); i++) {
+		newSurface = _tokenDeque[i].visualToken.getSurface();
+		newRect = _tokenDeque[i].visualToken.getRect();
+		SDL_BlitSurface( newSurface, NULL, screen, &newRect );
+		
+		if (!_tokenDeque[i]._commandID.compare("open_loop")) {
+			newSurface = _tokenDeque[i].visualToken.getNumberSurface();
+			newRect = _tokenDeque[i].visualToken.getRect();
+			SDL_BlitSurface( newSurface, NULL, screen, &newRect );
+		}
+	}
   
-    if (activeTokenPtr)
-      SDL_BlitSurface( (*activeTokenPtr).visualToken.getSurface(), NULL, screen,&( (*activeTokenPtr).visualToken.getRect() ));
+	//updates the token being dragged (since only those IN the deque were updated before)
+	if (activeTokenPtr)
+		SDL_BlitSurface( (*activeTokenPtr).visualToken.getSurface(), NULL, screen,&( (*activeTokenPtr).visualToken.getRect() ));
 
-    if (activeTokenPtr && !activeTokenPtr->_commandID.compare("open_loop"))
-    {
-        std::cout << "Debug TokenQueue.cpp updateScreen - active is an open_loop 1, repeat Number is: " << activeTokenPtr->visualToken._repeatNumber << std::endl;
+	//updates the position of the number on the for loop
+	if (activeTokenPtr && !activeTokenPtr->_commandID.compare("open_loop")) {
+		 newSurface = activeTokenPtr->visualToken.getNumberSurface();
+		 newRect = activeTokenPtr->visualToken.getRect();
+		 SDL_BlitSurface( newSurface, NULL, screen, &newRect );
+	}
 
-	newSurface = activeTokenPtr->visualToken.getNumberSurface();
-  std::cout << "Debug TokenQueue.cpp updateScreen - active is an open_loop 2" << std::endl;
-	newRect = activeTokenPtr->visualToken.getRect();
-  std::cout << "Debug TokenQueue.cpp updateScreen - active is an open_loop 3" << std::endl;
-	SDL_BlitSurface( newSurface, NULL, screen, &newRect );
-    }
-    std::cout << "Debug TokenQueue.cpp updateScreen - right before printQueue" << std::endl;
+	printQueue();
 
-  printQueue();
-    std::cout << "Debug TokenQueue.cpp updateScreen - started update screen method" << std::endl;
-
-  return;
+	return;
 }
