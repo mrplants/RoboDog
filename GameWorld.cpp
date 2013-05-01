@@ -1,64 +1,55 @@
-//GameWorld.cpp
-//created 4/21/13
-//C++ file to accompany GameWorld.h
-//handle the animation of the game, and the stats about levels, health, and other playing-related things
+/*
+  GameWorld.h
+  Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
+
+  Final Project CSE 20212 Spring 2013
+ 
+  Handles the animation of the game, and the stats about levels, health, and other playing-related things
+  Composed classes:
+    GameAnimation - the actual graphical implementation of the level
+ */
 
 #include "GameWorld.h"
 
-GameWorld::GameWorld(){}
+GameWorld::GameWorld() {}
 
-GameWorld::~GameWorld(){
-  std::cout << "GameWorld deconstructor" << std::endl;
-}
+GameWorld::~GameWorld() {}
 
 
 GameWorld::GameWorld(GameMaster* gameMaster): gameAnimationScreen(gameMaster)
 {
-  std::cout << "Debug GameWorld.cpp Line: 8 - GameWorld Constructor start\n" << std::endl;
-
-
-	// Initialize stats
-
-  // GameAnimation tempGameAnimation(gameMaster);
-
-  // gameAnimationScreen = tempGameAnimation;
-
+	// Initialize stats - NOT USED
 	tokensInProgram = 0;
 	livesLeft       = 3;
 	scoreTotal      = 0;
-
-  std::cout << "Debug GameWorld.cpp Line: 8 - GameWorld Constructor end\n" << std::endl;
-
 }
 
 
-void GameWorld::step() {
-  gameAnimationScreen.step();
-  cout << "Step from GameWorld" << endl;
+void GameWorld::step()
+{
+	gameAnimationScreen.step();
 }
 
 
-void GameWorld::jump() {
-  gameAnimationScreen.jump();
-  cout << "Jump from GameWorld" << endl;
+void GameWorld::jump()
+{
+	gameAnimationScreen.jump();
 }
 
-void GameWorld::turn() {
-  gameAnimationScreen.turn();
-  cout << "Turn from GameWorld" << endl;
+void GameWorld::turn()
+{
+	gameAnimationScreen.turn();
 }
 
-void GameWorld::kick() {
-  gameAnimationScreen.kick();
-  cout << "Kick from GameWorld" << endl;
+void GameWorld::kick()
+{
+	gameAnimationScreen.kick();
 }
 
 
-GameStats GameWorld::getStatsFromProgram() {
-  cout << "Stats and stuff" << endl; 
-}
+//GameStats GameWorld::getStatsFromProgram() {}  //NOT IMPLEMENTED
 
 void GameWorld::updateScreen(SDL_Surface * screen)
 {
-  gameAnimationScreen.updateScreen(screen);
+	gameAnimationScreen.updateScreen(screen);
 }

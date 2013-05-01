@@ -1,3 +1,12 @@
+/*
+  Mario.h
+  Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
+
+  Final Project CSE 20212 Spring 2013
+  
+  The character that animates through the level
+  */
+
 #ifndef MARIO_H
 #define MARIO_H
 

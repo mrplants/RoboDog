@@ -1,13 +1,16 @@
-//
-//  SDL_Program.h
-//  BASE CLASS for SDL components of Coding Game
-//
-//  Created by Maribeth Rauh on 3/29/13
-//
-//      This program is a **base class** for the SDL classes our coding game uses.  It provides the basic
-//  SDL methods that are used by every SDL class such as init, clean_up, and load_image and data members
-//  that are equally essential, such as the screen.
-//  **Abstract so cannot be instantiated
+/*
+  SDL_Program.h
+  BASE CLASS for SDL components of Coding Game
+  Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
+
+  Final Project CSE 20212 Spring 2013
+  
+  This program is a **base class** for the SDL classes our coding game uses.  It provides the basic
+  SDL methods that are used by every SDL class such as loadFont, cleanUp, and loadImage and data members
+  that are equally essential, such as the screen.
+  
+  **Abstract so cannot be instantiated
+  */
 
 #ifndef SDL_PROGRAM
 #define SDL_PROGRAM
@@ -20,7 +23,7 @@
 
 class SDL_Program {
 public:
-    SDL_Program();  //constructor
+    SDL_Program(); //constructor
     
     TTF_Font *loadFont(std::string, int);  //takes single filename, opens and returns a font
     SDL_Surface *loadImage(std::string);   //takes single filename, loads image, optimizes it to screen and returns it

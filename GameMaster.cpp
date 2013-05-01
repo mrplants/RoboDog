@@ -19,21 +19,13 @@
 #include "GameMaster.h"
 #include <unistd.h> //to use usleep
 
-GameMaster::GameMaster() : SDL_Program()//, gameWorld(this) 
-{
-	std::cout << "Debug GameMaster.cpp Line: 8 - GameMaster Constructor start\n" << std::endl;
-
-	
-	
+GameMaster::GameMaster() : SDL_Program()
+{	
 	SDL_Init(SDL_INIT_AUDIO);
 	// Setup audio mode
 	Mix_OpenAudio(22050,AUDIO_S16SYS,2,640);
 	mus = Mix_LoadMUS("robodogSong1.wav");
-	Mix_PlayMusic(mus,1); //Music loop=1
-	
-	
-	
-	
+	Mix_PlayMusic(mus,-1); //Music loop=-1 in order to repeat
 	
 	initializeSDL(); //sets up SDL subsystems, screen, and background
 
@@ -46,7 +38,6 @@ GameMaster::GameMaster() : SDL_Program()//, gameWorld(this)
 	tokenPane.y = 0;
 	tokenPane.h = SCREEN_HEIGHT * TOKEN_PANE_PERCENT_H;
 	tokenPane.w = SCREEN_WIDTH * TOKEN_PANE_PERCENT_W;
-	std::cout << "Debug GameMaster.cpp Line: 8 - GameMaster Constructor end\n" << std::endl;
 }
 
 GameMaster::~GameMaster()

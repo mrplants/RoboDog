@@ -1,49 +1,36 @@
-//
-//  Interpreter.cpp
-//  project_interpretter
-//
-//  Created by Jon Gautsch on 3/26/13.
-//  Copyright (c) 2013 Jon Gautsch. All rights reserved.
-//
+/*
+  Interpreter.cpp
+  Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
+
+  Final Project CSE 20212 Spring 2013
+ 
+  Interprets. The tokens.
+  BAM.
+  */
 
 #include "Interpreter.h"
 
+Interpreter::Interpreter() {}
 
-Interpreter::Interpreter() {
-
-    std::cout << "Debug Interpreter.cpp Line: 14 - Interpreter Constructor start\n" << std::endl;
-
-    std::cout << "Debug Interpreter.cpp Line: 14 - Interpreter Constructor end\n" << std::endl;
-
+//prints out the contents of the vectors the interpreter was passed
+void Interpreter::printRaw()
+{
+	for (int i = 0; i < user_program.size(); i++) {
+		cout << "[ "
+		<< user_program[i][0]
+		<< ", "
+		<< user_program[i][1]
+		<< ", "
+		<< user_program[i][2]
+		<<  " ]"
+		<< endl;
+	}
 }
 
-
-
-
-void Interpreter::printRaw() {
-    for (int i = 0; i < user_program.size(); i++) {
-        cout << "[ "
-        << user_program[i][0]
-        << ", "
-        << user_program[i][1]
-        << ", "
-        << user_program[i][2]
-        <<  " ]"
-        << endl;
-    }
-}
-
-
-
-
-/***********************************/
-// parse() function:
-//  -
-/***********************************/
-
-
-
-//  Here is the numeric codes for the different commands of the "language" to be used in our game
+//***********************************
+// parse() function
+//
+//  Here is the numeric codes for the different commands of the "language" to be used in our game:
 //
 //  1 - step
 //  2 - jump
@@ -52,130 +39,70 @@ void Interpreter::printRaw() {
 //  5 - open loop
 //  6 - close loop
 
+void Interpreter::parse( vector<vector<int> > program, GameWorld *world_pointer )
+{
+	//printRaw();
 
-void Interpreter::parse( vector<vector<int> > program, GameWorld *world_pointer ) {
+	// 'i' is the index in the program,
     
-      for (int i = 0; i < program.size(); i++) {
-        cout << "[ "
-        << program[i][0]
-        << ", "
-        << program[i][1]
-        << ", "
-        << program[i][2]
-        <<  " ]"
-        << endl;
-    }
-
-    
-    // 'i' is the index in the program,
-    
-    // NOTE: When it recurses, its looping, and then moving forward, but when it loops, it actually
-    //       needs to skip over the instructions its passing back to itself. Because otherwise
-    //       they're executed an extra set of times.
-    for ( int i = 0; i < program.size(); i++ ) {
+	// NOTE: When it recurses, its looping, and then moving forward, but when it loops, it actually
+	//       needs to skip over the instructions its passing back to itself. Because otherwise
+	//       they're executed an extra set of times.
+	for ( int i = 0; i < program.size(); i++ ) {
+		usleep(250000);
         
-        usleep(250000);
-        
-        switch (program[i][0]) {
-            case 1:
-                if (program[i][1] == 0) {
-                    cout << "*step one space (0 entered)" << endl;
-                } else {
-//                    for (int j = 0; j < program[i][1]; j++) {
-                        cout << "step one space" << endl;
-                        world_pointer->step();
-//                    }
-                }
-                break;
+		switch (program[i][0]) {
+			case 1:
+				world_pointer->step();
+				break;
                 
-            case 2:
-                if (program[i][1] == 0) {
-                    cout << "*Jump once (0 entered)" << endl;
-                } else {
-//                    for (int j = 0; j < program[i][1]; j++) {
-                        cout << "Jump once" << endl;
-                        world_pointer->jump();
-//                    }
-                }
-                break;
+			case 2:
+				world_pointer->jump();
+				break;
                 
-            case 3:
-                if (program[i][1] == 0) {
-                    cout << "*Turn around (0 entered)" << endl;
-                } else {
-//                    for (int j = 0; j < program[i][1]; j++) {
-                        cout << "Turn around" << endl;
-                        world_pointer->turn();
-//                    }
-                }
-                break;
+			case 3:
+				world_pointer->turn();
+				break;
                 
-            case 4:
-                if (program[i][1] == 0) {
-                    cout << "*Kick once (0 entered)" << endl;
-                } else {
-//                    for (int j = 0; j < program[i][1]; j++) {
-                        cout << "Kick once" << endl;
-                        world_pointer->kick();
-//                    }
-                }
-                break;
+			case 4:
+				world_pointer->kick();
+				break;
                 
-            // It's about to get recursive
+			// It's about to get recursive
+			case 5: {
+				// TODO: Refactor the following initialization lines to it's own function.
+				// v2int recursed_program;
+				vector<vector<int> > recursed_program;
                 
-            case 5: {
-                cout << "{ Open loop }" << "  (should loop " << program[i][1] << " times)." << endl;
+				// Now find the length to the end of the loop
+				int j = i;
+				while( program[j][0] != 6 || program[j][2] != program[i][2])
+					 j++;
 
-                // TODO: Refactor the following initialization lines to it's own function.
-                // v2int recursed_program;
-                vector<vector<int> > recursed_program;
-                
-                // Now find the length to the end of the loop
-                int j = i;
-                
-                
-                // While the program instruction code isn't a closing tag with the same IDnum as the
-                // opening tag, increase the count of how many instructions are inside the "loop"
-                // while ( (program[j][0] == 6 && program[j][2] == program[i][2]) && j < program.size()) {
-                //     j++;
-                // }
-                
-                while( program[j][0] != 6 || program[j][2] != program[i][2]) {
-                    j++;
-                }
+				if (j == program.size()) //this means there isn't an end loop in the program
+					return;
 
-                if (j == program.size()) //this means there isn't an end loop in the program
-		{
-		  cout << "Interpreter.cpp, method: void parse() - NO END LOOP FOUND IN INTERPRETER! PROGRAM FAILS" << endl;
-		  return;
-	     	}
+				for (int k = i + 1; k <= j-1; k++) // to get just the instructions between the instructions between the loop blocks at i and j
+					recursed_program.push_back(program[k]); 
+                
+				// Now, however many times is specified in the params, loop
+				for (int k = 0; k < program[i][1]; k++)
+					parse(recursed_program, world_pointer);
 
+				// Now that we've done the instructions inside the loop the appropriate number
+				// of times, we need to increase the index to skip over them so that they're not
+				// repeated an extra time
+				i = j - 1;
                 
-                for (int k = i + 1; k <= j-1; k++) { // to get just the instructions between the instructions between the loop blocks at i and j
-                    recursed_program.push_back(program[k]);
-                }
+				break;
+			}
                 
+			case 6:
+				//cout << "{ Close loop }" << endl;
+				break;
                 
-                // Now, however many times is specified in the params, loop
-                for (int k = 0; k < program[i][1]; k++) {
-                    parse(recursed_program, world_pointer);
-                }
-
-                
-                // Now that we've done the instructions inside the loop the appropriate number
-                // of times, we need to increase the index to skip over them so that they're not
-                // repeated an extra time
-                i = j - 1;
-                
-                break;
-            }
-                
-            case 6:
-                cout << "{ Close loop }" << endl;
-                break;
-                
-            default:
-                break;
-        }
-    }
+			default:
+				break;
+		}
+	}
 }

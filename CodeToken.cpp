@@ -15,9 +15,7 @@
 
 //the constructor, initializes with an empty identifier and position on screen
 CodeToken::CodeToken(std::string commandID)
-{
-	std::cout << "Debug CodeToken.cpp Line: 13 - CodeToken Constructor start\n" << std::endl;
-	
+{	
 	_commandID = commandID;
 	if (!commandID.compare("open_loop") || !commandID.compare("close_loop")) {
 		SDL_LoopToken tempToken(commandID);
@@ -30,8 +28,6 @@ CodeToken::CodeToken(std::string commandID)
 		_uniqueLoopID = -1;
 		visualToken = tempToken;
 	}
-
-	std::cout << "Debug CodeToken.cpp Line: 13 - CodeToken Constructor end\n" << std::endl;
 }
 
 //the deconstructor

@@ -20,9 +20,7 @@
 //constructor
 TokenQueue::TokenQueue()
 {
-	std::cout << "Debug TokenQueue.cpp Line: 32 - TokenQueue Constructor start\n" << std::endl;
 	activeTokenPtr = NULL;
-	std::cout << "Debug TokenQueue.cpp Line: 37 - TokenQueue Constructor end\n" << std::endl;
 }
 
 //destructor
@@ -305,7 +303,7 @@ void TokenQueue::snapActiveToken()
 	//if the token is a loop token, then we need to add a close loop underneath it
 	if (!(*activeTokenPtr)._commandID.compare("open_loop")) {
 	  
-		std::cout << "Debug snapActiveToken Line 330: HOLY SHIT A LOOP TOKEN GETTING PLACED? ARE YOU CRAZY? " << tempRect.x << ", " << tempRect.y << std::endl;
+		//std::cout << "Debug snapActiveToken Line 330: HOLY SHIT A LOOP TOKEN GETTING PLACED? ARE YOU CRAZY? " << tempRect.x << ", " << tempRect.y << std::endl;
 
 		CodeToken closeLoopToken("close_loop");
 		closeLoopToken._uniqueLoopID = (*activeTokenPtr)._uniqueLoopID;
@@ -322,7 +320,7 @@ void TokenQueue::snapActiveToken()
 		}
 	}
 
-	printQueue();
+	//printQueue();
 
 	//each token below the newly placed token must be shifted down on the screen
 	shiftTokensDown(i+1);
@@ -344,7 +342,7 @@ void TokenQueue::shiftTokensDown(int index)
 		translateToken(&(_tokenDeque.at(index)),0, TOKEN_H+TOKEN_SPACING);
 	}
   
-	printQueue();
+	//printQueue();
   
 	return; 
 }
@@ -356,7 +354,7 @@ void TokenQueue::shiftTokensUp(int index)
 		translateToken(&(_tokenDeque.at(index)),0, -TOKEN_H-TOKEN_SPACING);
 	}
   
-	printQueue();
+	//printQueue();
   
 	return; 
 }
@@ -400,7 +398,7 @@ void TokenQueue::updateScreen(SDL_Surface *screen)
 		 SDL_BlitSurface( newSurface, NULL, screen, &newRect );
 	}
 
-	printQueue();
+	//printQueue();
 
 	return;
 }

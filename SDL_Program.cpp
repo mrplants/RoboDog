@@ -1,98 +1,80 @@
-//
-//  SDL_Program.cpp
-//  Coding Game
-//
-//  Created by Maribeth Rauh on 3/29/13.
-//
+/*
+  SDL_Program.cpp
+  BASE CLASS for SDL components of Coding Game
+  Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
+
+  Final Project CSE 20212 Spring 2013
+  
+  This program is a **base class** for the SDL classes our coding game uses.  It provides the basic
+  SDL methods that are used by every SDL class such as loadFont, cleanUp, and loadImage and data members
+  that are equally essential, such as the screen.
+  
+  **Abstract so cannot be instantiated
+  */
 
 #include "SDL_Program.h"
 
-SDL_Program::SDL_Program() {
-        std::cout << "Debug SDL_Program.cpp Line: 11 - SDL_Program Constructor start\n" << std::endl;
-
-    // if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
-    //     std::cout << "ERR: SDL_INIT_EVERYTHING was not successful" << std::endl;
-    // }
-
-
-    //     std::cout << "Debug SDL_Program.cpp Line: 12 - SDL_Program Constructor end\n" << std::endl;
-
-
-}
+SDL_Program::SDL_Program() {}
 
 //takes single filename, opens and returns a font
-TTF_Font * SDL_Program::loadFont( std::string filename, int size ) {
-    //Open the font
-    TTF_Font *font;
-    font = TTF_OpenFont(filename.c_str(), size);
+TTF_Font * SDL_Program::loadFont( std::string filename, int size )
+{
+	//Open the font
+	TTF_Font *font;
+	font = TTF_OpenFont(filename.c_str(), size);
     
-    //If everything loaded fine
-    return font;
+	//If everything loaded fine
+	return font;
 }
 
 //takes single filename, loads image, optimizes it to screen and returns it
-SDL_Surface * SDL_Program::loadImage(std::string filename) {
-    SDL_Surface *loadedImage = NULL;
-    SDL_Surface *optimizedImage = NULL;
+SDL_Surface * SDL_Program::loadImage(std::string filename)
+{
+	SDL_Surface *loadedImage = NULL;
+	SDL_Surface *optimizedImage = NULL;
     
-    loadedImage = IMG_Load(filename.c_str());
+	loadedImage = IMG_Load(filename.c_str());
     
-    if (loadedImage != NULL) {
-	std::cout << "passed if using filename " << filename << std::endl;
-        optimizedImage = SDL_DisplayFormat(loadedImage);
-	std::cout << "after SDL_DisplayFormat" << std::endl;
-        SDL_FreeSurface(loadedImage);
+	if (loadedImage != NULL) {
+		optimizedImage = SDL_DisplayFormat(loadedImage);
+		SDL_FreeSurface(loadedImage);
         
-        //Map the color key
-        if (optimizedImage != NULL) {
-                std::cout << "Debug SDL_Program.cpp Line: 48 - image is not NULL" << std::endl;
-
-            Uint32 colorkey = SDL_MapRGB( optimizedImage->format, 0x00, 0xFF, 0xFF );
+		//Map the color key
+		if (optimizedImage != NULL) {
+			Uint32 colorkey = SDL_MapRGB( optimizedImage->format, 0x00, 0xFF, 0xFF );
             
-            //Set all pixels of color R 0, G 0xFF, B 0xFF to be transparent
-            SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, colorkey );
-        }
-        else
-                std::cout << "Debug SDL_Program.cpp Line: 56 - image is NULL" << std::endl;
-
-    }
-    
-    //used if class has a deque of the surfaces in it
-    //blocks.push_front(optimizedImage);
+			//Set all pixels of color R 0, G 0xFF, B 0xFF to be transparent
+			SDL_SetColorKey( optimizedImage, SDL_SRCCOLORKEY, colorkey );
+		}else
+			std::cout << "ERR: Image is could not be loaded" << std::endl;
+	}
     
     return optimizedImage;
 }
 
 //creates an SDL_Rect that corresponds to an image (SDL_Surface)
-SDL_Rect SDL_Program::createRect(SDL_Surface * image, int startX, int startY) {
-    std::cout << "Debug SDL_Program.cpp Line: 63 - beginning of createRect\n" << std::endl;
-    SDL_Rect rect;
-    std::cout << "Debug SDL_Program.cpp Line: 65 - after 'SDL_Rect rect'\n" << std::endl;
-    if (image == NULL) {
-            std::cout << "Debug SDL_Program.cpp Line: 67 - The image is NULL" << std::endl;
-    }
+SDL_Rect SDL_Program::createRect(SDL_Surface * image, int startX, int startY)
+{
+	SDL_Rect rect;
+	
+	if (image == NULL)
+            std::cout << "ERR: The image is NULL" << std::endl;
 
-    std::cout << "Debug SDL_Program.cpp Line: 70 - image width:" << image->w << std::endl << std::endl;
-    rect.w = image->w;
-    rect.h = image->h;
+	rect.w = image->w;
+	rect.h = image->h;
     
-    // will be updated when apply_surface called
-    rect.x = startX;
-    rect.y = startY;
+	// will be updated when translateToken (or similar) is called
+	rect.x = startX;
+	rect.y = startY;
     
-    return rect;
+	return rect;
 }
 
-//NOTE: No parameters needed-
-//		rect will be data member of class being called on
-//		x and y will be taken directly from the mouse
-//checks if the mouse is located within the perimeter of the image (whose associated rect is passed in)
 
+//checks if the mouse is located within the perimeter of the image (whose associated rect is passed in)
 bool SDL_Program::mouseOverImage(SDL_Rect imageRect, int x, int y) {
-  std::cout << "Debug SDL_Program.cpp MouseOverImage: checking if mouse: " << x << ", " << y << " is over imageRect: " << imageRect.x << ", " << imageRect.y << " | " << imageRect.h << "x" << imageRect.w << std::endl;
-    if (x > imageRect.x && x < (imageRect.x + imageRect.w) && y > imageRect.y && y < (imageRect.y + imageRect.h)) {
+    if (x > imageRect.x && x < (imageRect.x + imageRect.w) && y > imageRect.y && y < (imageRect.y + imageRect.h))
         return true;
-    }else{
+    else
         return false;
-    }
 }

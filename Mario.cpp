@@ -1,3 +1,12 @@
+/*
+  Mario.cpp
+  Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
+
+  Final Project CSE 20212 Spring 2013
+  
+  The character that animates through the level
+  */
+
 #include "constants.h"
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
@@ -6,30 +15,19 @@
 // default constructor
 Mario::Mario() {}
 
-Mario::~Mario() {
-  //cleanUp();
-  std::cout << "Mario Deconstructor" << std::endl;
-}
+Mario::~Mario() {}
 
 Mario::Mario(std::string imageURL) : SDL_Program()
 {
-    std::cout << "Debug Mario.cpp Line: 9 - Mario Constructor start\n" << std::endl;
-
   //Initialize animation variables
   status = MARIO_STAND;
   frame = 0;
-
-  std::cout << "Debug Mario.cpp Line:16 - before loadImage(\"Mario.bmp\")\n" << std::endl;
-
+  
   //Create the Mario surface
   marioSurface = loadImage("tokenImages/RobodogPositions.bmp");
-  std::cout << "Debug Mario.cpp Line:22 - after loadImage(\"Mario.bmp\")\n" << std::endl;
 
   //Initialize movement variables
     marioRect = createRect(marioSurface, SCREEN_WIDTH - TOKEN_LIB_W, SCREEN_HEIGHT - TOKEN_LIB_H - RUN_BUTTON_H - MARIO_HEIGHT);
-  
-  std::cout << "Debug Mario.cpp Line: 27 - Interpreter Mario end\n" << std::endl;
-
 }
 
 //show Mario
@@ -109,8 +107,8 @@ void Mario::set_clips()
 
 
 // clean up function for Mario
-void Mario::cleanUp() {
-
+void Mario::cleanUp()
+{
   SDL_FreeSurface( marioSurface );
 
 }

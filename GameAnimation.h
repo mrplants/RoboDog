@@ -1,3 +1,14 @@
+/*
+  GameAnimation.h
+  Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
+
+  Final Project CSE 20212 Spring 2013
+  
+  Implements the graphics corresponding to the code the user input
+  Composed classes:
+    Mario - the character, RoboDog himself
+  */
+
 #ifndef GAMEANIMATION_H
 #define GAMEANIMATION_H
 

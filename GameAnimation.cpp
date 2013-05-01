@@ -1,20 +1,25 @@
+/*
+  GameAnimation.cpp
+  Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
+
+  Final Project CSE 20212 Spring 2013
+  
+  Implements the graphics corresponding to the code the user input
+  Composed classes:
+    Mario - the character, RoboDog himself
+  */
+
 #include "GameAnimation.h"
 #include "GameMaster.h"
 
 
 GameAnimation::GameAnimation() : SDL_Program() {}
 
-GameAnimation::~GameAnimation() {
-  
-  std::cout << "GameAnimation deconstructor" << std::endl;
-  //cleanUp(); 
-}
+GameAnimation::~GameAnimation() {}
 
 
-GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("Mario.bmp") {
-  
-  std::cout << "Debug GameAnimation.cpp Line: 8 - GameAnimation Constructor start\n" << std::endl;
-    
+GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("Mario.bmp") 
+{
   background = loadImage("Level1Clipped.jpg");
   backRect.x = TOKEN_PANE_W;
   backRect.y = 0;
@@ -42,12 +47,11 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
   // clip the background 
   clip_background();
 
-  std::cout << "Debug GameAnimation.cpp Line: 8 - GameAnimation Constructor end\n" << std::endl;
-
 }
 
 // define background clip locations
-void GameAnimation::clip_background() {
+void GameAnimation::clip_background()
+{
 
   // clip the portions of the background
   for (int i = 0; i < (LEVEL_LENGTH / GAME_WORLD_W * 24); i++)
@@ -60,8 +64,8 @@ void GameAnimation::clip_background() {
   
 }
 
-void GameAnimation::step() {
-
+void GameAnimation::step()
+{
   mario.status = MARIO_STEP; 
   gameMasterPointer->updateScreen();
   SDL_Delay(125);
@@ -80,8 +84,8 @@ void GameAnimation::step() {
  
 }
 
-void GameAnimation::jump() {
-
+void GameAnimation::jump()
+{
   mario.status = MARIO_JUMP;
 
   mario.marioRect.y -= MARIO_HEIGHT / 8;
@@ -147,8 +151,8 @@ void GameAnimation::jump() {
 
 }
 
-void GameAnimation::kick() {
-
+void GameAnimation::kick()
+{
   mario.status = MARIO_KICK;
   gameMasterPointer->updateScreen();
   SDL_Delay(500);
@@ -157,8 +161,8 @@ void GameAnimation::kick() {
   
 }
 
-void GameAnimation::turn() {
-
+void GameAnimation::turn()
+{
   mario.status = MARIO_TURN;
   gameMasterPointer->updateScreen();
   SDL_Delay(500);
@@ -168,8 +172,8 @@ void GameAnimation::turn() {
 }
 
 // checks if Mario has killed the enemy
-void GameAnimation::didKill() {
-  
+void GameAnimation::didKill()
+{
   // if Mario is at scene 100 and kicks the enemy, set killedEnemy to 1
   if (scene == 100 && mario.status == MARIO_KICK) {
     killedEnemy = 1;
@@ -178,8 +182,8 @@ void GameAnimation::didKill() {
 }
 
 // checks if the user has lost
-void GameAnimation::didLose() {
-
+void GameAnimation::didLose()
+{
   // if Mario has hit the first wall, set lost to 1
   if (scene == 20 && mario.status == MARIO_STAND) {
     lost = 1;
@@ -197,7 +201,6 @@ void GameAnimation::didLose() {
 
 void GameAnimation::updateScreen(SDL_Surface* screen)
 {
-  
   // check if the user has lost
   didLose();
 
@@ -222,15 +225,10 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
     }
     mario.show(screen);
   }
-
-  std::cout << "SCENE IS NOW: " << scene << std::endl;
-  std::cout << "MARIO'S STATUS IS: " << mario.status << std::endl;
-  std::cout << "KILLED ENEMY IS EQUAL TO: " << killedEnemy << std::endl;
 }
 
 void GameAnimation::cleanUp()
 {
-  
   mario.cleanUp();
   SDL_FreeSurface(background);
 

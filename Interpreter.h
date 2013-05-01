@@ -1,10 +1,12 @@
-//
-//  Interpreter.h
-//  project_interpretter
-//
-//  Created by Jon Gautsch on 3/26/13.
-//  Copyright (c) 2013 Jon Gautsch. All rights reserved.
-//
+/*
+  Interpreter.h
+  Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
+
+  Final Project CSE 20212 Spring 2013
+ 
+  Interprets. The tokens.
+  BAM.
+  */
 
 #ifndef __project_interpretter__Interpreter__
 #define __project_interpretter__Interpreter__
@@ -15,7 +17,6 @@
 #include <unistd.h>
 #include "GameWorld.h"
 
-// class GameWorld;
 
 using namespace std;
 
@@ -26,18 +27,16 @@ class Interpreter {
     
 public:
     
-    Interpreter();                                          // Default constructor
+	Interpreter(); // Default constructor
 
-    // This is the interpreter basically
-    void parse( vector<vector<int> > user_program, GameWorld *world );
+	// This is the interpreter basically
+	void parse( vector<vector<int> > user_program, GameWorld *world );
     
-    // Prints the raw program and param codes constructed
-    void printRaw();
+	// Prints the raw program and param codes constructed
+	void printRaw();
     
 private:
-    
-    vector<vector<int> > user_program;
-    // GameWorld *world;
+	vector<vector<int> > user_program;
     
 };
 
