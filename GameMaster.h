@@ -1,9 +1,18 @@
 /*
- GameMaster.h
- 
- Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
- 
- Master Game Controller - links together all the game classes via composition
+  GameMaster.h
+  Sean T Fitzgerald, Jon T Gautsch, Daniel Y Tamaru, Maribeth E Rauh
+
+  Final Project CSE 20212 Spring 2013
+  
+  Contains the entire program's functionality
+  Initializes SDL, setting up the game screen and background
+  Runs a loop that loops for the entirety of the game, checking for events and calling the appropriate
+    methods of its composed classes based on what events are detected
+  
+  Composed classes:
+    Interpreter - parses a vector of vectors containing information about the user's program
+    TokenQueue - instantiates tokens and keeps track of all instantiated tokens in a deque
+    GameWorld - animates the game portion of the window based on calls from the interpreter
  
  */
 
@@ -19,8 +28,9 @@
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
 
-//library for C POSIX multithreading
-#include "pthread.h"
+//library for C POSIX multithreading NOT IMPLEMENTED
+//#include "pthread.h"
+
 //Base class for GameMaster.h
 #include "SDL_Program.h"
 //contains program-wide constants like screen size
@@ -35,44 +45,34 @@ class GameWorld;
 class GameMaster : public SDL_Program {
     
 public:
-    GameMaster();
-    ~GameMaster();
+	GameMaster();
+	~GameMaster();
     
-    void play(); //this starts the master game
+	void play(); //this starts the game
     
-    //sets up the screen and the background, the last parameter is for the title of the window
-    bool initializeSDL(int = SCREEN_WIDTH, int = SCREEN_HEIGHT, int = SCREEN_BPP, std::string = "Robodog");
+	//sets up the screen, background, and all SDL subsystems, the last parameter is for the title of the window
+	bool initializeSDL(int = SCREEN_WIDTH, int = SCREEN_HEIGHT, int = SCREEN_BPP, std::string = "Robodog");
 
-    void updateScreen();
+	void updateScreen(); //blits the background images and calls the update screen method of composed classes
     
 private:
-    //show welcome screen
-    //show high scores
+	//NOT IMPLEMENTED
+	//show welcome screen
+	//show high scores
     
-    SDL_Surface *screen; //screen or canvas all images are blit onto
-    SDL_Surface *background; //whatever fills the whole screen's background
+	SDL_Surface *screen; //screen or canvas all images are blit onto
+	SDL_Surface *background; //whatever fills the whole screen's background
+	SDL_Rect tokenPane; //area that user will drop tokens in to "write" their code
+	
+	bool checkMousePositionOnPress(int, int);
+	bool mouseInTokenPane(int, int);
     
+	virtual void cleanUp(); //implemented in this class
+	void compileUserCode(); //called when user presses play, gets tokenQueue and gives it to the interpreter
     
-    //SDL_Rect applySurface(int, int, SDL_Surface *, SDL_Rect, SDL_Surface *, SDL_Rect *); //blits image to destination at (x, y)
-    bool checkMousePositionOnPress(int, int);
-    bool mouseInTokenPane(int, int);
-    virtual void cleanUp(); //implemented in this class
-    
-    //------------- Snap Region Data Members/Methods -------------
-    SDL_Rect tokenPane; //area that user will drop tokens to write their code
-    /*SDL_Rect snapRegion; //rectangle that defines the area an image will snap to
-    SDL_Surface *snapImage; //visual representation of the snap region (probably not needed for final project)
-    
-    void setUpSnapRegion(int, int, int, int); //adds a rect to the screen that will  be used to snap tokens into place
-    void applySnapRegion(SDL_Surface *); //adds a visual representation of the snap region to the screen
-    SDL_Surface* createBlankSurface(Uint32 flags, int width, int height); //creates the blank surface applied to the screen by applySnapRegion
-    *///------------------------------------------------------------
-    
-    void compileUserCode(); //called when user presses play, gets tokenQueue and gives it to the interpreter
-    
-    Interpreter interpreter;
-    TokenQueue queueOfTokens;
-    GameWorld gameWorld;
+	Interpreter interpreter; //parses a vector of vectors containing information about the user's program
+	TokenQueue queueOfTokens; //instantiates tokens and keeps track of all instantiated tokens in a deque
+	GameWorld gameWorld; //animates the game portion of the window based on calls from the interpreter
     
 };
 

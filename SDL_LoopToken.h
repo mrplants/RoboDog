@@ -16,15 +16,16 @@
 //Base class
 #include <string>
 #include "SDL_Token.h" //includes all SDL frameworks, iostream, etc. needed
+#include <SDL/SDL_ttf.h>
+
 
 class SDL_LoopToken : public SDL_Token {
 public:
     SDL_LoopToken(std::string); //parameters are ID ("if" or "loop") and subID for the action
+    ~SDL_LoopToken();   
     
-      
-      void addOneToRepeatNumber();
-      
-  	SDL_Surface *getMessageSurface();
+    SDL_Surface *getNumberSurface();
+    
 
     // SDL_Rect getInnerSnapRegion(); //returns the snap region inside the loop where a conditional or action should snap
 
@@ -35,10 +36,12 @@ public:
         
 private:
   
-  SDL_Surface * messageSurface;
-  std::string tokenRepeatMessage;
-  SDL_Color fontColor;
-  TTF_Font* theFont;
+  SDL_Surface * number1Surface;
+  SDL_Surface * number2Surface;
+  SDL_Surface * number3Surface;
+  SDL_Surface * number4Surface;
+  SDL_Surface * number5Surface;
+  SDL_Surface * currentNumberSurface;
   
   
     //methods to set up inner snap region

@@ -16,6 +16,7 @@ CodeToken::CodeToken(std::string commandID)
 	if (!commandID.compare("open_loop") || !commandID.compare("close_loop"))
 	{
 		SDL_LoopToken tempToken(commandID);
+	std::cout << "Debug CodeToken.cpp Line: 13 - after instantiating new Loop Token\n" << std::endl;
 		_repeatNumber = 0;
 		_uniqueLoopID = 0;
 		visualToken = tempToken;

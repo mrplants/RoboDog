@@ -30,14 +30,22 @@ public:
     void setSurface(SDL_Surface*);
     
     virtual void cleanUp();
-          SDL_Rect tokenRect;
-	      SDL_Surface *tokenSurface;
-  SDL_Rect messageSurfaceRect;
-  	SDL_Surface *getMessageSurface();
+    
+    SDL_Rect tokenRect;
+    SDL_Surface *tokenSurface;
+    SDL_Surface *getNumberSurface();
+    
+    
     int _repeatNumber;
 
-private:
     
+private:
+  SDL_Surface * number1Surface;
+  SDL_Surface * number2Surface;
+  SDL_Surface * number3Surface;
+  SDL_Surface * number4Surface;
+  SDL_Surface * number5Surface;
+  SDL_Surface * currentNumberSurface;
 };
 
 #endif /* defined SDL_TOKEN */

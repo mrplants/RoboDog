@@ -1,4 +1,11 @@
-//Contains all constants throughout program
+/*
+  constants.h
+  Sean Fitzgerald, Jon Gautsch, Daniel Tamaru, Maribeth Rauh
+ 
+  Final Project CSE 20212 Spring 2013
+  
+  Contains all constants used throughout program
+  */
 
 #ifndef _CONSTANTS
 #define _CONSTANTS
@@ -43,7 +50,7 @@
 
     // dimensions of enemy
     #define ENEMY_WIDTH 77
-    #define ENEMY_HEIGHT 150
+    #define ENEMY_HEIGHT 250
 
     // dimensions of Mario
     #define MARIO_WIDTH 136
