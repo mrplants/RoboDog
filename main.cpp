@@ -1,10 +1,13 @@
 /*
- Sean Fitzgerald, Jon Gautsch, Daniel Tamaru, Maribeth Rauh
+  main.cpp
+  Sean Fitzgerald, Jon Gautsch, Daniel Tamaru, Maribeth Rauh
  
- Final Project CSE 20212 Spring 2013
+  Final Project CSE 20212 Spring 2013
  
- Main.cpp - used to initialize the Master UI and Game Control class
- */
+  An instance of the game's main class, GameMaster, is made and the play function, which begins the game loop,
+  is called.
+  
+  */
 
 
 #include <iostream>
@@ -12,11 +15,11 @@
 
 int main (int argc, char * args[])
 {
-  //create an instance of the master game class
-    GameMaster testGame;
-    std::cout << "about to play in main" << std::endl;
-  //tell the master game class instance to play
-    testGame.play();
+	//Create an instance of the class that encompasses the whole program
+	GameMaster testGame;
+	
+	//Begin the actual game
+	testGame.play();
 
-  return 0;
+	return 0;
 }

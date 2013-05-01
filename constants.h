@@ -1,4 +1,11 @@
-//Contains all constants throughout program
+/*
+  constants.h
+  Sean Fitzgerald, Jon Gautsch, Daniel Tamaru, Maribeth Rauh
+ 
+  Final Project CSE 20212 Spring 2013
+  
+  Contains all constants used throughout program
+  */
 
 #ifndef _CONSTANTS
 #define _CONSTANTS
