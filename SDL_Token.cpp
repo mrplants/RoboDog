@@ -71,3 +71,7 @@ void SDL_Token::setSurface(SDL_Surface *newSurface)
 {
   tokenSurface = newSurface;
 }
+
+SDL_Surface* SDL_Token::getMessageSurface() {
+    return NULL;
+}

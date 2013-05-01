@@ -45,16 +45,25 @@ class GameAnimation : public SDL_Program {
   int scene;
 
   // congratulatory surface
-  //SDL_Surface *congratulatory;
+  SDL_Surface *congratulatory;
 
   // loser surface
-  //SDL_Surface *loser;
+  SDL_Surface *loser;
 
-  // whether or not the user killed enemy
-  bool killedEnemy;
+  // enemy surface
+  SDL_Surface *enemy;
+
+  // rectangle where enemy is blitted
+  SDL_Rect enemyRect;
+
+  // checks whether or not Mario killed the enemy
+  void didKill();
+
+  // whether or not Mario killed enemy
+  int killedEnemy;
 
   // areas of background sheet
-  SDL_Rect backClips[ (LEVEL_LENGTH / GAME_WORLD_W * 6) ];
+  SDL_Rect backClips[ (LEVEL_LENGTH / GAME_WORLD_W * 24) ];
 
   // instance of Mario
   Mario mario;
