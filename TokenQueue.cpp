@@ -131,6 +131,12 @@ void TokenQueue::removeTokenAtIndex(int index)
 }
 //removes the token at the specified index and deletes it from memory if the token is a loop, it deletes both loop tokens
 
+bool pointIsInNumberRect(int x, int y, int rectX, int rectY)
+{
+  if (x > (rectX + 73) && x < (rectX + 93) && y > (rectY + 12) && y < (rectY + 26)) return true;
+  return false;
+}
+
 bool TokenQueue::mouseOverToken(int x, int y)
 {
 	std::cout << "in mouseOverToken" << std::endl;
@@ -140,6 +146,24 @@ bool TokenQueue::mouseOverToken(int x, int y)
 	  std::cout << "Debug TokenDeque mouseOverToken: checking if over token at index: " << i << std::endl;
 		if (_tokenDeque[i].visualToken.mouseOverImage(_tokenDeque[i].visualToken.getRect(), x, y))
 		{
+		    if (!_tokenDeque[i]._commandID.compare("open_loop"))
+		    {
+			if (pointIsInNumberRect(x, y, _tokenDeque[i].visualToken.getRect().x, _tokenDeque[i].visualToken.getRect().y))
+			{
+				if (_tokenDeque[i]._repeatNumber <= 5)
+				{
+					_tokenDeque[i]._repeatNumber++;
+					_tokenDeque[i].visualToken._repeatNumber++;
+				} else 
+				{
+					_tokenDeque[i]._repeatNumber = 1;
+					_tokenDeque[i].visualToken._repeatNumber = 1;
+				}
+				//add one to the visual representation. Don't worry, if it goes over 5, it will reset at 1.
+				return false;
+			}
+		    }
+		  
 		    activeTokenPtr = new CodeToken(_tokenDeque[i]);
 		    
 		    removeTokenAtIndex(i);
@@ -211,7 +235,7 @@ void TokenQueue::newToken(std::string commandID, int x, int y)
 	newToken._commandID = commandID;
 
 	if(commandID.compare("open_loop")) {
-		// This token is not a loop so we set their repeat number and loop ID to -1
+	// This token is not a loop so we set their repeat number and loop ID to -1
 		newToken._repeatNumber = -1;
 		newToken._uniqueLoopID = -1;
 	
@@ -442,6 +466,8 @@ void TokenQueue::releaseActiveToken()
 
 void TokenQueue::updateScreen(SDL_Surface *screen)
 {
+  
+  std::cout << "Debug TokenQueue.cpp updateScreen - started update screen method" << std::endl;
  //put all tokens on screen by going through the queue
  SDL_Surface *newSurface;
  SDL_Rect newRect;
@@ -453,16 +479,29 @@ void TokenQueue::updateScreen(SDL_Surface *screen)
      SDL_BlitSurface( newSurface, NULL, screen, &newRect );
      if (!_tokenDeque[i]._commandID.compare("open_loop"))
      {
-       newSurface = _tokenDeque[i].visualToken.getMessageSurface();
-       newRect = _tokenDeque[i].visualToken.messageSurfaceRect;
+       newSurface = _tokenDeque[i].visualToken.getNumberSurface();
+       newRect = _tokenDeque[i].visualToken.getRect();
        SDL_BlitSurface( newSurface, NULL, screen, &newRect );
      }
   }
   
-    if (activeTokenPtr)   SDL_BlitSurface( (*activeTokenPtr).visualToken.getSurface(), NULL, screen,&( (*activeTokenPtr).visualToken.getRect() ));
+    if (activeTokenPtr)
+      SDL_BlitSurface( (*activeTokenPtr).visualToken.getSurface(), NULL, screen,&( (*activeTokenPtr).visualToken.getRect() ));
 
-  
+    if (activeTokenPtr && !activeTokenPtr->_commandID.compare("open_loop"))
+    {
+        std::cout << "Debug TokenQueue.cpp updateScreen - active is an open_loop 1, repeat Number is: " << activeTokenPtr->visualToken._repeatNumber << std::endl;
+
+	newSurface = activeTokenPtr->visualToken.getNumberSurface();
+  std::cout << "Debug TokenQueue.cpp updateScreen - active is an open_loop 2" << std::endl;
+	newRect = activeTokenPtr->visualToken.getRect();
+  std::cout << "Debug TokenQueue.cpp updateScreen - active is an open_loop 3" << std::endl;
+	SDL_BlitSurface( newSurface, NULL, screen, &newRect );
+    }
+    std::cout << "Debug TokenQueue.cpp updateScreen - right before printQueue" << std::endl;
+
   printQueue();
-  
+    std::cout << "Debug TokenQueue.cpp updateScreen - started update screen method" << std::endl;
+
   return;
 }

@@ -59,8 +59,14 @@ class GameAnimation : public SDL_Program {
   // checks whether or not Mario killed the enemy
   void didKill();
 
+  // checks wheter or not the user has lost
+  void didLose();
+
   // whether or not Mario killed enemy
-  int killedEnemy;
+  bool killedEnemy;
+
+  // whether or not the user has lost
+  bool lost;
 
   // areas of background sheet
   SDL_Rect backClips[ (LEVEL_LENGTH / GAME_WORLD_W * 24) ];

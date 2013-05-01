@@ -16,7 +16,7 @@ SDL_Token.o: SDL_Token.cpp SDL_Token.h
 	g++ -c SDL_Token.cpp #-lSDL -lSDL_image
     
 SDL_LoopToken.o: SDL_LoopToken.cpp SDL_LoopToken.h
-	g++ -c SDL_LoopToken.cpp #-lSDL -lSDL_image
+	g++ -c SDL_LoopToken.cpp -lSDL_ttf #-lSDL -lSDL_image
     
 TokenQueue.o: TokenQueue.cpp TokenQueue.h
 	g++ -c TokenQueue.cpp #-lSDL -lSDL_image

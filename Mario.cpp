@@ -43,6 +43,7 @@ void Mario::show(SDL_Surface *screen)
 
   if( status == MARIO_STEP ) 
     {
+      SDL_Delay(100);
       //increment the frame
       frame++;
       //loop the animation

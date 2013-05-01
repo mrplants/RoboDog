@@ -151,6 +151,12 @@ bool GameMaster::initializeSDL(int width, int height, int bpp, std::string capti
 	background = loadImage("tokenImages/RoboDogNewUI.bmp"); //method inherited from SDL_Program
 	if (background == NULL) std::cout << "ERR: Background could not be loaded\n" << std::endl;
     
+	//Initialize SDL_ttf 
+	if( TTF_Init() == -1 ) {
+		std::cout << "ERR: SDL_ttf could not be initialized" << std::endl;
+		return false; 
+	}
+    
 	//If everything initialized fine
 	return true;
 }
@@ -194,9 +200,6 @@ void GameMaster::cleanUp()
     
 	//Quit SDL
 	SDL_Quit();
-    
-	//Close a font that was used
-	//TTF_CloseFont( font );
     
 	//Quit SDL_ttf (deals with font)
 	TTF_Quit();
