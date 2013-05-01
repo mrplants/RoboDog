@@ -43,7 +43,7 @@
 
     // dimensions of enemy
     #define ENEMY_WIDTH 77
-    #define ENEMY_HEIGHT 150
+    #define ENEMY_HEIGHT 250
 
     // dimensions of Mario
     #define MARIO_WIDTH 136
