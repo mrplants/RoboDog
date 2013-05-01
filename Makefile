@@ -1,13 +1,13 @@
 make: main
 
 main: main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o SDL_LoopToken.o CodeToken.o Interpreter.o GameAnimation.o Mario.o GameStats.o GameWorld.o
-	g++ main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o CodeToken.o Interpreter.o GameAnimation.o GameWorld.o Mario.o GameStats.o SDL_LoopToken.o -o main -lSDL -lSDL_image -lSDL_ttf
+	g++ main.o GameMaster.o TokenQueue.o SDL_Program.o SDL_Token.o CodeToken.o Interpreter.o GameAnimation.o GameWorld.o Mario.o GameStats.o SDL_LoopToken.o -o main -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer
     
 main.o: main.cpp
 	g++ -c main.cpp
     
 GameMaster.o: GameMaster.cpp GameMaster.h TokenQueue.o SDL_Program.o Interpreter.o GameWorld.o
-	g++ -c GameMaster.cpp #-lSDL -lSDL_image
+	g++ -c GameMaster.cpp #-lSDL -lSDL_image 
 
 SDL_Program.o: SDL_Program.cpp SDL_Program.h
 	g++ -c SDL_Program.cpp #-lSDL -lSDL_image

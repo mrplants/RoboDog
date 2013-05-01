@@ -27,6 +27,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
+#include <SDL/SDL_mixer.h>
 
 //library for C POSIX multithreading NOT IMPLEMENTED
 //#include "pthread.h"
@@ -59,7 +60,7 @@ private:
 	//NOT IMPLEMENTED
 	//show welcome screen
 	//show high scores
-    
+    Mix_Music *mus;
 	SDL_Surface *screen; //screen or canvas all images are blit onto
 	SDL_Surface *background; //whatever fills the whole screen's background
 	SDL_Rect tokenPane; //area that user will drop tokens in to "write" their code
