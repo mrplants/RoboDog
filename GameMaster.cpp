@@ -23,6 +23,18 @@ GameMaster::GameMaster() : SDL_Program()//, gameWorld(this)
 {
 	std::cout << "Debug GameMaster.cpp Line: 8 - GameMaster Constructor start\n" << std::endl;
 
+	
+	
+	SDL_Init(SDL_INIT_AUDIO);
+	// Setup audio mode
+	Mix_OpenAudio(22050,AUDIO_S16SYS,2,640);
+	mus = Mix_LoadMUS("robodogSong1.wav");
+	Mix_PlayMusic(mus,1); //Music loop=1
+	
+	
+	
+	
+	
 	initializeSDL(); //sets up SDL subsystems, screen, and background
 
 	GameWorld tempGameWorld(this);
@@ -87,6 +99,8 @@ void GameMaster::play()
 			updateScreen();
 		}
 	}
+	Mix_HaltMusic();
+	Mix_FreeMusic(mus);
 	return;
 }
 //****************************************************************************
