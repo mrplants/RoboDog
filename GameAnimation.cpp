@@ -26,7 +26,7 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
 
   loser = loadImage("LoserScreen.jpg");
 
-  enemy = loadImage("enemy.jpg");
+  enemy = loadImage("enemy.bmp");
   enemyRect.x = SCREEN_WIDTH - TOKEN_LIB_W + MARIO_WIDTH;
   enemyRect.y = SCREEN_HEIGHT - TOKEN_LIB_H - RUN_BUTTON_H - ENEMY_HEIGHT;
   enemyRect.w = ENEMY_WIDTH;

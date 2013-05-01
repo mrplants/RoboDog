@@ -29,6 +29,13 @@ SDL_Token::SDL_Token(std::string ID) : SDL_Program() {
 
 	
    if (tokenSurface) tokenRect = createRect(tokenSurface, 0, 0); //WILL NOT WORK WITH CURRENT APPLY SURFACE
+     
+     	 number1Surface = loadImage("tokenImages/1.bmp");
+	 number2Surface = loadImage("tokenImages/2.bmp");
+	 number3Surface = loadImage("tokenImages/3.bmp");
+	 number4Surface = loadImage("tokenImages/4.bmp");
+	 number5Surface = loadImage("tokenImages/5.bmp");
+
 
   std::cout << "Debug SDL_Token.cpp Line: 29 - SDL_Token Constructor end\n" << std::endl;
 
@@ -72,6 +79,47 @@ void SDL_Token::setSurface(SDL_Surface *newSurface)
   tokenSurface = newSurface;
 }
 
-SDL_Surface* SDL_Token::getMessageSurface() {
-    return NULL;
+SDL_Surface * SDL_Token::getNumberSurface()
+{
+  std::cout << "Debug SDL_LoopToken getMessageSurface() : entered getMessage Surface function." << std::endl;
+  switch (_repeatNumber)
+  {
+    case (1):
+      currentNumberSurface = number1Surface;
+  std::cout << "Debug SDL_LoopToken getMessageSurface() : number is 1." << std::endl;
+      break;
+    case (2):
+      currentNumberSurface = number2Surface;
+  std::cout << "Debug SDL_LoopToken getMessageSurface() : number is 2." << std::endl;
+      break;
+    case (3):
+      currentNumberSurface = number3Surface;
+  std::cout << "Debug SDL_LoopToken getMessageSurface() : number is 3." << std::endl;
+      break;
+    case (4):
+      currentNumberSurface = number4Surface;
+  std::cout << "Debug SDL_LoopToken getMessageSurface() : number is 4." << std::endl;
+      break;
+    case (5):
+      currentNumberSurface = number5Surface;
+  std::cout << "Debug SDL_LoopToken getMessageSurface() : number is 5." << std::endl;
+      break;
+    default :
+      currentNumberSurface = number1Surface;
+      break;
+  }
+  /*
+  messageSurface = TTF_RenderText_Solid(theFont, tokenRepeatMessage.c_str(), fontColor);
+  messageSurfaceRect.w = getRect().w;
+  messageSurfaceRect.h = getRect().h;
+  messageSurfaceRect.x = getRect().x + getRect().w / 2 - messageSurface->w / 2;
+  messageSurfaceRect.y = getRect().y + getRect().h / 2 - messageSurface->h / 2;
+  std::cout << "SDL_LoopToken getMessageSurface: " << messageSurfaceRect.x << ", " << messageSurfaceRect.y << std::endl;
+
+  std::cout << "Debug SDL_LoopToken getMessageSurface() : leaving getMessage Surface function." << std::endl;
+
+  */
+  return currentNumberSurface;
 }
+
+
