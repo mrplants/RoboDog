@@ -7,7 +7,7 @@ GameAnimation::GameAnimation() : SDL_Program() {}
 GameAnimation::~GameAnimation() {
   
   std::cout << "GameAnimation deconstructor" << std::endl;
- //cleanUp(); 
+  //cleanUp(); 
 }
 
 
@@ -23,7 +23,6 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
   scene = 0;
 
   congratulatory = loadImage("WinnerScreen.jpg");
-
   loser = loadImage("LoserScreen.jpg");
 
   enemy = loadImage("enemy.bmp");
@@ -33,6 +32,7 @@ GameAnimation::GameAnimation(GameMaster* theGameMaster) : SDL_Program(),mario("M
   enemyRect.h = ENEMY_HEIGHT;
 
   killedEnemy = 0;
+  lost = 0;
 
   gameMasterPointer = theGameMaster;
   
@@ -170,40 +170,53 @@ void GameAnimation::turn() {
 // checks if Mario has killed the enemy
 void GameAnimation::didKill() {
   
-  // if Mario is at scene 100 and kicks the enemy, increment the killedEnemy counter
+  // if Mario is at scene 100 and kicks the enemy, set killedEnemy to 1
   if (scene == 100 && mario.status == MARIO_KICK) {
-    killedEnemy++;
+    killedEnemy = 1;
   }
   
 }
 
+// checks if the user has lost
+void GameAnimation::didLose() {
+
+  // if Mario has hit the first wall, set lost to 1
+  if (scene == 20 && mario.status == MARIO_STAND) {
+    lost = 1;
+  }
+  // if Mario has hit the second wall, set lost to 1
+  if (scene == 52 && mario.status == MARIO_STAND) {
+    lost = 1;
+  }
+  // if Mario has not killed the enemy, set lost to 1 
+  if ( scene >= 104 && !killedEnemy) {
+    lost = 1;
+  }
+
+}
+
 void GameAnimation::updateScreen(SDL_Surface* screen)
 {
+  
+  // check if the user has lost
+  didLose();
 
-  // if Mario has hit the first wall, show a loser screen
-  if (scene == 20 && mario.status == MARIO_STAND) {
-    SDL_BlitSurface( loser, NULL, screen, &backRect);
-  }
-  // if Mario has hit the second wall, show a loser screen
-  else if (scene == 52 && mario.status == MARIO_STAND) {
-    SDL_BlitSurface( loser, NULL, screen, &backRect);
-  }
-  // if Mario has not killed the enemy, show a loser screen 
-  else if ( scene >= 104 && killedEnemy < 1) {
-    SDL_BlitSurface( loser, NULL, screen, &backRect);
+  // if the user has lost, display the loser screen
+  if (lost) {
+    SDL_BlitSurface( loser, NULL, screen, &backRect );
   }
   // if Mario has reached the end of the level, show a winner screen
-  else if (scene >= 116 ) {
+  else if ( scene >= 116 ) {
     SDL_BlitSurface( congratulatory, NULL, screen, &backRect);  
   }  
   // otherwise, show Mario and the appropriate scene of the background
   else {
     SDL_BlitSurface( background, &backClips[ scene ], screen, &backRect);    
     if (scene >= 100) {
-      // check if Mario has killed the enemy
+      // check if Mario has kicked the enemy
       didKill();
-      // if Mario has not kicked the enemy at least once, display the enemy
-      if (killedEnemy < 1) {
+      // if Mario has not kicked the enemy, display the enemy
+      if (!killedEnemy) {
 	SDL_BlitSurface( enemy, NULL, screen, &enemyRect ); 
       }
     }
@@ -217,7 +230,7 @@ void GameAnimation::updateScreen(SDL_Surface* screen)
 
 void GameAnimation::cleanUp()
 {
-
+  
   mario.cleanUp();
   SDL_FreeSurface(background);
 
